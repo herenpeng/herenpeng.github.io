@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>懒羊羊的青草蛋糕</title>
+  
+  <subtitle>每一秒钟的时间都值得铭记</subtitle>
+  <link href="https://herenpeng.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://herenpeng.github.io/"/>
+  <updated>2023-02-18T09:34:32.364Z</updated>
+  <id>https://herenpeng.github.io/</id>
+  
+  <author>
+    <name>次时代小羊</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一篇博客教会你写序列化工具</title>
+    <link href="https://herenpeng.github.io/2023/02/18/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E5%86%99%E5%BA%8F%E5%88%97%E5%8C%96%E5%B7%A5%E5%85%B7/"/>
+    <id>https://herenpeng.github.io/2023/02/18/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E5%86%99%E5%BA%8F%E5%88%97%E5%8C%96%E5%B7%A5%E5%85%B7/</id>
+    <published>2023-02-18T04:23:00.000Z</published>
+    <updated>2023-02-18T09:34:32.364Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;什么是序列化？&quot;&gt;&lt;a href=&quot;#什么是序列化？&quot; class=&quot;headerlink&quot; title=&quot;什么是序列化？&quot;&gt;&lt;/a&gt;什么是序列化？&lt;/h2&gt;&lt;p&gt;总所周知，在Java语言中，所有的数据都是以对象的形式存在Java堆中。&lt;/p&gt;
+&lt;p&gt;但是Java对象如果要存储在别的地方，那么单纯的Java对象就无法满足了，必须要将Java对象转为一种可以存储的格式，这个转换的过程就是序列化。&lt;/p&gt;
+&lt;p&gt;同理而言，将一种存储的格式转换为Java对象的过程，就是反序列化。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ProtoBuf入门</title>
+    <link href="https://herenpeng.github.io/2022/02/14/ProtoBuf%E5%85%A5%E9%97%A8/"/>
+    <id>https://herenpeng.github.io/2022/02/14/ProtoBuf%E5%85%A5%E9%97%A8/</id>
+    <published>2022-02-14T07:17:11.000Z</published>
+    <updated>2023-02-18T09:43:34.968Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;什么是-ProtoBuf&quot;&gt;&lt;a href=&quot;#什么是-ProtoBuf&quot; class=&quot;headerlink&quot; title=&quot;什么是 ProtoBuf&quot;&gt;&lt;/a&gt;什么是 ProtoBuf&lt;/h2&gt;&lt;p&gt;&lt;code&gt;protocol buffers&lt;/code&gt; 是一种语言无关、平台无关、可扩展的序列化结构数据的方法，它可用于（数据）通信协议、数据存储等。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Protocol Buffers&lt;/code&gt; 是一种灵活，高效，自动化机制的结构数据序列化方法－可类比 &lt;code&gt;XML&lt;/code&gt;，但是比 &lt;code&gt;XML&lt;/code&gt;更小（3 ~ 10倍）、更快（20 ~ 100倍）、更为简单。&lt;/p&gt;
+&lt;p&gt;你可以定义数据的结构，然后使用特殊生成的源代码轻松的在各种数据流中使用各种语言进行编写和读取结构数据。你甚至可以更新数据结构，而不破坏由旧数据结构编译的已部署程序。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+    <category term="ProtoBuf" scheme="https://herenpeng.github.io/tags/ProtoBuf/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python序列</title>
+    <link href="https://herenpeng.github.io/2021/11/29/Python%E5%BA%8F%E5%88%97/"/>
+    <id>https://herenpeng.github.io/2021/11/29/Python%E5%BA%8F%E5%88%97/</id>
+    <published>2021-11-28T22:00:00.000Z</published>
+    <updated>2023-02-18T09:54:30.127Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;序列是一块用于存放多个值的连续的内存空间，并按照一定的顺序排列，每一个值（称为元素）都分配一个数字（称为索引或者位置）。通过索引可以取出对应位置的值。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="Python" scheme="https://herenpeng.github.io/categories/Python/"/>
+    
+    
+    <category term="Python" scheme="https://herenpeng.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python基本数据类型</title>
+    <link href="https://herenpeng.github.io/2021/11/21/Python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
+    <id>https://herenpeng.github.io/2021/11/21/Python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</id>
+    <published>2021-11-21T07:51:43.000Z</published>
+    <updated>2023-02-18T09:50:28.722Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Python 有多种基本数据类型，用来存储内存中的数据。Python 一共提供了三种基本数据类型，其中分为是：数值型、字符型、布尔型。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="Python" scheme="https://herenpeng.github.io/categories/Python/"/>
+    
+    
+    <category term="Python" scheme="https://herenpeng.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WebStrom 开发 Vue 项目，安装 ESLint 代码风格检查工具</title>
+    <link href="https://herenpeng.github.io/2021/08/30/WebStrom%20%E5%BC%80%E5%8F%91%20Vue%20%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%AE%89%E8%A3%85%20ESLint%20%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E6%A3%80%E6%9F%A5%E5%B7%A5%E5%85%B7/"/>
+    <id>https://herenpeng.github.io/2021/08/30/WebStrom%20%E5%BC%80%E5%8F%91%20Vue%20%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%AE%89%E8%A3%85%20ESLint%20%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E6%A3%80%E6%9F%A5%E5%B7%A5%E5%85%B7/</id>
+    <published>2021-08-30T01:02:20.000Z</published>
+    <updated>2023-02-18T09:35:27.184Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;WebStrom 开发 Vue 项目，安装 ESLint 代码风格检查工具&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="JavaScript" scheme="https://herenpeng.github.io/categories/JavaScript/"/>
+    
+    
+    <category term="JavaScript" scheme="https://herenpeng.github.io/tags/JavaScript/"/>
+    
+    <category term="WebStrom" scheme="https://herenpeng.github.io/tags/WebStrom/"/>
+    
+    <category term="Vue" scheme="https://herenpeng.github.io/tags/Vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java位运算，Int类型存储用户的登录足迹</title>
+    <link href="https://herenpeng.github.io/2021/08/23/Java%E4%BD%8D%E8%BF%90%E7%AE%97%EF%BC%8CInt%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%82%A8%E7%94%A8%E6%88%B7%E7%9A%84%E7%99%BB%E5%BD%95%E8%B6%B3%E8%BF%B9/"/>
+    <id>https://herenpeng.github.io/2021/08/23/Java%E4%BD%8D%E8%BF%90%E7%AE%97%EF%BC%8CInt%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%82%A8%E7%94%A8%E6%88%B7%E7%9A%84%E7%99%BB%E5%BD%95%E8%B6%B3%E8%BF%B9/</id>
+    <published>2021-08-23T15:08:20.000Z</published>
+    <updated>2023-02-18T09:45:43.606Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;今天接到一家公司的面试邀请，于是我来到了这家公司，前台的小姐姐面带微笑地把我请进会议室，等待了一会，一位面试官走了进来……&lt;/p&gt;
+&lt;p&gt;在进行了简单的自我介绍之后，面试官开始发问了……&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>低代码开发，手写一款代码生成工具</title>
+    <link href="https://herenpeng.github.io/2021/08/11/%E4%BD%8E%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/"/>
+    <id>https://herenpeng.github.io/2021/08/11/%E4%BD%8E%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/</id>
+    <published>2021-08-10T16:21:44.000Z</published>
+    <updated>2023-02-18T09:43:58.650Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;低代码平台的一个核心就是，使用可视化的操作，生成项目系统中的非核心代码，从而大大降低了重复代码的编写工作，使开发者们可以更加专注于核心代码和业务功能的设计和开发工作。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+    <category term="SpringBoot" scheme="https://herenpeng.github.io/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>上班聊天，摸鱼神器，手写一款即时通讯工具（附源码！！！）</title>
+    <link href="https://herenpeng.github.io/2021/08/07/%E4%B8%8A%E7%8F%AD%E8%81%8A%E5%A4%A9%EF%BC%8C%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF%E5%B7%A5%E5%85%B7%EF%BC%88%E9%99%84%E6%BA%90%E7%A0%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%89/"/>
+    <id>https://herenpeng.github.io/2021/08/07/%E4%B8%8A%E7%8F%AD%E8%81%8A%E5%A4%A9%EF%BC%8C%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF%E5%B7%A5%E5%85%B7%EF%BC%88%E9%99%84%E6%BA%90%E7%A0%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%89/</id>
+    <published>2021-08-07T02:46:02.000Z</published>
+    <updated>2023-02-18T09:33:22.322Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;认真工作不叫做赚钱，那叫做用劳动换取报酬，上班摸鱼才是真的赚钱。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+    <category term="Netty" scheme="https://herenpeng.github.io/tags/Netty/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一篇博客教会你怎么安装CentOS系统</title>
+    <link href="https://herenpeng.github.io/2020/04/19/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85CentOS%E7%B3%BB%E7%BB%9F/"/>
+    <id>https://herenpeng.github.io/2020/04/19/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85CentOS%E7%B3%BB%E7%BB%9F/</id>
+    <published>2020-04-19T01:50:31.000Z</published>
+    <updated>2023-02-18T12:12:09.517Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;这篇博客我们来学习怎样通过VMware虚拟机软件来安装CentOS系统。&lt;br&gt;这篇博客是在VMware虚拟机的基础上安装CentOS系统，所以如果不知道怎么安装VMware虚拟机的同学，可以参考我之前的博客：&lt;a href=&quot;/2020/04/19/一篇博客教会你怎么安装VMware虚拟机&quot;&gt;一篇博客教会你怎么安装VMware虚拟机&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://herenpeng.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://herenpeng.github.io/tags/Linux/"/>
+    
+    <category term="CentOS" scheme="https://herenpeng.github.io/tags/CentOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一篇博客教会你怎么安装VMware虚拟机</title>
+    <link href="https://herenpeng.github.io/2020/04/19/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    <id>https://herenpeng.github.io/2020/04/19/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/</id>
+    <published>2020-04-19T01:50:31.000Z</published>
+    <updated>2023-02-18T09:33:53.289Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;这篇博客我们来学习VMware虚拟机的安装&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://herenpeng.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://herenpeng.github.io/tags/Linux/"/>
+    
+    <category term="CentOS" scheme="https://herenpeng.github.io/tags/CentOS/"/>
+    
+    <category term="VMware" scheme="https://herenpeng.github.io/tags/VMware/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构与算法-排序算法辅助工具编写与三种基本排序算法（Java实现）</title>
+    <link href="https://herenpeng.github.io/2020/04/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%E7%BC%96%E5%86%99%E4%B8%8E%E4%B8%89%E7%A7%8D%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%EF%BC%88Java%E5%AE%9E%E7%8E%B0%EF%BC%89/"/>
+    <id>https://herenpeng.github.io/2020/04/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%E7%BC%96%E5%86%99%E4%B8%8E%E4%B8%89%E7%A7%8D%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%EF%BC%88Java%E5%AE%9E%E7%8E%B0%EF%BC%89/</id>
+    <published>2020-04-07T05:26:31.000Z</published>
+    <updated>2020-04-19T01:47:44.229Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;一、排序算法辅助工具类：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;随机生成一个整形数组&lt;/li&gt;
+&lt;li&gt;生成一个近乎有序的整形数组&lt;/li&gt;
+&lt;li&gt;判断一个数组是否有序，有序返回true，无序返回false</summary>
+    
+    
+    
+    <category term="数据结构" scheme="https://herenpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+    <category term="数据结构" scheme="https://herenpeng.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="排序算法" scheme="https://herenpeng.github.io/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://herenpeng.github.io/2020/03/15/hello-world/"/>
+    <id>https://herenpeng.github.io/2020/03/15/hello-world/</id>
+    <published>2020-03-15T12:08:59.942Z</published>
+    <updated>2020-04-07T09:31:56.576Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;欢迎来到我的博客！&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span</summary>
+      
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+  </entry>
+  
+</feed>
