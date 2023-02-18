@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"herenpeng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="认真工作不叫做赚钱，那叫做用劳动换取报酬，上班摸鱼才是真的赚钱。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="上班聊天，摸鱼神器，手写一款即时通讯工具（附源码！！！）">
+<meta property="og:url" content="https://herenpeng.github.io/2021/08/07/%E4%B8%8A%E7%8F%AD%E8%81%8A%E5%A4%A9%EF%BC%8C%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF%E5%B7%A5%E5%85%B7%EF%BC%88%E9%99%84%E6%BA%90%E7%A0%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%89/index.html">
+<meta property="og:site_name" content="懒羊羊的青草蛋糕">
+<meta property="og:description" content="认真工作不叫做赚钱，那叫做用劳动换取报酬，上班摸鱼才是真的赚钱。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://herenpeng.github.io/images/2023/02/100002.gif">
+<meta property="og:image" content="https://herenpeng.github.io/images/2023/02/100001.jpg">
+<meta property="og:image" content="https://herenpeng.github.io/images/2023/02/100003.jpg">
+<meta property="og:image" content="https://herenpeng.github.io/images/2023/02/100005.gif">
+<meta property="og:image" content="https://herenpeng.github.io/images/2023/02/100004.gif">
+<meta property="article:published_time" content="2021-08-07T02:46:02.000Z">
+<meta property="article:modified_time" content="2023-02-18T09:33:22.322Z">
+<meta property="article:author" content="次时代小羊">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Netty">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://herenpeng.github.io/images/2023/02/100002.gif">
+
+<link rel="canonical" href="https://herenpeng.github.io/2021/08/07/%E4%B8%8A%E7%8F%AD%E8%81%8A%E5%A4%A9%EF%BC%8C%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF%E5%B7%A5%E5%85%B7%EF%BC%88%E9%99%84%E6%BA%90%E7%A0%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>上班聊天，摸鱼神器，手写一款即时通讯工具（附源码！！！） | 懒羊羊的青草蛋糕</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/schemes/fireworks.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">懒羊羊的青草蛋糕</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">每一秒钟的时间都值得铭记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">13</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">12</span></a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/herenpeng" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2021/08/07/%E4%B8%8A%E7%8F%AD%E8%81%8A%E5%A4%A9%EF%BC%8C%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF%E5%B7%A5%E5%85%B7%EF%BC%88%E9%99%84%E6%BA%90%E7%A0%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="次时代小羊">
+      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懒羊羊的青草蛋糕">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          上班聊天，摸鱼神器，手写一款即时通讯工具（附源码！！！）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-07 10:46:02" itemprop="dateCreated datePublished" datetime="2021-08-07T10:46:02+08:00">2021-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-18 17:33:22" itemprop="dateModified" datetime="2023-02-18T17:33:22+08:00">2023-02-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              <span>10k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>认真工作不叫做赚钱，那叫做用劳动换取报酬，上班摸鱼才是真的赚钱。</p>
+</blockquote>
+<span id="more"></span>
+
+<p><img src="/images/2023/02/100002.gif" alt="img"></p>
+<h1 id="即时通讯工具"><a href="#即时通讯工具" class="headerlink" title="即时通讯工具"></a>即时通讯工具</h1><p>如果上班有空闲时间，最喜欢做的事情自然是和熟悉的朋友一起聊聊天，互相吐槽工作中遇到的人和事，缓解工作的压力。</p>
+<p>如果直接在桌面上打开 QQ 或者微信，那目标无疑是巨大的，QQ 和微信的桌面客户端明晃晃地占据整个电脑桌面，只要有同事或者领导从你身边经过，或是在你后面看一眼，就立刻能够知道你在上班摸鱼，那场面不亚于公开处刑…… (＠_＠)</p>
+<blockquote>
+<p>领导：看来工作还是不饱和啊 ┑(￣Д ￣)┍</p>
+</blockquote>
+<p>针对这种情况，技术人自然不甘落后，总是可以想出各种方法躲避同事和领导发现你在上班摸鱼 ≡ω≡</p>
+<p>思量再三，最终还是放弃了 IDEA 的各种插件，转而决定还是自己手写一款简易的即时通信工具。</p>
+<p>既然要自己动手，那自然也要先对这款即时通讯工具做个简单的规划。</p>
+<ul>
+<li>这款即时通讯工具分为客户端和服务端的，每个用户可以使用客户端进行即时通讯。</li>
+<li>通讯工具尽可能简单，只依赖于 JDK，即完全使用 Java 网络编程功能实现，不依赖其他的第三方库。</li>
+<li>通讯工具不需要桌面，使用 Java 自带的 Scanner 控制台输入即可。</li>
+</ul>
+<p>这样一款基于 Java 网络编程的即时通讯工具，只要在 IDEA 运行客户端代码，即可在控制台与其他朋友快乐地聊天。只要不是同事或者领导贴着你的电脑屏幕观看，他绝对想不到你是在使用 IDEA 上班摸鱼聊天。</p>
+<p><img src="/images/2023/02/100001.jpg" alt="img"></p>
+<h1 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h1><p>客户端是给使用这款即时通讯工具的用户使用的，从安全和用户体验的角度上来说，客户端应该尽可能精简，只负责发送和接受数据即可。</p>
+<p>因为这是一款即时通讯工具，客户端需要做的有两件事：</p>
+<ul>
+<li>监听客户端的输入和发送。</li>
+<li>监听服务端发送过来的消息。</li>
+</ul>
+<p>因为我们使用 JDK 自带的 Scanner 类来进行客户端的输入，而这个输入是一个阻塞的操作，所以我们需要创建一条额外的线程来进行服务端的监听工作。</p>
+<p>客户端需要两条用户线程：</p>
+<ul>
+<li>main 线程用来监听客户端的输入和发送。</li>
+<li>另外创建一条线程用来监听服务端的消息发送。</li>
+</ul>
+<p>思路已经设计好了，可以使用代码来实现了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 聊天室客户端</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> herenpeng</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2021-07-09 12:00:00</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ChatClient</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> (<span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Socket</span>(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">12345</span>)) &#123;</span><br><span class="line">            <span class="comment">// 读取服务端发的消息</span></span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; readMsg(socket)).start();</span><br><span class="line">            <span class="type">OutputStream</span> <span class="variable">os</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line">            <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">            System.out.println(<span class="string">&quot;请输入您的聊天室昵称：&quot;</span>);</span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">                <span class="type">String</span> <span class="variable">chat</span> <span class="operator">=</span> scanner.next();</span><br><span class="line">                System.out.println(<span class="string">&quot;---------------------------&quot;</span>);</span><br><span class="line">                os.write(chat.getBytes());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;【系统消息】聊天室炸了，BUG之神降临了&quot;</span>);</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.exit(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">readMsg</span><span class="params">(Socket socket)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">                <span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line">                <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">                <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> is.read(bytes);</span><br><span class="line">                System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(bytes, <span class="number">0</span>, len));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;【系统消息】你已退出聊天室，开始认真工作吧&quot;</span>);</span><br><span class="line">            System.exit(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h1><p>服务端的设计比客户端要困难很多，为了便于开发和理解，我直接使用了 Java 阻塞式的网络 IO 来进行实现，即每一个客户端连接都创建一个线程来进行处理。</p>
+<p>这种阻塞式的网络 IO 的<strong>好处</strong>在于便于理解和开发，而<strong>缺点</strong>也非常明显，因为这是一个通讯工具，即每一个链接都是长链接。</p>
+<p>即每个客户端用户链接服务端后，都会在服务端专门有一个线程处理这个客户端相关的网络 IO 操作。如果用户量少的情况下还比较好，但是用户一旦多了起来，服务端将会创建 N 多个线程，而且在客户端不主动断开的情况下，服务器这些线程会一直占用服务器资源，服务器将会消费非常大的资源，而且很容易崩溃。</p>
+<blockquote>
+<p>基于这种情况，我后面也实现了一个 Java NIO 版本的客户端和服务端，在文章末尾也会一起附上源码。</p>
+</blockquote>
+<p><img src="/images/2023/02/100003.jpg" alt="img"></p>
+<p>我将服务端的操作分为两个步骤：</p>
+<h2 id="1、链接"><a href="#1、链接" class="headerlink" title="1、链接"></a>1、链接</h2><p>服务端阻塞地等待客户端的链接请求。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 聊天室服务端</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> herenpeng</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2021-07-09 12:00:00</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ChatServer</span> &#123;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 启动类</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> args 启动参数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException 抛出IO异常</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">ServerSocket</span> <span class="variable">server</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerSocket</span>(<span class="number">12345</span>);</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; start(server)).start();</span><br><span class="line">        <span class="comment">// 加载配置</span></span><br><span class="line">        CHAT_CFG_RELOAD_PASSWORD = UUID.randomUUID().toString();</span><br><span class="line">        logInfo(<span class="string">&quot;【系统消息】聊天室配置加载密钥：&quot;</span> + CHAT_CFG_RELOAD_PASSWORD);</span><br><span class="line">        reloadChatCfg(args.length == <span class="number">1</span> ? args[<span class="number">0</span>] : <span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line">        logInfo(<span class="string">&quot;【系统消息】聊天室启动成功了！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 服务开始方法</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> server 服务对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">start</span><span class="params">(ServerSocket server)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">                <span class="comment">// 链接操作</span></span><br><span class="line">                <span class="type">ChatSocket</span> <span class="variable">chatSocket</span> <span class="operator">=</span> connection(server);</span><br><span class="line">                <span class="comment">// 登录操作</span></span><br><span class="line">                login(chatSocket);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            logInfo(<span class="string">&quot;【系统消息】聊天室发生了异常……&quot;</span>);</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            logInfo(<span class="string">&quot;【系统消息】正在关闭聊天室资源……&quot;</span>);</span><br><span class="line">            close(server);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 链接客户端</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> server 服务对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> ChatSocket 对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException 抛出异常</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ChatSocket <span class="title function_">connection</span><span class="params">(ServerSocket server)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> server.accept();</span><br><span class="line">        <span class="type">ChatSocket</span> <span class="variable">chatSocket</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ChatSocket</span>(socket);</span><br><span class="line">        userDB.add(chatSocket);</span><br><span class="line">        sendMsgToUser(socket, <span class="string">&quot;============================\n&quot;</span> +</span><br><span class="line">                      <span class="string">&quot;1、本聊天室仅为娱乐，请勿在该聊天室内谈论敏感内容，比如涉政，涉黄，账号密码等等！\n&quot;</span> +</span><br><span class="line">                      <span class="string">&quot;2、聊天室内容明文传输，聊天信息泄露本聊天室概不负责！\n&quot;</span> +</span><br><span class="line">                      <span class="string">&quot;3、本聊天室内容后台不做任何存储，聊天信息如果需要请自行保留！\n&quot;</span> +</span><br><span class="line">                      <span class="string">&quot;4、最终解释权归本聊天室所有！\n&quot;</span> +</span><br><span class="line">                      <span class="string">&quot;============================&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> chatSocket;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 保存所有用户socket的集合</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> List&lt;ChatSocket&gt; userDB = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2、登录"><a href="#2、登录" class="headerlink" title="2、登录"></a>2、登录</h2><p>服务端获取到客户端请求后，将 <code>Socket</code> 包装为我们自定义的 <code>ChatSocket</code>，便于我们进行登录操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户登录方法</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> chatSocket ChatSocket 对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">login</span><span class="params">(ChatSocket chatSocket)</span> &#123;</span><br><span class="line">    <span class="comment">// 给每个用户一个线程处理</span></span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">        <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> chatSocket.getSocket();</span><br><span class="line">        <span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line">            <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">            <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> readMsg(is, bytes);</span><br><span class="line">            <span class="keyword">if</span> (len == -<span class="number">1</span>) &#123;</span><br><span class="line">                logout(chatSocket);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            username = <span class="keyword">new</span> <span class="title class_">String</span>(bytes, <span class="number">0</span>, len);</span><br><span class="line">            chatSocket.setUsername(username);</span><br><span class="line">            <span class="comment">// 刷新配置</span></span><br><span class="line">            <span class="keyword">if</span> (CHAT_CFG_RELOAD_PASSWORD.equals(username)) &#123;</span><br><span class="line">                reloadChatCfg(is, bytes, socket);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            loginTip(username, socket);</span><br><span class="line">            <span class="comment">// 机器人欢迎</span></span><br><span class="line">            robotWelcome(username);</span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">                len = readMsg(is, bytes);</span><br><span class="line">                <span class="keyword">if</span> (len == -<span class="number">1</span>) &#123;</span><br><span class="line">                    logout(chatSocket);</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="type">String</span> <span class="variable">msg</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(bytes, <span class="number">0</span>, len);</span><br><span class="line">                sendMsgToOtherUser(username, socket, msg);</span><br><span class="line">                <span class="comment">// 机器人回复消息</span></span><br><span class="line">                randomRobotReply(msg);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                logout(chatSocket);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">                remove(socket);</span><br><span class="line">                ex.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3、其他方法"><a href="#3、其他方法" class="headerlink" title="3、其他方法"></a>3、其他方法</h2><h3 id="3-1、读取客户端的消息"><a href="#3-1、读取客户端的消息" class="headerlink" title="3.1、读取客户端的消息"></a>3.1、读取客户端的消息</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 读取消息的方法</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> is    输入流</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> bytes 字节数组</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 读取的长度</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">readMsg</span><span class="params">(InputStream is, <span class="type">byte</span>[] bytes)</span> &#123;</span><br><span class="line">    <span class="type">int</span> len;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        len = is.read(bytes);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-2、给客户端发送消息"><a href="#3-2、给客户端发送消息" class="headerlink" title="3.2、给客户端发送消息"></a>3.2、给客户端发送消息</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 给所有的用户发送系统消息</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> msg 系统消息</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> IOException 抛出异常</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sendSysMsg</span><span class="params">(String msg)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="keyword">for</span> (ChatSocket chatSocket : userDB) &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sysMsg</span> <span class="operator">=</span> getCurrentTime() + <span class="string">&quot;\n&quot;</span> + msg + <span class="string">&quot;\n&quot;</span> + chatSeparate;</span><br><span class="line">        <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> chatSocket.getSocket();</span><br><span class="line">        sendMsgToUser(socket, sysMsg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 发送消息给其他用户</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> username 消息发送用户名称</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> self     消息发送的用户socket</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> msg      消息</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> IOException 抛出异常</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sendMsgToOtherUser</span><span class="params">(String username, Socket self, String msg)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="keyword">for</span> (ChatSocket chatSocket : userDB) &#123;</span><br><span class="line">        <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> chatSocket.getSocket();</span><br><span class="line">        <span class="keyword">if</span> (socket.equals(self)) &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sendMsg</span> <span class="operator">=</span> <span class="string">&quot;（&quot;</span> + username + <span class="string">&quot;） &quot;</span> + getCurrentTime() + <span class="string">&quot;\n&quot;</span> + msg + <span class="string">&quot;\n&quot;</span> + chatSeparate;</span><br><span class="line">        sendMsgToUser(socket, sendMsg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 给指定的用户发送消息，文本消息</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> socket  消息发送的用户socket</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> sendMsg 消息</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> IOException 抛出异常</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sendMsgToUser</span><span class="params">(Socket socket, String sendMsg)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="type">OutputStream</span> <span class="variable">os</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line">    os.write(sendMsg.getBytes());</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-3、日志记录"><a href="#3-3、日志记录" class="headerlink" title="3.3、日志记录"></a>3.3、日志记录</h3><p>虽然服务端不需要记录用户的聊天信息，但是还是需要记录一些服务器的日志信息。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 打印日志</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> message 日志信息</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">logInfo</span><span class="params">(String message)</span> &#123;</span><br><span class="line">    System.out.println(getCurrentDateTime() + <span class="string">&quot; &quot;</span> + message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-4、工具集合"><a href="#3-4、工具集合" class="headerlink" title="3.4、工具集合"></a>3.4、工具集合</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取当前在线的所有玩家名称</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 当前在线的所有玩家名称</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> List&lt;String&gt; <span class="title function_">getLoginUsernames</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> userDB.stream().map(ChatSocket::getUsername).filter(Objects::nonNull).collect(Collectors.toList());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断时间是否是 11:00 - 04:59 晚上</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 是返回true，否则返回false</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isNight</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Calendar</span> <span class="variable">calendar</span> <span class="operator">=</span> Calendar.getInstance();</span><br><span class="line">    <span class="type">int</span> <span class="variable">hour</span> <span class="operator">=</span> calendar.get(Calendar.HOUR_OF_DAY);</span><br><span class="line">    <span class="keyword">return</span> hour &gt;= <span class="number">23</span> || hour &lt;= <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 时间格式化对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">SimpleDateFormat</span> <span class="variable">timeSdf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;HH:mm:ss&quot;</span>);</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">SimpleDateFormat</span> <span class="variable">DateTimeSdf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取当前的时间的格式化字符串</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 当前的时间的格式化字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> String <span class="title function_">getCurrentTime</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> timeSdf.format(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取当前的日期时间的格式化字符串</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 当前的日期时间的格式化字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> String <span class="title function_">getCurrentDateTime</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> DateTimeSdf.format(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断一个字符串是否为空</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string 字符串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 为空返回true，否则返回false</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isEmpty</span><span class="params">(String string)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> string == <span class="literal">null</span> || string.length() == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断一个字符串是否不为空</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string 字符串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 不为空返回true，否则返回false</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isNotEmpty</span><span class="params">(String string)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> !isEmpty(string);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-5、ChatSocket"><a href="#3-5、ChatSocket" class="headerlink" title="3.5、ChatSocket"></a>3.5、ChatSocket</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 封装的 ChatSocket</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">ChatSocket</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Socket socket;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ChatSocket</span><span class="params">(Socket socket)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.socket = socket;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Socket <span class="title function_">getSocket</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> socket;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getUsername</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setUsername</span><span class="params">(String username)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.username = username;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="服务端部署"><a href="#服务端部署" class="headerlink" title="服务端部署"></a>服务端部署</h1><p>为了方便在服务器上运行服务端代码，我还特意写了一个 <code>Shell</code> 脚本用来处理服务端代码的运行、停止、重启、查找等操作。</p>
+<p><img src="/images/2023/02/100005.gif" alt="img"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">CHAT_SERVER_DIR=/usr/app/chat</span><br><span class="line">CHAT_SERVER=ChatServer</span><br><span class="line">CHAT_LOG_FILE=$&#123;CHAT_SERVER_DIR&#125;/chat.log</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">聊天室启动参数</span></span><br><span class="line">CHAT_CFG=$&#123;2&#125;</span><br><span class="line"></span><br><span class="line">help() &#123;</span><br><span class="line">	echo &quot;==================&quot;</span><br><span class="line">	echo &quot;start 启动服务&quot;</span><br><span class="line">	echo &quot;stop 停止服务&quot;</span><br><span class="line">	echo &quot;restart 重启服务&quot;</span><br><span class="line">	echo &quot;find 查找服务&quot;</span><br><span class="line">	echo &quot;help 帮助&quot;</span><br><span class="line">	echo &quot;==================&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">start() &#123;</span><br><span class="line">	javac -encoding UTF-8 $&#123;CHAT_SERVER&#125;\.java</span><br><span class="line">	nohup java -Dfile.encoding=UTF-8 $&#123;CHAT_SERVER&#125; $&#123;CHAT_CFG&#125; &gt;&gt;$&#123;CHAT_LOG_FILE&#125; 2&gt;&amp;1 &amp;</span><br><span class="line">	echo &quot;服务$&#123;CHAT_SERVER&#125;已启动&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">stop() &#123;</span><br><span class="line">	PID=$(ps -ef | grep java | grep ChatServer | awk &#x27;&#123;print $2&#125;&#x27;)</span><br><span class="line">	if [ &quot;$&#123;PID&#125;&quot; == &quot;&quot; ]</span><br><span class="line">	then</span><br><span class="line">		echo &quot;服务$&#123;CHAT_SERVER&#125;已停止&quot;</span><br><span class="line">	else</span><br><span class="line">		kill $&#123;PID&#125;</span><br><span class="line">		echo &quot;服务$&#123;CHAT_SERVER&#125;已停止&quot;</span><br><span class="line">	fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">restart() &#123;</span><br><span class="line">  stop</span><br><span class="line">	sleep 3</span><br><span class="line">	start</span><br><span class="line">	echo &quot;服务$&#123;CHAT_SERVER&#125;已重启&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">find() &#123;</span><br><span class="line">  PID=$(ps -ef | grep java | grep ChatServer | awk &#x27;&#123;print $2&#125;&#x27;)</span><br><span class="line">  if [ &quot;$&#123;PID&#125;&quot; == &quot;&quot; ]</span><br><span class="line">	then</span><br><span class="line">		echo &quot;服务$&#123;CHAT_SERVER&#125;已停止&quot;</span><br><span class="line">	else</span><br><span class="line">		echo &quot;服务$&#123;CHAT_SERVER&#125;正在运行：PID=$&#123;PID&#125;&quot;</span><br><span class="line">	fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">case $&#123;1&#125; in</span><br><span class="line">	&quot;&quot;)</span><br><span class="line">		echo &quot;=== 参数错误 ===&quot;</span><br><span class="line">		;;</span><br><span class="line">	start)</span><br><span class="line">		start</span><br><span class="line">		;;</span><br><span class="line">	stop)</span><br><span class="line">		stop</span><br><span class="line">		;;</span><br><span class="line">	restart)</span><br><span class="line">		restart</span><br><span class="line">		;;</span><br><span class="line">	find)</span><br><span class="line">		find</span><br><span class="line">		;;</span><br><span class="line">	*)</span><br><span class="line">		help</span><br><span class="line">		;;</span><br><span class="line">esac</span><br><span class="line"></span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="优点与缺点"><a href="#优点与缺点" class="headerlink" title="优点与缺点"></a>优点与缺点</h1><p><strong>优点</strong></p>
+<ul>
+<li>简单便捷，无论是客户端还是服务端，都只依赖了 JDK 的环境，没有任何第三方依赖，客户端的代码只在复制到有 JDK 环境的电脑上即可运行，方便快捷。</li>
+<li>足够隐蔽，客户端在 CMD 或者 IDEA 环境下都可以运行，这样你身边的同事只要不仔细观察你的电脑屏幕，绝对想不到你是在和朋友聊天，只以为你是在认真工作。</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>服务端基于阻塞式网络 IO 开发，服务端只能够承受有限个的客户端链接。（Java NIO 版本可以解决这个缺点）</li>
+<li>太过简陋，因为只是单纯地进行网络 IO 的写入和读取，所以对于一些复杂的网络环境问题都没有进行处理，比如网络黏包的问题，在客户端连接较多的情况下，可能会发生网络黏包的问题，导致一些消息粘黏在一起，发送给客户端。</li>
+<li>需要一个服务器，因为这款即使通讯工具是 CS 模式，需要一个服务器运行服务端代码。</li>
+</ul>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>虽然这款即时通讯工具确实还不够完善，但是如果只是用于几个朋友之间简单地进行聊天，这款即时通讯工具还是非常给力的。</p>
+<p>这款即时通讯工具的源代码已经被托管到了 GitHub 上，同时还附带了这款即时通讯工具的 Java NIO 版本，有兴趣的同学的可以访问我的 GitHub 下载源码。</p>
+<blockquote>
+<p>GitHub：<a target="_blank" rel="noopener" href="https://github.com/herenpeng/chat.git">https://github.com/herenpeng/chat.git</a></p>
+</blockquote>
+<p>同时，我还在 Gitee 上提供了仓库镜像。</p>
+<blockquote>
+<p>Gitee：<a target="_blank" rel="noopener" href="https://gitee.com/herenpeng/chat.git">https://gitee.com/herenpeng/chat.git</a></p>
+</blockquote>
+<p>如果你喜欢这款即时通讯工具，希望各位同学可以给我的 GitHub 或者 Gitee 仓库点一个 <code>Star</code>，非常感谢！</p>
+<p><img src="/images/2023/02/100004.gif" alt="img"></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="次时代小羊 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="次时代小羊 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>次时代小羊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://herenpeng.github.io/2021/08/07/%E4%B8%8A%E7%8F%AD%E8%81%8A%E5%A4%A9%EF%BC%8C%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF%E5%B7%A5%E5%85%B7%EF%BC%88%E9%99%84%E6%BA%90%E7%A0%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%89/" title="上班聊天，摸鱼神器，手写一款即时通讯工具（附源码！！！）">https://herenpeng.github.io/2021/08/07/上班聊天，摸鱼神器，手写一款即时通讯工具（附源码！！！）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/Netty/" rel="tag"># Netty</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/19/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85CentOS%E7%B3%BB%E7%BB%9F/" rel="prev" title="一篇博客教会你怎么安装CentOS系统">
+      <i class="fa fa-chevron-left"></i> 一篇博客教会你怎么安装CentOS系统
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/08/11/%E4%BD%8E%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/" rel="next" title="低代码开发，手写一款代码生成工具">
+      低代码开发，手写一款代码生成工具 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  <div>
+    
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------这是我的底线^_^-------------</div>
+    
+</div>
+
+    
+  </div>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF%E5%B7%A5%E5%85%B7"><span class="nav-text">即时通讯工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-text">客户端</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-text">服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E9%93%BE%E6%8E%A5"><span class="nav-text">1、链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E7%99%BB%E5%BD%95"><span class="nav-text">2、登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95"><span class="nav-text">3、其他方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1%E3%80%81%E8%AF%BB%E5%8F%96%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E6%B6%88%E6%81%AF"><span class="nav-text">3.1、读取客户端的消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2%E3%80%81%E7%BB%99%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF"><span class="nav-text">3.2、给客户端发送消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3%E3%80%81%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95"><span class="nav-text">3.3、日志记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4%E3%80%81%E5%B7%A5%E5%85%B7%E9%9B%86%E5%90%88"><span class="nav-text">3.4、工具集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5%E3%80%81ChatSocket"><span class="nav-text">3.5、ChatSocket</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%83%A8%E7%BD%B2"><span class="nav-text">服务端部署</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BC%98%E7%82%B9%E4%B8%8E%E7%BC%BA%E7%82%B9"><span class="nav-text">优点与缺点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%90%8E"><span class="nav-text">最后</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="次时代小羊"
+      src="/images/author.jpg">
+  <p class="site-author-name" itemprop="name">次时代小羊</p>
+  <div class="site-description" itemprop="description">记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/herenpeng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;herenpeng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_45193304" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45193304" rel="noopener" target="_blank"><i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/herenpeng" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;herenpeng" rel="noopener" target="_blank"><i class="fa fa-fw fa-crosshairs"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/he.ren.peng@qq.com" title="E-Mail → he.ren.peng@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">次时代小羊</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">68k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:02</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
