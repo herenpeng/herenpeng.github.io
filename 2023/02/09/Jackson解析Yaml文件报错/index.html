@@ -22,18 +22,24 @@
     var CONFIG = {"hostname":"herenpeng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
-<meta property="og:type" content="website">
-<meta property="og:title" content="懒羊羊的青草蛋糕">
-<meta property="og:url" content="https://herenpeng.github.io/archives/2023/02/index.html">
+  <meta name="description" content="今天在使用jackson-dataformat-yaml框架解析Yaml文件的时候，解析过程中爆出了这样一个错误。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jackson解析Yaml文件报错">
+<meta property="og:url" content="https://herenpeng.github.io/2023/02/09/Jackson%E8%A7%A3%E6%9E%90Yaml%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/index.html">
 <meta property="og:site_name" content="懒羊羊的青草蛋糕">
-<meta property="og:description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
+<meta property="og:description" content="今天在使用jackson-dataformat-yaml框架解析Yaml文件的时候，解析过程中爆出了这样一个错误。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://herenpeng.github.io/images/2023/02/12ac822be492400a83ad7a73f0f525d7.png">
+<meta property="article:published_time" content="2023-02-09T13:37:19.000Z">
+<meta property="article:modified_time" content="2023-02-09T13:37:19.000Z">
 <meta property="article:author" content="次时代小羊">
-<meta property="article:tag" content="Java开发，Jvm技术">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Jackson">
+<meta property="article:tag" content="Yaml">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://herenpeng.github.io/images/2023/02/12ac822be492400a83ad7a73f0f525d7.png">
 
-<link rel="canonical" href="https://herenpeng.github.io/archives/2023/02/">
+<link rel="canonical" href="https://herenpeng.github.io/2023/02/09/Jackson%E8%A7%A3%E6%9E%90Yaml%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/">
 
 
 <script id="page-configurations">
@@ -41,11 +47,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false
+    isPost : true
   };
 </script>
 
-  <title>归档 | 懒羊羊的青草蛋糕</title>
+  <title>Jackson解析Yaml文件报错 | 懒羊羊的青草蛋糕</title>
   
 
 
@@ -200,69 +206,183 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 15 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2023/02/09/Jackson%E8%A7%A3%E6%9E%90Yaml%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="次时代小羊">
+      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懒羊羊的青草蛋糕">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Jackson解析Yaml文件报错
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-09 21:37:19" itemprop="dateCreated datePublished" datetime="2023-02-09T21:37:19+08:00">2023-02-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2023</h1>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-02-18T12:23:00+08:00"
-              content="2023-02-18">
-          02-18
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2023/02/18/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E5%86%99%E5%BA%8F%E5%88%97%E5%8C%96%E5%B7%A5%E5%85%B7/" itemprop="url">
-            <span itemprop="name">一篇博客教会你写序列化工具</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-02-09T21:37:19+08:00"
-              content="2023-02-09">
-          02-09
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2023/02/09/Jackson%E8%A7%A3%E6%9E%90Yaml%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/" itemprop="url">
-            <span itemprop="name">Jackson解析Yaml文件报错</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
+        <p>今天在使用<code>jackson-dataformat-yaml</code>框架解析<code>Yaml</code>文件的时候，解析过程中爆出了这样一个错误。</p>
+<span id="more"></span>
+<p>错误信息大致如下：</p>
+<blockquote>
+<p>Exception in thread “main” java.lang.NoSuchMethodError: com.fasterxml.jackson.dataformat.yaml.YAMLFactory._createContentReference(Ljava/lang/Object;)Lcom/fasterxml/jackson/core/io/ContentReference;<br>    at com.fasterxml.jackson.dataformat.yaml.YAMLFactory.createParser(YAMLFactory.java:353)<br>    at com.fasterxml.jackson.dataformat.yaml.YAMLFactory.createParser(YAMLFactory.java:15)<br>    at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3413)</p>
+</blockquote>
+<p>这个错误产生的原因是因为，我们的项目同时引入了<code>jackson-databind</code>框架，而<code>jackson-databind</code>框架和<code>jackson-dataformat-yaml</code>框架同时引入了一些<code>jackson</code>相关的核心依赖，且这两个框架的核心依赖版本不一致，导致了报错。</p>
+<p><img src="/images/2023/02/12ac822be492400a83ad7a73f0f525d7.png" alt="Maven依赖分析"></p>
+<p>使用Maven进行依赖分析，我们可以看到：</p>
+<ul>
+<li>我们项目自己引入的<code>jackson-databind</code>框架，且版本较低。</li>
+<li><code>jackson-dataformat-yaml</code>框架依赖了<code>jackson-core</code>、<code>jackson-databind</code>等依赖，且版本较高。</li>
+<li>根据Maven依赖原则，<code>jackson-databind</code>框架的依赖被优先使用（<code>jackson-databind</code>框架在<code>pom.xml</code>文件中被先声明也是导致依赖被优先使用的原因）。</li>
+</ul>
+<p>根据以上的分析，我们可以得到两个解决方案：</p>
+<ul>
+<li><p>根据最少依赖原则，我们可以直接注释<code>pom.xml</code>文件中的<code>jackson-databind</code>框架依赖，这样项目就可以直接依赖<code>jackson-dataformat-yaml</code>框架，且<code>jackson-dataformat-yaml</code>框架中依赖了<code>jackson-databind</code>项目，所以完全不影响项目的正常使用。【推荐该方案】</p>
+</li>
+<li><p>在<code>pom.xml</code>文件中，将<code>jackson-databind</code>框架依赖声明在<code>jackson-dataformat-yaml</code>框架依赖之后。（这个方案本质上和注释<code>jackson-databind</code>依赖区别不大，因为根据Maven依赖原则，这个依赖完全不会被使用。）</p>
+</li>
+</ul>
 
     </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="次时代小羊 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="次时代小羊 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>次时代小羊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://herenpeng.github.io/2023/02/09/Jackson%E8%A7%A3%E6%9E%90Yaml%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/" title="Jackson解析Yaml文件报错">https://herenpeng.github.io/2023/02/09/Jackson解析Yaml文件报错/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+              <a href="/tags/Jackson/" rel="tag"><i class="fa fa-tag"></i> Jackson</a>
+              <a href="/tags/Yaml/" rel="tag"><i class="fa fa-tag"></i> Yaml</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/14/ProtoBuf%E5%85%A5%E9%97%A8/" rel="prev" title="ProtoBuf入门">
+      <i class="fa fa-chevron-left"></i> ProtoBuf入门
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/02/18/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E5%86%99%E5%BA%8F%E5%88%97%E5%8C%96%E5%B7%A5%E5%85%B7/" rel="next" title="一篇博客教会你写序列化工具">
+      一篇博客教会你写序列化工具 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  <div>
+    
+      <div>
+    
+        <div style="text-align:center;color: #9f9f9f;font-size:14px;">-------------这是我的底线^_^-------------</div>
+    
+</div>
+
+    
   </div>
   
   
   
 
-  
-
+  </div>
 
 
           </div>

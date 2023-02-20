@@ -38,6 +38,29 @@
   </entry>
   
   <entry>
+    <title>Jackson解析Yaml文件报错</title>
+    <link href="https://herenpeng.github.io/2023/02/09/Jackson%E8%A7%A3%E6%9E%90Yaml%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/"/>
+    <id>https://herenpeng.github.io/2023/02/09/Jackson%E8%A7%A3%E6%9E%90Yaml%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/</id>
+    <published>2023-02-09T13:37:19.000Z</published>
+    <updated>2023-02-09T13:37:19.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;今天在使用&lt;code&gt;jackson-dataformat-yaml&lt;/code&gt;框架解析&lt;code&gt;Yaml&lt;/code&gt;文件的时候，解析过程中爆出了这样一个错误。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+    <category term="Jackson" scheme="https://herenpeng.github.io/tags/Jackson/"/>
+    
+    <category term="Yaml" scheme="https://herenpeng.github.io/tags/Yaml/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ProtoBuf入门</title>
     <link href="https://herenpeng.github.io/2022/02/14/ProtoBuf%E5%85%A5%E9%97%A8/"/>
     <id>https://herenpeng.github.io/2022/02/14/ProtoBuf%E5%85%A5%E9%97%A8/</id>
@@ -269,7 +292,7 @@
     <link href="https://herenpeng.github.io/2020/04/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%E7%BC%96%E5%86%99%E4%B8%8E%E4%B8%89%E7%A7%8D%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%EF%BC%88Java%E5%AE%9E%E7%8E%B0%EF%BC%89/"/>
     <id>https://herenpeng.github.io/2020/04/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%E7%BC%96%E5%86%99%E4%B8%8E%E4%B8%89%E7%A7%8D%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%EF%BC%88Java%E5%AE%9E%E7%8E%B0%EF%BC%89/</id>
     <published>2020-04-07T05:26:31.000Z</published>
-    <updated>2020-04-19T01:47:44.229Z</updated>
+    <updated>2023-02-20T14:02:50.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;strong&gt;一、排序算法辅助工具类：&lt;/strong&gt;&lt;/p&gt;
@@ -316,8 +339,8 @@
     <title>Hello World</title>
     <link href="https://herenpeng.github.io/2020/03/15/hello-world/"/>
     <id>https://herenpeng.github.io/2020/03/15/hello-world/</id>
-    <published>2020-03-15T12:08:59.942Z</published>
-    <updated>2020-04-07T09:31:56.576Z</updated>
+    <published>2020-03-15T12:08:59.000Z</published>
+    <updated>2023-02-20T13:57:42.226Z</updated>
     
     
       
