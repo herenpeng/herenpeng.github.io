@@ -56,6 +56,52 @@
       </tags>
   </entry>
   <entry>
+    <title>Maven项目pom.xml project标签爆红解决方法</title>
+    <url>/2020/08/19/Maven%E9%A1%B9%E7%9B%AEpom.xml%20project%E6%A0%87%E7%AD%BE%E7%88%86%E7%BA%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>今天在打开项目的时候，发现了一个Maven项目的问题，在Maven项目的pom.xml文件中，project标签爆出了一个错误。</p>
+<span id="more"></span>
+
+<p><img src="/images/2023/02/20200819081650697.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>‘parent.relativePath’ of POM com.hrp:springboot_jpa:1.0-SNAPSHOT (F:\IdeaCode\java-web\springboot_jpa\pom.xml) points at com.hrp:java-web instead of org.springframework.boot:spring-boot-starter-parent, please verify your project structure</p>
+</blockquote>
+<blockquote>
+<p>POM com.hrp：springboot_jpa：1.0-SNAPSHOT（F：\ IdeaCode \ java-web \ springboot_jpa \ pom.xml）的’parent.relativePath’指向com.hrp：java-web而不是org.springframework.boot：spring -boot-starter-parent，请验证您的项目结构</p>
+</blockquote>
+<p>总而言之，这个问题是说在project标签下的parent.relativePath标签指向的路径出现了错误，所以导致报错。</p>
+<p><strong>要解决这个问题的方法也很简单，在parent标签下添加一个<code>&lt;relativePath/&gt;</code>标签即可。</strong></p>
+<p><img src="/images/2023/02/20200819082030419.png" alt="在这里插入图片描述"><br><strong>添加该标签之后，我们重新更新Maven项目，爆错就会消失了</strong></p>
+<p><img src="/images/2023/02/20200819082324299.png" alt="在这里插入图片描述"></p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Idea</tag>
+        <tag>Maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Postman发送POST请求及日期格式的参数</title>
+    <url>/2020/03/20/Postman%E5%8F%91%E9%80%81POST%E8%AF%B7%E6%B1%82%E5%8F%8A%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E7%9A%84%E5%8F%82%E6%95%B0/</url>
+    <content><![CDATA[<p>Postman在发送POST请求的时候，所有参数写在Request Body（请求体）中，如果需要的参数类型的日期格式的，只需要将日期格式写为<code>2000/01/01</code>即可，Postman会自动识别为日期格式的数据。</p>
+<span id="more"></span>
+
+<ul>
+<li>如果是2000-01-01格式，Postman无法识别为日期，而是当做普通字符串处理。</li>
+</ul>
+<p><img src="/images/2023/02/20200320164729364.png" alt="在这里插入图片描述"></p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Postman</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ProtoBuf入门</title>
     <url>/2022/02/14/ProtoBuf%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<h2 id="什么是-ProtoBuf"><a href="#什么是-ProtoBuf" class="headerlink" title="什么是 ProtoBuf"></a>什么是 ProtoBuf</h2><p><code>protocol buffers</code> 是一种语言无关、平台无关、可扩展的序列化结构数据的方法，它可用于（数据）通信协议、数据存储等。</p>
