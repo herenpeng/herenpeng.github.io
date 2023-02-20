@@ -217,6 +217,25 @@
   </entry>
   
   <entry>
+    <title>Linux环境邮件服务报错：Couldn‘t connect to host, port: smtp.qq.com, 25； timeout -1；</title>
+    <link href="https://herenpeng.github.io/2021/01/19/Linux%E7%8E%AF%E5%A2%83%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8A%A5%E9%94%99/"/>
+    <id>https://herenpeng.github.io/2021/01/19/Linux%E7%8E%AF%E5%A2%83%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8A%A5%E9%94%99/</id>
+    <published>2021-01-19T14:25:33.000Z</published>
+    <updated>2021-01-19T14:25:33.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;在Windows环境下邮件服务能够正常使用，但是在Linux环境下，邮件服务报错，无法发送邮件。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://herenpeng.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://herenpeng.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Swagger报错：Unable to interpret the implicit parameter configuration with dataType</title>
     <link href="https://herenpeng.github.io/2021/01/10/Swagger%E6%8A%A5%E9%94%99/"/>
     <id>https://herenpeng.github.io/2021/01/10/Swagger%E6%8A%A5%E9%94%99/</id>
@@ -445,27 +464,6 @@
     <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
     
     <category term="Spring" scheme="https://herenpeng.github.io/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java异常try{}catch{}中的return机制</title>
-    <link href="https://herenpeng.github.io/2020/03/27/Java%E5%BC%82%E5%B8%B8try%7B%7Dcatch%7B%7D%E4%B8%AD%E7%9A%84return%E6%9C%BA%E5%88%B6/"/>
-    <id>https://herenpeng.github.io/2020/03/27/Java%E5%BC%82%E5%B8%B8try%7B%7Dcatch%7B%7D%E4%B8%AD%E7%9A%84return%E6%9C%BA%E5%88%B6/</id>
-    <published>2020-03-27T14:01:30.000Z</published>
-    <updated>2020-03-27T14:01:30.000Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;什么是Java的异常体系？参考博客：&lt;a href=&quot;https://blog.csdn.net/qq_45193304/article/details/104146056&quot;&gt;Java基础——运行时异常和非运行时异常&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
     
   </entry>
   
