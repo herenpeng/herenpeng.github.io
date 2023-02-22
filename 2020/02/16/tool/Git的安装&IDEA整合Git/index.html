@@ -19,15 +19,15 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"herenpeng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"herenpeng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"expandIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="1、下载与安装Git第一种方法官网：https:&#x2F;&#x2F;git-scm.com&#x2F;downloads但是官网的下载速度非常慢，我试了几次都下载失败。 第二种方法电脑管家，没错，就是腾讯电脑管家，无意中发现在电脑管家的软件市场里面竟然有Git这个软件，而且——下载速度非常快【重点】 第三种方法我在自己的百度网盘中上传了Git的软件安装包，需要的可以去下载。链接：https:&#x2F;&#x2F;pan.baidu.com&#x2F;">
+  <meta name="description" content="Git是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。也是Linus Torvalds为了帮助管理Linux内核开发而开发的一个开放源码的版本控制软件。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git的安装&amp;IDEA整合Git">
 <meta property="og:url" content="https://herenpeng.github.io/2020/02/16/tool/Git%E7%9A%84%E5%AE%89%E8%A3%85&IDEA%E6%95%B4%E5%90%88Git/index.html">
 <meta property="og:site_name" content="懒羊羊的青草蛋糕">
-<meta property="og:description" content="1、下载与安装Git第一种方法官网：https:&#x2F;&#x2F;git-scm.com&#x2F;downloads但是官网的下载速度非常慢，我试了几次都下载失败。 第二种方法电脑管家，没错，就是腾讯电脑管家，无意中发现在电脑管家的软件市场里面竟然有Git这个软件，而且——下载速度非常快【重点】 第三种方法我在自己的百度网盘中上传了Git的软件安装包，需要的可以去下载。链接：https:&#x2F;&#x2F;pan.baidu.com&#x2F;">
+<meta property="og:description" content="Git是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。也是Linus Torvalds为了帮助管理Linux内核开发而开发的一个开放源码的版本控制软件。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://herenpeng.github.io/images/2023/02/20200216200615234.png">
 <meta property="og:image" content="https://herenpeng.github.io/images/2023/02/20200216200924932.png">
@@ -154,12 +154,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">31</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">36</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">27</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">29</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -257,7 +257,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
                 </span>
             </span>
 
@@ -274,7 +274,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
+              <span>1.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -293,7 +293,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="1、下载与安装Git"><a href="#1、下载与安装Git" class="headerlink" title="1、下载与安装Git"></a>1、下载与安装Git</h2><h3 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h3><p>官网：<a target="_blank" rel="noopener" href="https://git-scm.com/downloads">https://git-scm.com/downloads</a><br><img src="/images/2023/02/20200216200615234.png" alt="在这里插入图片描述">但是官网的下载速度非常慢，我试了几次都下载失败。</p>
+        <p>Git是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。<br>也是Linus Torvalds为了帮助管理Linux内核开发而开发的一个开放源码的版本控制软件。</p>
+<span id="more"></span>
+
+<h2 id="1、下载与安装Git"><a href="#1、下载与安装Git" class="headerlink" title="1、下载与安装Git"></a>1、下载与安装Git</h2><h3 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h3><p>官网：<a target="_blank" rel="noopener" href="https://git-scm.com/downloads">https://git-scm.com/downloads</a><br><img src="/images/2023/02/20200216200615234.png" alt="在这里插入图片描述">但是官网的下载速度非常慢，我试了几次都下载失败。</p>
 <h3 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h3><p>电脑管家，没错，就是腾讯电脑管家，无意中发现在电脑管家的软件市场里面竟然有Git这个软件，而且——<strong>下载速度非常快</strong>【重点】<br><img src="/images/2023/02/20200216200924932.png" alt="在这里插入图片描述"></p>
 <h3 id="第三种方法"><a href="#第三种方法" class="headerlink" title="第三种方法"></a>第三种方法</h3><p>我在自己的百度网盘中上传了Git的软件安装包，需要的可以去下载。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1nBZHt0mBhFZadLSm2PYsXQ">https://pan.baidu.com/s/1nBZHt0mBhFZadLSm2PYsXQ</a><br><strong>提取码</strong>：enhm </p>
 <h3 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h3><p>Git的安装非常简单，直接一路<strong>next</strong>就可以了，傻瓜式安装。<br>如果安装成功，打开cmd命令控制台，输入<strong>git –version</strong>即可查看到安装的git的版本。<br><img src="/images/2023/02/20200216201557805.png" alt="在这里插入图片描述"></p>
@@ -371,10 +374,13 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2020/02/24/java/SpringBoot%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E8%B7%AF%E5%BE%84%E6%98%A0%E5%B0%84%E8%AE%BF%E9%97%AE%E7%A3%81%E7%9B%98%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/" rel="next" title="SpringBoot配置虚拟路径映射访问磁盘中的文件">
-      SpringBoot配置虚拟路径映射访问磁盘中的文件 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/01/26/tool/Maven%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE&IDEA%E6%95%B4%E5%90%88Maven/" rel="prev" title="Maven安装与配置&IDEA整合Maven">
+      <i class="fa fa-chevron-left"></i> Maven安装与配置&IDEA整合Maven
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/23/tool/Postman%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" rel="next" title="Postman的下载、安装与使用">
+      Postman的下载、安装与使用 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -467,7 +473,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -480,7 +486,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -542,13 +548,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">111k</span>
+    <span title="站点总字数">118k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:41</span>
+    <span title="站点阅读时长">1:47</span>
 </div>
         
 <div class="busuanzi-count">
