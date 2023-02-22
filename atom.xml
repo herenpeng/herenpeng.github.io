@@ -18,8 +18,8 @@
   
   <entry>
     <title>一篇博客教会你写序列化工具</title>
-    <link href="https://herenpeng.github.io/2023/02/18/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E5%86%99%E5%BA%8F%E5%88%97%E5%8C%96%E5%B7%A5%E5%85%B7/"/>
-    <id>https://herenpeng.github.io/2023/02/18/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E5%86%99%E5%BA%8F%E5%88%97%E5%8C%96%E5%B7%A5%E5%85%B7/</id>
+    <link href="https://herenpeng.github.io/2023/02/18/java/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E5%86%99%E5%BA%8F%E5%88%97%E5%8C%96%E5%B7%A5%E5%85%B7/"/>
+    <id>https://herenpeng.github.io/2023/02/18/java/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E5%86%99%E5%BA%8F%E5%88%97%E5%8C%96%E5%B7%A5%E5%85%B7/</id>
     <published>2023-02-18T04:23:00.000Z</published>
     <updated>2023-02-18T09:34:32.364Z</updated>
     
@@ -39,8 +39,8 @@
   
   <entry>
     <title>Jackson解析Yaml文件报错</title>
-    <link href="https://herenpeng.github.io/2023/02/09/Jackson%E8%A7%A3%E6%9E%90Yaml%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/"/>
-    <id>https://herenpeng.github.io/2023/02/09/Jackson%E8%A7%A3%E6%9E%90Yaml%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/</id>
+    <link href="https://herenpeng.github.io/2023/02/09/java/Jackson%E8%A7%A3%E6%9E%90Yaml%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/"/>
+    <id>https://herenpeng.github.io/2023/02/09/java/Jackson%E8%A7%A3%E6%9E%90Yaml%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/</id>
     <published>2023-02-09T13:37:19.000Z</published>
     <updated>2023-02-09T13:37:19.000Z</updated>
     
@@ -62,8 +62,8 @@
   
   <entry>
     <title>ProtoBuf入门</title>
-    <link href="https://herenpeng.github.io/2022/02/14/ProtoBuf%E5%85%A5%E9%97%A8/"/>
-    <id>https://herenpeng.github.io/2022/02/14/ProtoBuf%E5%85%A5%E9%97%A8/</id>
+    <link href="https://herenpeng.github.io/2022/02/14/java/ProtoBuf%E5%85%A5%E9%97%A8/"/>
+    <id>https://herenpeng.github.io/2022/02/14/java/ProtoBuf%E5%85%A5%E9%97%A8/</id>
     <published>2022-02-14T07:17:11.000Z</published>
     <updated>2023-02-18T09:43:34.968Z</updated>
     
@@ -85,8 +85,8 @@
   
   <entry>
     <title>Python序列</title>
-    <link href="https://herenpeng.github.io/2021/11/29/Python%E5%BA%8F%E5%88%97/"/>
-    <id>https://herenpeng.github.io/2021/11/29/Python%E5%BA%8F%E5%88%97/</id>
+    <link href="https://herenpeng.github.io/2021/11/29/python/Python%E5%BA%8F%E5%88%97/"/>
+    <id>https://herenpeng.github.io/2021/11/29/python/Python%E5%BA%8F%E5%88%97/</id>
     <published>2021-11-28T22:00:00.000Z</published>
     <updated>2023-02-18T09:54:30.127Z</updated>
     
@@ -106,8 +106,8 @@
   
   <entry>
     <title>Python基本数据类型</title>
-    <link href="https://herenpeng.github.io/2021/11/21/Python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
-    <id>https://herenpeng.github.io/2021/11/21/Python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</id>
+    <link href="https://herenpeng.github.io/2021/11/21/python/Python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
+    <id>https://herenpeng.github.io/2021/11/21/python/Python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</id>
     <published>2021-11-21T07:51:43.000Z</published>
     <updated>2023-02-18T09:50:28.722Z</updated>
     
@@ -127,8 +127,8 @@
   
   <entry>
     <title>WebStrom 开发 Vue 项目，安装 ESLint 代码风格检查工具</title>
-    <link href="https://herenpeng.github.io/2021/08/30/WebStrom%20%E5%BC%80%E5%8F%91%20Vue%20%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%AE%89%E8%A3%85%20ESLint%20%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E6%A3%80%E6%9F%A5%E5%B7%A5%E5%85%B7/"/>
-    <id>https://herenpeng.github.io/2021/08/30/WebStrom%20%E5%BC%80%E5%8F%91%20Vue%20%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%AE%89%E8%A3%85%20ESLint%20%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E6%A3%80%E6%9F%A5%E5%B7%A5%E5%85%B7/</id>
+    <link href="https://herenpeng.github.io/2021/08/30/javascript/WebStrom%20%E5%BC%80%E5%8F%91%20Vue%20%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%AE%89%E8%A3%85%20ESLint%20%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E6%A3%80%E6%9F%A5%E5%B7%A5%E5%85%B7/"/>
+    <id>https://herenpeng.github.io/2021/08/30/javascript/WebStrom%20%E5%BC%80%E5%8F%91%20Vue%20%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%AE%89%E8%A3%85%20ESLint%20%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E6%A3%80%E6%9F%A5%E5%B7%A5%E5%85%B7/</id>
     <published>2021-08-30T01:02:20.000Z</published>
     <updated>2023-02-18T09:35:27.184Z</updated>
     
@@ -150,8 +150,8 @@
   
   <entry>
     <title>Java位运算，Int类型存储用户的登录足迹</title>
-    <link href="https://herenpeng.github.io/2021/08/23/Java%E4%BD%8D%E8%BF%90%E7%AE%97%EF%BC%8CInt%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%82%A8%E7%94%A8%E6%88%B7%E7%9A%84%E7%99%BB%E5%BD%95%E8%B6%B3%E8%BF%B9/"/>
-    <id>https://herenpeng.github.io/2021/08/23/Java%E4%BD%8D%E8%BF%90%E7%AE%97%EF%BC%8CInt%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%82%A8%E7%94%A8%E6%88%B7%E7%9A%84%E7%99%BB%E5%BD%95%E8%B6%B3%E8%BF%B9/</id>
+    <link href="https://herenpeng.github.io/2021/08/23/java/Java%E4%BD%8D%E8%BF%90%E7%AE%97%EF%BC%8CInt%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%82%A8%E7%94%A8%E6%88%B7%E7%9A%84%E7%99%BB%E5%BD%95%E8%B6%B3%E8%BF%B9/"/>
+    <id>https://herenpeng.github.io/2021/08/23/java/Java%E4%BD%8D%E8%BF%90%E7%AE%97%EF%BC%8CInt%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%82%A8%E7%94%A8%E6%88%B7%E7%9A%84%E7%99%BB%E5%BD%95%E8%B6%B3%E8%BF%B9/</id>
     <published>2021-08-23T15:08:20.000Z</published>
     <updated>2023-02-18T09:45:43.606Z</updated>
     
@@ -172,8 +172,8 @@
   
   <entry>
     <title>低代码开发，手写一款代码生成工具</title>
-    <link href="https://herenpeng.github.io/2021/08/11/%E4%BD%8E%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/"/>
-    <id>https://herenpeng.github.io/2021/08/11/%E4%BD%8E%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/</id>
+    <link href="https://herenpeng.github.io/2021/08/11/java/%E4%BD%8E%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/"/>
+    <id>https://herenpeng.github.io/2021/08/11/java/%E4%BD%8E%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/</id>
     <published>2021-08-10T16:21:44.000Z</published>
     <updated>2023-02-18T09:43:58.650Z</updated>
     
@@ -195,8 +195,8 @@
   
   <entry>
     <title>上班聊天，摸鱼神器，手写一款即时通讯工具（附源码！！！）</title>
-    <link href="https://herenpeng.github.io/2021/08/07/%E4%B8%8A%E7%8F%AD%E8%81%8A%E5%A4%A9%EF%BC%8C%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF%E5%B7%A5%E5%85%B7%EF%BC%88%E9%99%84%E6%BA%90%E7%A0%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%89/"/>
-    <id>https://herenpeng.github.io/2021/08/07/%E4%B8%8A%E7%8F%AD%E8%81%8A%E5%A4%A9%EF%BC%8C%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF%E5%B7%A5%E5%85%B7%EF%BC%88%E9%99%84%E6%BA%90%E7%A0%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%89/</id>
+    <link href="https://herenpeng.github.io/2021/08/07/java/%E4%B8%8A%E7%8F%AD%E8%81%8A%E5%A4%A9%EF%BC%8C%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF%E5%B7%A5%E5%85%B7%EF%BC%88%E9%99%84%E6%BA%90%E7%A0%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%89/"/>
+    <id>https://herenpeng.github.io/2021/08/07/java/%E4%B8%8A%E7%8F%AD%E8%81%8A%E5%A4%A9%EF%BC%8C%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF%E5%B7%A5%E5%85%B7%EF%BC%88%E9%99%84%E6%BA%90%E7%A0%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%89/</id>
     <published>2021-08-07T02:46:02.000Z</published>
     <updated>2023-02-18T09:33:22.322Z</updated>
     
@@ -217,9 +217,32 @@
   </entry>
   
   <entry>
+    <title>MyBatisPlus升级3.4.3.1版本报错：MybatisConfiguration$StrictMap$Ambiguity cannot be cast to ResultMap</title>
+    <link href="https://herenpeng.github.io/2021/06/29/java/MyBatisPlus%E5%8D%87%E7%BA%A73.4.3.1%E7%89%88%E6%9C%AC%E6%8A%A5%E9%94%99/"/>
+    <id>https://herenpeng.github.io/2021/06/29/java/MyBatisPlus%E5%8D%87%E7%BA%A73.4.3.1%E7%89%88%E6%9C%AC%E6%8A%A5%E9%94%99/</id>
+    <published>2021-06-29T15:58:10.000Z</published>
+    <updated>2021-06-29T15:58:10.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;SpringBoot 版本：2.5.2&lt;br&gt;项目原本的 MyBatisPlus 版本为：3.4.0，项目可以正常启动运行，但是在将 MyBatisPlus 的版本升级至 3.4.3.1之后，项目启动 MyBatisPlus 就开始报错了。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+    <category term="MyBatisPlus" scheme="https://herenpeng.github.io/tags/MyBatisPlus/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Linux环境邮件服务报错：Couldn‘t connect to host, port: smtp.qq.com, 25； timeout -1；</title>
-    <link href="https://herenpeng.github.io/2021/01/19/Linux%E7%8E%AF%E5%A2%83%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8A%A5%E9%94%99/"/>
-    <id>https://herenpeng.github.io/2021/01/19/Linux%E7%8E%AF%E5%A2%83%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8A%A5%E9%94%99/</id>
+    <link href="https://herenpeng.github.io/2021/01/19/linux/Linux%E7%8E%AF%E5%A2%83%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8A%A5%E9%94%99/"/>
+    <id>https://herenpeng.github.io/2021/01/19/linux/Linux%E7%8E%AF%E5%A2%83%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8A%A5%E9%94%99/</id>
     <published>2021-01-19T14:25:33.000Z</published>
     <updated>2021-01-19T14:25:33.000Z</updated>
     
@@ -236,9 +259,30 @@
   </entry>
   
   <entry>
+    <title>Java main方法中的String[] args</title>
+    <link href="https://herenpeng.github.io/2021/01/10/java/Java%20main%E6%96%B9%E6%B3%95%E4%B8%AD%E7%9A%84String[]%20args/"/>
+    <id>https://herenpeng.github.io/2021/01/10/java/Java%20main%E6%96%B9%E6%B3%95%E4%B8%AD%E7%9A%84String[]%20args/</id>
+    <published>2021-01-10T14:04:21.000Z</published>
+    <updated>2021-01-10T14:04:21.000Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;在每一个学习Java的同学，都应该写过下面的这一段代码。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Swagger报错：Unable to interpret the implicit parameter configuration with dataType</title>
-    <link href="https://herenpeng.github.io/2021/01/10/Swagger%E6%8A%A5%E9%94%99/"/>
-    <id>https://herenpeng.github.io/2021/01/10/Swagger%E6%8A%A5%E9%94%99/</id>
+    <link href="https://herenpeng.github.io/2021/01/10/java/Swagger%E6%8A%A5%E9%94%99/"/>
+    <id>https://herenpeng.github.io/2021/01/10/java/Swagger%E6%8A%A5%E9%94%99/</id>
     <published>2021-01-10T04:40:16.000Z</published>
     <updated>2021-01-10T04:40:16.000Z</updated>
     
@@ -257,9 +301,54 @@
   </entry>
   
   <entry>
+    <title>Shell报错syntax error: unexpected end of file</title>
+    <link href="https://herenpeng.github.io/2021/01/01/linux/Shell%E6%8A%A5%E9%94%99/"/>
+    <id>https://herenpeng.github.io/2021/01/01/linux/Shell%E6%8A%A5%E9%94%99/</id>
+    <published>2021-01-01T11:13:28.000Z</published>
+    <updated>2021-01-01T11:13:28.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;执行shell脚本文件，报错&lt;code&gt;syntax error: unexpected end of file&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;使用vim工具打开脚本文件，却并没有发现有什么问题。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://herenpeng.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://herenpeng.github.io/tags/Linux/"/>
+    
+    <category term="Shell" scheme="https://herenpeng.github.io/tags/Shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java实现PDF文件转换为图片</title>
+    <link href="https://herenpeng.github.io/2020/09/02/java/Java%E5%AE%9E%E7%8E%B0PDF%E6%96%87%E4%BB%B6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%9B%BE%E7%89%87/"/>
+    <id>https://herenpeng.github.io/2020/09/02/java/Java%E5%AE%9E%E7%8E%B0PDF%E6%96%87%E4%BB%B6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%9B%BE%E7%89%87/</id>
+    <published>2020-09-02T15:05:59.000Z</published>
+    <updated>2020-09-02T15:05:59.000Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;前几天写了一篇博客&lt;a href=&quot;/2020/08/05/java/Java实现图片转换PDF文件/&quot;&gt;Java实现图片转换PDF文件&lt;/a&gt;，在博客下方有同学评论是否能够将PDF文件转换为图片，所以今天就在这里写了一个将PDF文件转换为图片的简单系统。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+    <category term="PDF" scheme="https://herenpeng.github.io/tags/PDF/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java实现图片转换PDF文件</title>
-    <link href="https://herenpeng.github.io/2020/08/25/Java%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%BD%AC%E6%8D%A2PDF%E6%96%87%E4%BB%B6/"/>
-    <id>https://herenpeng.github.io/2020/08/25/Java%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%BD%AC%E6%8D%A2PDF%E6%96%87%E4%BB%B6/</id>
+    <link href="https://herenpeng.github.io/2020/08/25/java/Java%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%BD%AC%E6%8D%A2PDF%E6%96%87%E4%BB%B6/"/>
+    <id>https://herenpeng.github.io/2020/08/25/java/Java%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%BD%AC%E6%8D%A2PDF%E6%96%87%E4%BB%B6/</id>
     <published>2020-08-25T12:32:39.000Z</published>
     <updated>2020-08-25T12:32:39.000Z</updated>
     
@@ -281,8 +370,8 @@
   
   <entry>
     <title>Maven项目pom.xml project标签爆红解决方法</title>
-    <link href="https://herenpeng.github.io/2020/08/19/Maven%E9%A1%B9%E7%9B%AEpom.xml%20project%E6%A0%87%E7%AD%BE%E7%88%86%E7%BA%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
-    <id>https://herenpeng.github.io/2020/08/19/Maven%E9%A1%B9%E7%9B%AEpom.xml%20project%E6%A0%87%E7%AD%BE%E7%88%86%E7%BA%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</id>
+    <link href="https://herenpeng.github.io/2020/08/19/java/Maven%E9%A1%B9%E7%9B%AEpom.xml%20project%E6%A0%87%E7%AD%BE%E7%88%86%E7%BA%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
+    <id>https://herenpeng.github.io/2020/08/19/java/Maven%E9%A1%B9%E7%9B%AEpom.xml%20project%E6%A0%87%E7%AD%BE%E7%88%86%E7%BA%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</id>
     <published>2020-08-19T00:24:04.000Z</published>
     <updated>2023-02-19T14:40:16.857Z</updated>
     
@@ -303,11 +392,51 @@
   </entry>
   
   <entry>
+    <title>IDEA Java项目JDK无效</title>
+    <link href="https://herenpeng.github.io/2020/08/10/java/IDEA%20Java%E9%A1%B9%E7%9B%AEJDK%E6%97%A0%E6%95%88/"/>
+    <id>https://herenpeng.github.io/2020/08/10/java/IDEA%20Java%E9%A1%B9%E7%9B%AEJDK%E6%97%A0%E6%95%88/</id>
+    <published>2020-08-10T14:16:48.000Z</published>
+    <updated>2020-08-10T14:16:48.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;今天在创建一个新的Java项目的时候，发现项目的JDK失效了，导致main方法的String类爆红，而且其他JDK的类也无法使用。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+    <category term="IDEA" scheme="https://herenpeng.github.io/tags/IDEA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL警告信息：不建议在没有服务器身份验证的情况下建立SSL连接</title>
+    <link href="https://herenpeng.github.io/2020/06/26/mysql/MySQL%E8%AD%A6%E5%91%8A%E4%BF%A1%E6%81%AF%EF%BC%9A%E4%B8%8D%E5%BB%BA%E8%AE%AE%E5%9C%A8%E6%B2%A1%E6%9C%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%BB%BA%E7%AB%8BSSL%E8%BF%9E%E6%8E%A5/"/>
+    <id>https://herenpeng.github.io/2020/06/26/mysql/MySQL%E8%AD%A6%E5%91%8A%E4%BF%A1%E6%81%AF%EF%BC%9A%E4%B8%8D%E5%BB%BA%E8%AE%AE%E5%9C%A8%E6%B2%A1%E6%9C%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%BB%BA%E7%AB%8BSSL%E8%BF%9E%E6%8E%A5/</id>
+    <published>2020-06-26T10:43:10.000Z</published>
+    <updated>2020-06-26T10:43:10.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;前段时间重装了MySQL数据库，将原本的MySQL5.5版本换成了5.7版本，今天在运行以前的项目的时候，突然爆出了如下的错误信息：&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="MySql" scheme="https://herenpeng.github.io/categories/MySql/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>一篇博客教会你怎么安装CentOS系统</title>
-    <link href="https://herenpeng.github.io/2020/04/19/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85CentOS%E7%B3%BB%E7%BB%9F/"/>
-    <id>https://herenpeng.github.io/2020/04/19/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85CentOS%E7%B3%BB%E7%BB%9F/</id>
+    <link href="https://herenpeng.github.io/2020/04/19/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85CentOS%E7%B3%BB%E7%BB%9F/"/>
+    <id>https://herenpeng.github.io/2020/04/19/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85CentOS%E7%B3%BB%E7%BB%9F/</id>
     <published>2020-04-19T01:50:31.000Z</published>
-    <updated>2023-02-18T12:12:09.517Z</updated>
+    <updated>2020-04-19T01:50:31.000Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -322,148 +451,6 @@
     <category term="Linux" scheme="https://herenpeng.github.io/tags/Linux/"/>
     
     <category term="CentOS" scheme="https://herenpeng.github.io/tags/CentOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>一篇博客教会你怎么安装VMware虚拟机</title>
-    <link href="https://herenpeng.github.io/2020/04/19/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
-    <id>https://herenpeng.github.io/2020/04/19/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/</id>
-    <published>2020-04-19T01:50:31.000Z</published>
-    <updated>2023-02-18T09:33:53.289Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;这篇博客我们来学习VMware虚拟机的安装&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://herenpeng.github.io/categories/Linux/"/>
-    
-    
-    <category term="Linux" scheme="https://herenpeng.github.io/tags/Linux/"/>
-    
-    <category term="CentOS" scheme="https://herenpeng.github.io/tags/CentOS/"/>
-    
-    <category term="VMware" scheme="https://herenpeng.github.io/tags/VMware/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Golang中的GoPath和GoModule</title>
-    <link href="https://herenpeng.github.io/2020/04/13/Golang%E4%B8%AD%E7%9A%84GoPath%E5%92%8CGoModule/"/>
-    <id>https://herenpeng.github.io/2020/04/13/Golang%E4%B8%AD%E7%9A%84GoPath%E5%92%8CGoModule/</id>
-    <published>2020-04-13T10:04:28.000Z</published>
-    <updated>2020-04-13T10:04:28.000Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;在Golang中，有两个概念非常容易弄错，第一个就是GoPath，第二个则是GoModule，很多初学者不清楚这两者之间的关系，也就难以清晰地了解项目的整体结构，自然也就难以编写结构清晰的代码。&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="Golang" scheme="https://herenpeng.github.io/categories/Golang/"/>
-    
-    
-    <category term="Golang" scheme="https://herenpeng.github.io/tags/Golang/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Golang连接MySQL数据库之CRUD</title>
-    <link href="https://herenpeng.github.io/2020/04/12/Golang%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8BCRUD/"/>
-    <id>https://herenpeng.github.io/2020/04/12/Golang%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8BCRUD/</id>
-    <published>2020-04-12T02:14:34.000Z</published>
-    <updated>2020-04-12T02:14:34.000Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;我们这次来学习使用Golang来连接MySQL数据库，并使用Golang实现数据库的CRUD操作。&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="Golang" scheme="https://herenpeng.github.io/categories/Golang/"/>
-    
-    
-    <category term="Golang" scheme="https://herenpeng.github.io/tags/Golang/"/>
-    
-    <category term="MySQL" scheme="https://herenpeng.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Golang环境安装&amp;IDEA开发Golang</title>
-    <link href="https://herenpeng.github.io/2020/04/08/Golang%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85&amp;IDEA%E5%BC%80%E5%8F%91Golang/"/>
-    <id>https://herenpeng.github.io/2020/04/08/Golang%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85&amp;IDEA%E5%BC%80%E5%8F%91Golang/</id>
-    <published>2020-04-08T12:12:43.000Z</published>
-    <updated>2020-04-08T12:12:43.000Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;在这篇博客中，我们学习Windows系统安装Golang的环境，并使用IDEA安装Go插件来开发Golang。&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="Golang" scheme="https://herenpeng.github.io/categories/Golang/"/>
-    
-    
-    <category term="Golang" scheme="https://herenpeng.github.io/tags/Golang/"/>
-    
-    <category term="IDEA" scheme="https://herenpeng.github.io/tags/IDEA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据结构与算法-排序算法辅助工具编写与三种基本排序算法（Java实现）</title>
-    <link href="https://herenpeng.github.io/2020/04/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%E7%BC%96%E5%86%99%E4%B8%8E%E4%B8%89%E7%A7%8D%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%EF%BC%88Java%E5%AE%9E%E7%8E%B0%EF%BC%89/"/>
-    <id>https://herenpeng.github.io/2020/04/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%E7%BC%96%E5%86%99%E4%B8%8E%E4%B8%89%E7%A7%8D%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%EF%BC%88Java%E5%AE%9E%E7%8E%B0%EF%BC%89/</id>
-    <published>2020-04-07T05:26:31.000Z</published>
-    <updated>2023-02-20T14:02:50.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;一、排序算法辅助工具类：&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;随机生成一个整形数组&lt;/li&gt;
-&lt;li&gt;生成一个近乎有序的整形数组&lt;/li&gt;
-&lt;li&gt;判断一个数组是否有序，有序返回true，无序返回false</summary>
-    
-    
-    
-    <category term="数据结构" scheme="https://herenpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
-    
-    <category term="数据结构" scheme="https://herenpeng.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-    <category term="排序算法" scheme="https://herenpeng.github.io/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IDEA使用Spring Initializr创建Spring项目</title>
-    <link href="https://herenpeng.github.io/2020/03/31/IDEA%E4%BD%BF%E7%94%A8Spring%20Initializr%E5%88%9B%E5%BB%BASpring%E9%A1%B9%E7%9B%AE/"/>
-    <id>https://herenpeng.github.io/2020/03/31/IDEA%E4%BD%BF%E7%94%A8Spring%20Initializr%E5%88%9B%E5%BB%BASpring%E9%A1%B9%E7%9B%AE/</id>
-    <published>2020-03-31T01:22:52.000Z</published>
-    <updated>2020-03-31T01:22:52.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;今天我们来学习使用 IDEA 自带的 Spring Initializr 项目来创建一个全新的 Spring 项目。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
-    
-    
-    <category term="IDEA" scheme="https://herenpeng.github.io/tags/IDEA/"/>
-    
-    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
-    
-    <category term="Spring" scheme="https://herenpeng.github.io/tags/Spring/"/>
     
   </entry>
   
