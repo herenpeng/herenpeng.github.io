@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"herenpeng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"expandIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="我们可以通过这篇博客来学习 Linux 的常用命令。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用命令">
+<meta property="og:url" content="https://herenpeng.github.io/2020/03/10/linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="懒羊羊的青草蛋糕">
+<meta property="og:description" content="我们可以通过这篇博客来学习 Linux 的常用命令。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://herenpeng.github.io/images/2020/03/20200310224122937.png">
+<meta property="article:published_time" content="2020-03-10T14:32:15.000Z">
+<meta property="article:modified_time" content="2020-03-10T14:32:15.000Z">
+<meta property="article:author" content="次时代小羊">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://herenpeng.github.io/images/2020/03/20200310224122937.png">
+
+<link rel="canonical" href="https://herenpeng.github.io/2020/03/10/linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Linux常用命令 | 懒羊羊的青草蛋糕</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="懒羊羊的青草蛋糕" type="application/atom+xml">
+</head>
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/schemes/fireworks.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">懒羊羊的青草蛋糕</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">每一秒钟的时间都值得铭记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">52</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">39</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">8</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/herenpeng" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/03/10/linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="次时代小羊">
+      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懒羊羊的青草蛋糕">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux常用命令
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-10 22:32:15" itemprop="dateCreated datePublished" datetime="2020-03-10T22:32:15+08:00">2020-03-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>我们可以通过这篇博客来学习 Linux 的常用命令。</p>
+<span id="more"></span>
+
+<h2 id="显示文件"><a href="#显示文件" class="headerlink" title="显示文件"></a>显示文件</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ls</td>
+<td>显示当前目录下的文件</td>
+</tr>
+<tr>
+<td>ls –a</td>
+<td>显示所有文件或目录（包括隐藏文件）</td>
+</tr>
+<tr>
+<td>ls –l</td>
+<td>缩写为ll，显示当前目录下文件的详细内容</td>
+</tr>
+</tbody></table>
+<h2 id="切换目录"><a href="#切换目录" class="headerlink" title="切换目录"></a>切换目录</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cd [路径]</td>
+<td>进入或返回到该目录，可以使用tab键来补全目录的路径</td>
+</tr>
+<tr>
+<td>cd . .</td>
+<td>退回上一级目录</td>
+</tr>
+<tr>
+<td>cd /</td>
+<td>返回到根目录</td>
+</tr>
+<tr>
+<td>cd ~</td>
+<td>返回到root目录</td>
+</tr>
+<tr>
+<td>cd -</td>
+<td>返回到上一次所在的目录</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>显示当前所在目录的路径</td>
+</tr>
+</tbody></table>
+<h2 id="文件夹"><a href="#文件夹" class="headerlink" title="文件夹"></a>文件夹</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mkdir [文件夹名]</td>
+<td>在当前目录下创建指定文件夹（只能创建一级目录，即空文件夹）</td>
+</tr>
+<tr>
+<td>rmdir [文件夹名]</td>
+<td>在当前目录下删除指定文件夹（只能删除空文件夹）</td>
+</tr>
+<tr>
+<td>mkdir –help</td>
+<td>查看mkdir命令的帮助</td>
+</tr>
+<tr>
+<td>mkdir –p [文件夹/子文件夹]</td>
+<td>可以创建多级目录，如果没有父目录，会帮你创建父目录，有父目录，也不会报错</td>
+</tr>
+</tbody></table>
+<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><p><strong>文件的权限表示：</strong> - — — —</p>
+<p>第一个位置表示文件类型。 </p>
+<ul>
+<li>-代表文件</li>
+<li>d代表目录</li>
+<li>l表示连接</li>
+</ul>
+<p>第二个位置表示当前用户所具有的文件的权限。<br>第三个位置表示组内其他用户具有的该文件的权限。<br>第四个位置表示其他组的用户具有该文件的权限。</p>
+<ul>
+<li>r：read读</li>
+<li>w：write写</li>
+<li>x：excute执行</li>
+</ul>
+<p><strong>变更文件或目录的权限</strong></p>
+<ul>
+<li>chmod u=rwx,g=rwx,o=rwx [文件或文件夹名]</li>
+<li>chmod 777 [文件或文件夹名]（r=4,w=2,x=1）</li>
+</ul>
+<p><strong>创建文件</strong></p>
+<ul>
+<li>touch [文件名]：创建一个空文件</li>
+</ul>
+<h2 id="浏览文件"><a href="#浏览文件" class="headerlink" title="浏览文件"></a>浏览文件</h2><p>cat [文件名]：浏览文件的所有内容</p>
+<p>more [文件名]：一屏幕一屏幕浏览文件内容</p>
+<ul>
+<li>按回车键一行一行浏览</li>
+<li>按空格键一屏幕一屏幕浏览</li>
+<li>按q退出浏览</li>
+<li>ctrl+c也可以退出</li>
+</ul>
+<p>Less [文件名]：和more命令类似</p>
+<ul>
+<li>按回车键一行一行浏览</li>
+<li>按空格键一屏幕一屏幕浏览</li>
+<li>可以使用上下键进行滚动浏览</li>
+<li>按q退出浏览</li>
+<li>ctrl+c也可以退出</li>
+</ul>
+<p>tail -10 [文件名]：直接浏览文件最后10行</p>
+<p>tail –f [文件名]：可以动态查看内容</p>
+<h2 id="编辑文件"><a href="#编辑文件" class="headerlink" title="编辑文件"></a>编辑文件</h2><p><strong>vim命令</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vim [文件名]</td>
+<td>进入指定文件的编辑界面</td>
+</tr>
+</tbody></table>
+<ul>
+<li>vim 不仅可以编辑已存在的文件，不存在的文件只要正常编辑并保存退出，会自动创建</li>
+</ul>
+<p><strong>Linux文件的三种模式</strong></p>
+<p>命令模式：切换到命令行模式：按Esc键</p>
+<p>插入模式：切换到插入模式：按i、o、a键</p>
+<ul>
+<li>i在当前位置前插入</li>
+<li>a在当前位置后插入</li>
+<li>A在当前行尾插入</li>
+<li>o在当前行之后插入一行</li>
+<li>O在当前行之前插入一行</li>
+</ul>
+<p>底行模式：切换到底行模式：shitf+:</p>
+<ul>
+<li>底行模式下的wq（:wq）保存并退出</li>
+<li>底行模式下的q!（:q!）退出不保存</li>
+<li>底行模式下的/[字符串]（: /[字符串]）查找文件中的指定字符串</li>
+</ul>
+<p><strong>cat命令</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cat [文件1] &gt; [文件2]</td>
+<td>将文件1的内容映射到文件2中去,如果文件2中已有内容，会覆盖文件2中的内容</td>
+</tr>
+<tr>
+<td>cat [文件1] &gt;&gt; [文件2]</td>
+<td>内容不会覆盖，直接追加</td>
+</tr>
+</tbody></table>
+<h2 id="文件的拷贝和剪切"><a href="#文件的拷贝和剪切" class="headerlink" title="文件的拷贝和剪切"></a>文件的拷贝和剪切</h2><p><strong>拷贝</strong><br>| 命令 | 描述 |<br>|–|–|<br>|cp [文件名] [目录] | 将文件拷贝到目录下 |<br>|cp [文件名] [目录/文件名]  |  将文件拷贝到目录下，并修改文件名 |</p>
+<p><strong>剪切</strong><br>| 命令 | 描述 |<br>|–|–|<br>|  mv [文件名] [目录]  |  将文件剪切到目录下|<br>|  mv [文件名] [目录/文件名]  |  将文件剪切到目录下，并修改文件名 |</p>
+<h2 id="删除文件或文件夹"><a href="#删除文件或文件夹" class="headerlink" title="删除文件或文件夹"></a>删除文件或文件夹</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rm [文件名]</td>
+<td>删除当前目录下的文件，并发出询问，输入y(yes)确认删除，输入n(no)不删除。不加参数的rm只能删除文件，不能删除文件夹</td>
+</tr>
+<tr>
+<td>rm –r [文件夹]</td>
+<td>递归删除文件夹，会发出询问</td>
+</tr>
+<tr>
+<td>rm –f [文件名]</td>
+<td>删除文件，不询问（慎用）</td>
+</tr>
+<tr>
+<td>rm –rf [文件夹]</td>
+<td>递归删除文件夹，不询问（慎用）</td>
+</tr>
+<tr>
+<td>rm –rf *</td>
+<td>删除所有文件（慎用！！！）</td>
+</tr>
+<tr>
+<td>rm –rf /*</td>
+<td><strong>如果在生产环境使用了该命令，尽早跑路吧！</strong></td>
+</tr>
+</tbody></table>
+<p><strong>参数</strong></p>
+<ul>
+<li>-r：参数r，增强命令，递归删除文件夹</li>
+<li>-f：参数f，增强命令，强制删除，不询问</li>
+</ul>
+<h2 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>find [目录] -name [文件名]</td>
+<td>通过名字查找目录下的指定文件</td>
+</tr>
+<tr>
+<td>grep [字符串] [文件]</td>
+<td>在指定文件中显示指定字符串</td>
+</tr>
+<tr>
+<td>grep [字符串] [文件] –color</td>
+<td>在指定文件中显示指定字符串，并高亮显示</td>
+</tr>
+<tr>
+<td>grep [字符串] [文件] –color –A4 –B2</td>
+<td>在指定文件中显示指定字符串，并高亮显示，显示后4行，前2行</td>
+</tr>
+</tbody></table>
+<h2 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h2><p><strong>Linux压缩文件</strong></p>
+<ul>
+<li>Linux的压缩文件后缀名为tar.gz，相关命令使用tar，使用参数增强命令，实现解压缩功能。</li>
+</ul>
+<p><strong>参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-c</td>
+<td>创建一个新的tar文件</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>显示运行过程的信息</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>指定文件名</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>调用gzip压缩命令进行压缩</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>解开tar文件</td>
+</tr>
+</tbody></table>
+<p><strong>打包压缩</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tar –cvf [文件名.tar] [文件夹或文件]</td>
+<td>将文件或文件打包为tar文件</td>
+</tr>
+<tr>
+<td>tar –zcvf [文件名.tar.gz] [文件夹或文件]</td>
+<td>将文件夹或文件打包并压缩为tar.gz文件</td>
+</tr>
+</tbody></table>
+<p><strong>解压缩</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tar –xvf [文件名.tar]</td>
+<td>将tar文件解开</td>
+</tr>
+<tr>
+<td>tar –zxvf [文件名tar.gz]</td>
+<td>将tar.gz文件解压缩到当前目录</td>
+</tr>
+<tr>
+<td>tar –zxvf [文件名tar.gz] –C [文件目录]</td>
+<td>将tar.gz文件解压缩到指定目录下</td>
+</tr>
+</tbody></table>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><ul>
+<li>ps -a：查看所有</li>
+<li>ps -u：以用户的格式显示</li>
+<li>ps -x：显示后台进程运行参数</li>
+<li>ps -ef：以全格式显示进程所有信息，包括父进程Pid，创建人，创建时间，进程号等等</li>
+<li>ps –ef | grep [进程名]：搜索包含指定进程名的进程</li>
+<li>kill -9 [进程名称]：强制杀死指定进程名称的进程</li>
+</ul>
+<h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2><ul>
+<li>命令1 | 命令2：将命令1的输出（结果）作为命令2的输入（参数）</li>
+</ul>
+<h2 id="sftp传输"><a href="#sftp传输" class="headerlink" title="sftp传输"></a>sftp传输</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>alt+p快捷键</td>
+<td>进入sftp传输</td>
+</tr>
+<tr>
+<td>put [文件路径名]</td>
+<td>上传至root目录</td>
+</tr>
+<tr>
+<td>get [文件名]</td>
+<td>从root目录下载</td>
+</tr>
+</tbody></table>
+<h2 id="主机配置"><a href="#主机配置" class="headerlink" title="主机配置"></a>主机配置</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>hostname</td>
+<td>查看主机名配置</td>
+</tr>
+<tr>
+<td>hostname [临时主机名]</td>
+<td>将主机名临时修改临时主机名</td>
+</tr>
+</tbody></table>
+<ul>
+<li>持久化修改主机名，需要修改/etc/sysconfig/network文件</li>
+</ul>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ifconfig</td>
+<td>显示当前网络ip</td>
+</tr>
+<tr>
+<td>service network restart</td>
+<td>重启网络服务</td>
+</tr>
+<tr>
+<td>ifconfig eth0 192.168.12.22</td>
+<td>临时修改ip地址为192.168.12.22</td>
+</tr>
+</tbody></table>
+<ul>
+<li>持久化修改ip地址，需要修改/etc/sysconfig/network-scripts/ifcfg-eth0文件</li>
+</ul>
+<h2 id="系统服务"><a href="#系统服务" class="headerlink" title="系统服务"></a>系统服务</h2><p><strong>网络</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>service network status</td>
+<td>查看网络服务的状态</td>
+</tr>
+<tr>
+<td>service network stop</td>
+<td>停止网络服务</td>
+</tr>
+<tr>
+<td>service network start</td>
+<td>启动网络服务</td>
+</tr>
+<tr>
+<td>service network restart</td>
+<td>重启网络服务</td>
+</tr>
+</tbody></table>
+<p><strong>防火墙</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>service iptables status</td>
+<td>查看防火墙状态</td>
+</tr>
+<tr>
+<td>service iptables stop</td>
+<td>关闭防火墙</td>
+</tr>
+<tr>
+<td>service iptables start</td>
+<td>启动防火墙</td>
+</tr>
+<tr>
+<td>cservice iptables off</td>
+<td>禁止防火墙开机自启</td>
+</tr>
+</tbody></table>
+<p><strong>其他</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>service –-status-all</td>
+<td>查看系统中所有后台服务</td>
+</tr>
+<tr>
+<td>service –nltp</td>
+<td>查看系统中网络进程的端口监听情况</td>
+</tr>
+</tbody></table>
+<h2 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>clear</td>
+<td>清屏（ctrl+l键也可以显示清屏）</td>
+</tr>
+</tbody></table>
+<h2 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h2><p><img src="/images/2020/03/20200310224122937.png" alt="在这里插入图片描述"></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="次时代小羊 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="次时代小羊 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>次时代小羊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://herenpeng.github.io/2020/03/10/linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Linux常用命令">https://herenpeng.github.io/2020/03/10/linux/Linux常用命令/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/24/java/SpringBoot%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E8%B7%AF%E5%BE%84%E6%98%A0%E5%B0%84%E8%AE%BF%E9%97%AE%E7%A3%81%E7%9B%98%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/" rel="prev" title="SpringBoot配置虚拟路径映射访问磁盘中的文件">
+      <i class="fa fa-chevron-left"></i> SpringBoot配置虚拟路径映射访问磁盘中的文件
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/13/tool/Maven%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%88%A0%E9%99%A4.lastUpdated%E7%BB%93%E5%B0%BE%E7%9A%84%E6%96%87%E4%BB%B6/" rel="next" title="Maven本地仓库删除.lastUpdated结尾的文件">
+      Maven本地仓库删除.lastUpdated结尾的文件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  <div>
+    
+      <div>
+    
+        <div style="text-align:center;color: #9f9f9f;font-size:14px;">-------------这是我的底线^_^-------------</div>
+    
+</div>
+
+    
+  </div>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6"><span class="nav-text">显示文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E7%9B%AE%E5%BD%95"><span class="nav-text">切换目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-text">文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6"><span class="nav-text">文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E6%96%87%E4%BB%B6"><span class="nav-text">浏览文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E6%96%87%E4%BB%B6"><span class="nav-text">编辑文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%8B%B7%E8%B4%9D%E5%92%8C%E5%89%AA%E5%88%87"><span class="nav-text">文件的拷贝和剪切</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-text">删除文件或文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6"><span class="nav-text">查找文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%8E%8B%E7%BC%A9"><span class="nav-text">解压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B"><span class="nav-text">进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E9%81%93"><span class="nav-text">管道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sftp%E4%BC%A0%E8%BE%93"><span class="nav-text">sftp传输</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E9%85%8D%E7%BD%AE"><span class="nav-text">主机配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C"><span class="nav-text">网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1"><span class="nav-text">系统服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="nav-text">其他命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="nav-text">思维导图</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="次时代小羊"
+      src="/images/author.jpg">
+  <p class="site-author-name" itemprop="name">次时代小羊</p>
+  <div class="site-description" itemprop="description">记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹</div>
+
+  <div>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86
+    src="//music.163.com/outchain/player?type=2&id=1966782828&auto=1&height=66"></iframe>
+  </div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/herenpeng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;herenpeng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_45193304" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45193304" rel="noopener" target="_blank"><i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/herenpeng" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;herenpeng" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:he.ren.peng@qq.com" title="E-Mail → mailto:he.ren.peng@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="">
+    <a target="_blank" class="social-link" href="/atom.xml" style="color: burlywood;">
+      <span class="icon">
+        <i class="fa fa-rss"></i>
+      </span>
+      <span class="label">RSS</span>
+    </a>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+
+  </aside>
+
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">次时代小羊</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">180k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:44</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="90" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

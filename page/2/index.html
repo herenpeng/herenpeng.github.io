@@ -133,12 +133,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">36</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">52</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">29</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">39</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -205,7 +205,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/06/26/mysql/MySQL%E8%AD%A6%E5%91%8A%E4%BF%A1%E6%81%AF%EF%BC%9A%E4%B8%8D%E5%BB%BA%E8%AE%AE%E5%9C%A8%E6%B2%A1%E6%9C%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%BB%BA%E7%AB%8BSSL%E8%BF%9E%E6%8E%A5/">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2021/06/29/java/MyBatisPlus%E5%8D%87%E7%BA%A73.4.3.1%E7%89%88%E6%9C%AC%E6%8A%A5%E9%94%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/author.jpg">
@@ -219,7 +219,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/06/26/mysql/MySQL%E8%AD%A6%E5%91%8A%E4%BF%A1%E6%81%AF%EF%BC%9A%E4%B8%8D%E5%BB%BA%E8%AE%AE%E5%9C%A8%E6%B2%A1%E6%9C%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%BB%BA%E7%AB%8BSSL%E8%BF%9E%E6%8E%A5/" class="post-title-link" itemprop="url">MySQL警告信息：不建议在没有服务器身份验证的情况下建立SSL连接</a>
+            <a href="/2021/06/29/java/MyBatisPlus%E5%8D%87%E7%BA%A73.4.3.1%E7%89%88%E6%9C%AC%E6%8A%A5%E9%94%99/" class="post-title-link" itemprop="url">MyBatisPlus升级3.4.3.1版本报错：MybatisConfiguration$StrictMap$Ambiguity cannot be cast to ResultMap</a>
         </h1>
 
         <div class="post-meta">
@@ -229,7 +229,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-06-26 18:43:10" itemprop="dateCreated datePublished" datetime="2020-06-26T18:43:10+08:00">2020-06-26</time>
+              <time title="创建时间：2021-06-29 23:58:10" itemprop="dateCreated datePublished" datetime="2021-06-29T23:58:10+08:00">2021-06-29</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -237,7 +237,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySql/" itemprop="url" rel="index"><span itemprop="name">MySql</span></a>
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
                 </span>
             </span>
 
@@ -247,14 +247,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>790</span>
+              <span>7.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -266,103 +266,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>前段时间重装了MySQL数据库，将原本的MySQL5.5版本换成了5.7版本，今天在运行以前的项目的时候，突然爆出了如下的错误信息：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/26/mysql/MySQL%E8%AD%A6%E5%91%8A%E4%BF%A1%E6%81%AF%EF%BC%9A%E4%B8%8D%E5%BB%BA%E8%AE%AE%E5%9C%A8%E6%B2%A1%E6%9C%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%BB%BA%E7%AB%8BSSL%E8%BF%9E%E6%8E%A5/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  <div>
-    
-  </div>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/04/19/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85CentOS%E7%B3%BB%E7%BB%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="次时代小羊">
-      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="懒羊羊的青草蛋糕">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/19/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85CentOS%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">一篇博客教会你怎么安装CentOS系统</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-19 09:50:31" itemprop="dateCreated datePublished" datetime="2020-04-19T09:50:31+08:00">2020-04-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>971</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>这篇博客我们来学习怎样通过VMware虚拟机软件来安装CentOS系统。<br>这篇博客是在VMware虚拟机的基础上安装CentOS系统，所以如果不知道怎么安装VMware虚拟机的同学，可以参考我之前的博客：<a href="/2020/04/19/一篇博客教会你怎么安装VMware虚拟机">一篇博客教会你怎么安装VMware虚拟机</a></p>
+          <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><blockquote>
+<p>SpringBoot 版本：2.5.2<br>项目原本的 MyBatisPlus 版本为：3.4.0，项目可以正常启动运行，但是在将 MyBatisPlus 的版本升级至 3.4.3.1之后，项目启动 MyBatisPlus 就开始报错了。</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/04/19/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85CentOS%E7%B3%BB%E7%BB%9F/#more" rel="contents">
+              <a class="btn" href="/2021/06/29/java/MyBatisPlus%E5%8D%87%E7%BA%A73.4.3.1%E7%89%88%E6%9C%AC%E6%8A%A5%E9%94%99/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -389,7 +298,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/04/19/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2021/05/31/tool/IDEA%20%E6%8F%92%E4%BB%B6%20Alibaba%20Cloud%20Toolkit%EF%BC%8C%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E5%89%8D%E5%90%8E%E7%AB%AF%E9%A1%B9%E7%9B%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/author.jpg">
@@ -403,7 +312,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/04/19/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/" class="post-title-link" itemprop="url">一篇博客教会你怎么安装VMware虚拟机</a>
+            <a href="/2021/05/31/tool/IDEA%20%E6%8F%92%E4%BB%B6%20Alibaba%20Cloud%20Toolkit%EF%BC%8C%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E5%89%8D%E5%90%8E%E7%AB%AF%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">IDEA 插件 Alibaba Cloud Toolkit，一键部署前后端项目</a>
         </h1>
 
         <div class="post-meta">
@@ -413,22 +322,15 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-04-19 09:50:31" itemprop="dateCreated datePublished" datetime="2020-04-19T09:50:31+08:00">2020-04-19</time>
+              <time title="创建时间：2021-05-31 23:47:45" itemprop="dateCreated datePublished" datetime="2021-05-31T23:47:45+08:00">2021-05-31</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-18 17:33:53" itemprop="dateModified" datetime="2023-02-18T17:33:53+08:00">2023-02-18</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
                 </span>
             </span>
 
@@ -438,14 +340,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>484</span>
+              <span>2.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -457,12 +359,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>这篇博客我们来学习VMware虚拟机的安装</p>
-</blockquote>
+          <h1 id="Alibaba-Cloud-Toolkit"><a href="#Alibaba-Cloud-Toolkit" class="headerlink" title="Alibaba Cloud Toolkit"></a>Alibaba Cloud Toolkit</h1><p>Alibaba Cloud Toolkit，顾名思义，这是一个由阿里开发的，用于快速部署云服务项目的 IDEA 插件工具。<br>使用该插件，可以在本地直接一键部署项目到云端服务器。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/04/19/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/#more" rel="contents">
+              <a class="btn" href="/2021/05/31/tool/IDEA%20%E6%8F%92%E4%BB%B6%20Alibaba%20Cloud%20Toolkit%EF%BC%8C%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E5%89%8D%E5%90%8E%E7%AB%AF%E9%A1%B9%E7%9B%AE/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -489,7 +389,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/04/13/golang/Golang%E4%B8%AD%E7%9A%84GoPath%E5%92%8CGoModule/">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2021/04/21/algorithm/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95%E4%B9%8B%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E9%93%BE%E8%A1%A8%E6%9C%89%E7%8E%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/author.jpg">
@@ -503,7 +403,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/04/13/golang/Golang%E4%B8%AD%E7%9A%84GoPath%E5%92%8CGoModule/" class="post-title-link" itemprop="url">Golang中的GoPath和GoModule</a>
+            <a href="/2021/04/21/algorithm/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95%E4%B9%8B%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E9%93%BE%E8%A1%A8%E6%9C%89%E7%8E%AF/" class="post-title-link" itemprop="url">面试算法之如何判断链表有环</a>
         </h1>
 
         <div class="post-meta">
@@ -513,7 +413,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-04-13 18:04:28" itemprop="dateCreated datePublished" datetime="2020-04-13T18:04:28+08:00">2020-04-13</time>
+              <time title="创建时间：2021-04-21 21:43:57" itemprop="dateCreated datePublished" datetime="2021-04-21T21:43:57+08:00">2021-04-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -521,7 +421,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Golang/" itemprop="url" rel="index"><span itemprop="name">Golang</span></a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
                 </span>
             </span>
 
@@ -531,7 +431,98 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.8k</span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="如何判断链表有环"><a href="#如何判断链表有环" class="headerlink" title="如何判断链表有环"></a>如何判断链表有环</h1><p>给一个单向链表，使用程序来判断链表中是否存在环结构。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/21/algorithm/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95%E4%B9%8B%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E9%93%BE%E8%A1%A8%E6%9C%89%E7%8E%AF/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  <div>
+    
+  </div>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2021/04/18/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="次时代小羊">
+      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懒羊羊的青草蛋糕">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/18/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">排序算法之计数排序</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-18 17:05:26" itemprop="dateCreated datePublished" datetime="2021-04-18T17:05:26+08:00">2021-04-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -550,12 +541,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>在Golang中，有两个概念非常容易弄错，第一个就是GoPath，第二个则是GoModule，很多初学者不清楚这两者之间的关系，也就难以清晰地了解项目的整体结构，自然也就难以编写结构清晰的代码。</p>
-</blockquote>
+          <h1 id="什么是计数排序"><a href="#什么是计数排序" class="headerlink" title="什么是计数排序"></a>什么是计数排序</h1><p>计数排序是一种利用数组下标来确定元素的正确位置的排序算法。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/04/13/golang/Golang%E4%B8%AD%E7%9A%84GoPath%E5%92%8CGoModule/#more" rel="contents">
+              <a class="btn" href="/2021/04/18/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -582,7 +571,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/04/12/golang/Golang%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8BCRUD/">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2021/04/17/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/author.jpg">
@@ -596,7 +585,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/04/12/golang/Golang%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8BCRUD/" class="post-title-link" itemprop="url">Golang连接MySQL数据库之CRUD</a>
+            <a href="/2021/04/17/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">排序算法之快速排序</a>
         </h1>
 
         <div class="post-meta">
@@ -606,201 +595,8 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-04-12 10:14:34" itemprop="dateCreated datePublished" datetime="2020-04-12T10:14:34+08:00">2020-04-12</time>
+              <time title="创建时间：2021-04-17 15:56:22" itemprop="dateCreated datePublished" datetime="2021-04-17T15:56:22+08:00">2021-04-17</time>
             </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Golang/" itemprop="url" rel="index"><span itemprop="name">Golang</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>我们这次来学习使用Golang来连接MySQL数据库，并使用Golang实现数据库的CRUD操作。</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/12/golang/Golang%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8BCRUD/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  <div>
-    
-  </div>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/04/08/golang/Golang%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85&IDEA%E5%BC%80%E5%8F%91Golang/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="次时代小羊">
-      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="懒羊羊的青草蛋糕">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/08/golang/Golang%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85&IDEA%E5%BC%80%E5%8F%91Golang/" class="post-title-link" itemprop="url">Golang环境安装&IDEA开发Golang</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-08 20:12:43" itemprop="dateCreated datePublished" datetime="2020-04-08T20:12:43+08:00">2020-04-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Golang/" itemprop="url" rel="index"><span itemprop="name">Golang</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>在这篇博客中，我们学习Windows系统安装Golang的环境，并使用IDEA安装Go插件来开发Golang。</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/08/golang/Golang%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85&IDEA%E5%BC%80%E5%8F%91Golang/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  <div>
-    
-  </div>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/04/07/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%E7%BC%96%E5%86%99%E4%B8%8E%E4%B8%89%E7%A7%8D%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%EF%BC%88Java%E5%AE%9E%E7%8E%B0%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="次时代小羊">
-      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="懒羊羊的青草蛋糕">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/07/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%E7%BC%96%E5%86%99%E4%B8%8E%E4%B8%89%E7%A7%8D%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%EF%BC%88Java%E5%AE%9E%E7%8E%B0%EF%BC%89/" class="post-title-link" itemprop="url">数据结构与算法-排序算法辅助工具编写与三种基本排序算法（Java实现）</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-07 13:26:31" itemprop="dateCreated datePublished" datetime="2020-04-07T13:26:31+08:00">2020-04-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-20 22:02:50" itemprop="dateModified" datetime="2023-02-20T22:02:50+08:00">2023-02-20</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -817,14 +613,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
+              <span>5.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -836,14 +632,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>一、排序算法辅助工具类：</strong></p>
-<ol>
-<li>随机生成一个整形数组</li>
-<li>生成一个近乎有序的整形数组</li>
-<li>判断一个数组是否有序，有序返回true，无序返回false
+          <h1 id="什么是快速排序"><a href="#什么是快速排序" class="headerlink" title="什么是快速排序"></a>什么是快速排序</h1><p>和冒泡排序一样，快速排序也属于交换排序，通过元素直接的比较和交换位置来达到排序的目的。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/04/07/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%E7%BC%96%E5%86%99%E4%B8%8E%E4%B8%89%E7%A7%8D%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%EF%BC%88Java%E5%AE%9E%E7%8E%B0%EF%BC%89/#more" rel="contents">
+              <a class="btn" href="/2021/04/17/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -870,7 +662,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/03/31/java/IDEA%E4%BD%BF%E7%94%A8Spring%20Initializr%E5%88%9B%E5%BB%BASpring%E9%A1%B9%E7%9B%AE/">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2021/03/27/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E8%81%8A%E8%81%8A%E4%BD%A0%E6%89%80%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/author.jpg">
@@ -884,7 +676,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/03/31/java/IDEA%E4%BD%BF%E7%94%A8Spring%20Initializr%E5%88%9B%E5%BB%BASpring%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">IDEA使用Spring Initializr创建Spring项目</a>
+            <a href="/2021/03/27/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E8%81%8A%E8%81%8A%E4%BD%A0%E6%89%80%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">排序算法之聊聊你所不知道的冒泡排序</a>
         </h1>
 
         <div class="post-meta">
@@ -894,7 +686,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-03-31 09:22:52" itemprop="dateCreated datePublished" datetime="2020-03-31T09:22:52+08:00">2020-03-31</time>
+              <time title="创建时间：2021-03-27 11:05:39" itemprop="dateCreated datePublished" datetime="2021-03-27T11:05:39+08:00">2021-03-27</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -902,7 +694,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
                 </span>
             </span>
 
@@ -912,14 +704,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
+              <span>6.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>6 分钟</span>
             </span>
 
         </div>
@@ -931,10 +723,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>今天我们来学习使用 IDEA 自带的 Spring Initializr 项目来创建一个全新的 Spring 项目。</p>
+          <h1 id="什么是冒泡排序"><a href="#什么是冒泡排序" class="headerlink" title="什么是冒泡排序"></a>什么是冒泡排序</h1><p>冒泡排序是一种基础的交换排序，其思想是，把相邻的元素两两比较，当一个元素大于右侧相邻的元素时，交换它们的位置：当一个元素小于或等于右侧的元素时，位置不变。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/03/31/java/IDEA%E4%BD%BF%E7%94%A8Spring%20Initializr%E5%88%9B%E5%BB%BASpring%E9%A1%B9%E7%9B%AE/#more" rel="contents">
+              <a class="btn" href="/2021/03/27/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E8%81%8A%E8%81%8A%E4%BD%A0%E6%89%80%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -961,7 +753,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/03/27/java/Java%E5%BC%82%E5%B8%B8try%7B%7Dcatch%7B%7D%E4%B8%AD%E7%9A%84return%E6%9C%BA%E5%88%B6/">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2021/03/06/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8C%E5%8F%89%E5%A0%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/author.jpg">
@@ -975,7 +767,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/03/27/java/Java%E5%BC%82%E5%B8%B8try%7B%7Dcatch%7B%7D%E4%B8%AD%E7%9A%84return%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">Java异常try{}catch{}中的return机制</a>
+            <a href="/2021/03/06/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8C%E5%8F%89%E5%A0%86/" class="post-title-link" itemprop="url">数据结构之什么是二叉堆？</a>
         </h1>
 
         <div class="post-meta">
@@ -985,7 +777,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-03-27 22:01:30" itemprop="dateCreated datePublished" datetime="2020-03-27T22:01:30+08:00">2020-03-27</time>
+              <time title="创建时间：2021-03-06 23:16:40" itemprop="dateCreated datePublished" datetime="2021-03-06T23:16:40+08:00">2021-03-06</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -993,7 +785,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
                 </span>
             </span>
 
@@ -1003,14 +795,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.7k</span>
+              <span>7.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -1022,12 +814,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>什么是Java的异常体系？参考博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45193304/article/details/104146056">Java基础——运行时异常和非运行时异常</a></p>
-</blockquote>
+          <h1 id="什么是二叉堆？"><a href="#什么是二叉堆？" class="headerlink" title="什么是二叉堆？"></a>什么是二叉堆？</h1><p>二叉堆本质上是一种完全二叉树，它分为两个类型：</p>
+<ul>
+<li>最大堆</li>
+<li>最小堆
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/03/27/java/Java%E5%BC%82%E5%B8%B8try%7B%7Dcatch%7B%7D%E4%B8%AD%E7%9A%84return%E6%9C%BA%E5%88%B6/#more" rel="contents">
+              <a class="btn" href="/2021/03/06/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8C%E5%8F%89%E5%A0%86/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1054,7 +847,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/03/20/tool/Postman%E5%8F%91%E9%80%81POST%E8%AF%B7%E6%B1%82%E5%8F%8A%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E7%9A%84%E5%8F%82%E6%95%B0/">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2021/02/28/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/author.jpg">
@@ -1068,7 +861,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/03/20/tool/Postman%E5%8F%91%E9%80%81POST%E8%AF%B7%E6%B1%82%E5%8F%8A%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E7%9A%84%E5%8F%82%E6%95%B0/" class="post-title-link" itemprop="url">Postman发送POST请求及日期格式的参数</a>
+            <a href="/2021/02/28/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E6%A0%91/" class="post-title-link" itemprop="url">数据结构之什么是树？</a>
         </h1>
 
         <div class="post-meta">
@@ -1078,22 +871,15 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-03-20 16:50:41" itemprop="dateCreated datePublished" datetime="2020-03-20T16:50:41+08:00">2020-03-20</time>
+              <time title="创建时间：2021-02-28 17:27:30" itemprop="dateCreated datePublished" datetime="2021-02-28T17:27:30+08:00">2021-02-28</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-22 23:34:19" itemprop="dateModified" datetime="2023-02-22T23:34:19+08:00">2023-02-22</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
                 </span>
             </span>
 
@@ -1103,14 +889,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>147</span>
+              <span>8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -1122,10 +908,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Postman在发送POST请求的时候，所有参数写在Request Body（请求体）中，如果需要的参数类型的日期格式的，只需要将日期格式写为<code>2000/01/01</code>即可，Postman会自动识别为日期格式的数据。</p>
+          <h1 id="什么是树？"><a href="#什么是树？" class="headerlink" title="什么是树？"></a>什么是树？</h1><p>数据结构中的树和现实生活中的树虽然不是同一种事物，但是却有着相同的特点。</p>
+<p>数据结构中的树，其实就是一种和现实生活中的树有着相似结构的数据逻辑结构，从同一个“根”衍生出许多“枝干”，最后衍生出更多的“叶子”。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/03/20/tool/Postman%E5%8F%91%E9%80%81POST%E8%AF%B7%E6%B1%82%E5%8F%8A%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E7%9A%84%E5%8F%82%E6%95%B0/#more" rel="contents">
+              <a class="btn" href="/2021/02/28/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E6%A0%91/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1152,7 +939,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/03/15/java/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2021/02/24/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E9%93%BE%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/author.jpg">
@@ -1166,7 +953,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/03/15/java/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+            <a href="/2021/02/24/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">数据结构之什么是链表？</a>
         </h1>
 
         <div class="post-meta">
@@ -1176,22 +963,15 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-03-15 20:08:59" itemprop="dateCreated datePublished" datetime="2020-03-15T20:08:59+08:00">2020-03-15</time>
+              <time title="创建时间：2021-02-24 22:28:15" itemprop="dateCreated datePublished" datetime="2021-02-24T22:28:15+08:00">2021-02-24</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-20 21:57:42" itemprop="dateModified" datetime="2023-02-20T21:57:42+08:00">2023-02-20</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
                 </span>
             </span>
 
@@ -1201,14 +981,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>137</span>
+              <span>12k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>11 分钟</span>
             </span>
 
         </div>
@@ -1220,97 +1000,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>欢迎来到我的博客！</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  <div>
-    
-  </div>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/03/13/tool/Maven%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%88%A0%E9%99%A4.lastUpdated%E7%BB%93%E5%B0%BE%E7%9A%84%E6%96%87%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="次时代小羊">
-      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="懒羊羊的青草蛋糕">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/13/tool/Maven%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%88%A0%E9%99%A4.lastUpdated%E7%BB%93%E5%B0%BE%E7%9A%84%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">Maven本地仓库删除.lastUpdated结尾的文件</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-13 13:10:27" itemprop="dateCreated datePublished" datetime="2020-03-13T13:10:27+08:00">2020-03-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>982</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Maven 中有很多下载失败的，以.lastUpdated结尾的错误文件，我们可以直接将这些文件删除</p>
+          <h1 id="什么是链表？"><a href="#什么是链表？" class="headerlink" title="什么是链表？"></a>什么是链表？</h1><p>链表（linked list）是一种在物理上非连续、非顺序的数据结构，由若干个节点（node）所组成。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/03/13/tool/Maven%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%88%A0%E9%99%A4.lastUpdated%E7%BB%93%E5%B0%BE%E7%9A%84%E6%96%87%E4%BB%B6/#more" rel="contents">
+              <a class="btn" href="/2021/02/24/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E9%93%BE%E8%A1%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1337,7 +1030,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/02/24/java/SpringBoot%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E8%B7%AF%E5%BE%84%E6%98%A0%E5%B0%84%E8%AE%BF%E9%97%AE%E7%A3%81%E7%9B%98%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2021/02/23/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E7%BB%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/author.jpg">
@@ -1351,7 +1044,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/24/java/SpringBoot%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E8%B7%AF%E5%BE%84%E6%98%A0%E5%B0%84%E8%AE%BF%E9%97%AE%E7%A3%81%E7%9B%98%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">SpringBoot配置虚拟路径映射访问磁盘中的文件</a>
+            <a href="/2021/02/23/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E7%BB%84/" class="post-title-link" itemprop="url">数据结构之什么是数组？</a>
         </h1>
 
         <div class="post-meta">
@@ -1361,7 +1054,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-02-24 23:45:38" itemprop="dateCreated datePublished" datetime="2020-02-24T23:45:38+08:00">2020-02-24</time>
+              <time title="创建时间：2021-02-23 20:31:48" itemprop="dateCreated datePublished" datetime="2021-02-23T20:31:48+08:00">2021-02-23</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1369,7 +1062,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
                 </span>
             </span>
 
@@ -1379,14 +1072,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>565</span>
+              <span>6.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>6 分钟</span>
             </span>
 
         </div>
@@ -1398,283 +1091,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在我们使用SpringBoot搭建项目的时候，我们可能会把一些项目的文件放在其他服务器或者硬盘中，这样可以更好的存储和管理系统的文件。<br>但是如果放在其他服务器或者硬盘中，那么我们应该如何通过项目的路径来访问这些文件呢？</p>
+          <h1 id="什么是数组？"><a href="#什么是数组？" class="headerlink" title="什么是数组？"></a>什么是数组？</h1><p>数组对应的英文是array，是有限个相同类型的变量所组成的有序集合，数组中的每一个变量被称为元素。数组是最为简单、最为常用的数据结构。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/02/24/java/SpringBoot%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E8%B7%AF%E5%BE%84%E6%98%A0%E5%B0%84%E8%AE%BF%E9%97%AE%E7%A3%81%E7%9B%98%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  <div>
-    
-  </div>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/02/23/tool/Postman%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="次时代小羊">
-      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="懒羊羊的青草蛋糕">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/23/tool/Postman%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Postman的下载、安装与使用</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-23 11:50:11" itemprop="dateCreated datePublished" datetime="2020-02-23T11:50:11+08:00">2020-02-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="什么是Postman"><a href="#什么是Postman" class="headerlink" title="什么是Postman"></a>什么是Postman</h2><p>Postman是一款接口测试工具，可以模仿浏览器发出各种类型的HTTP请求，用来测试API是否可用。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/23/tool/Postman%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  <div>
-    
-  </div>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/02/16/tool/Git%E7%9A%84%E5%AE%89%E8%A3%85&IDEA%E6%95%B4%E5%90%88Git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="次时代小羊">
-      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="懒羊羊的青草蛋糕">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/16/tool/Git%E7%9A%84%E5%AE%89%E8%A3%85&IDEA%E6%95%B4%E5%90%88Git/" class="post-title-link" itemprop="url">Git的安装&IDEA整合Git</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-16 21:34:48" itemprop="dateCreated datePublished" datetime="2020-02-16T21:34:48+08:00">2020-02-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Git是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。<br>也是Linus Torvalds为了帮助管理Linux内核开发而开发的一个开放源码的版本控制软件。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/16/tool/Git%E7%9A%84%E5%AE%89%E8%A3%85&IDEA%E6%95%B4%E5%90%88Git/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  <div>
-    
-  </div>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/01/26/tool/Maven%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE&IDEA%E6%95%B4%E5%90%88Maven/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="次时代小羊">
-      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="懒羊羊的青草蛋糕">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/26/tool/Maven%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE&IDEA%E6%95%B4%E5%90%88Maven/" class="post-title-link" itemprop="url">Maven安装与配置&IDEA整合Maven</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-26 19:49:24" itemprop="dateCreated datePublished" datetime="2020-01-26T19:49:24+08:00">2020-01-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Maven是一个项目管理工具，它包含了一个项目对象模型 (Project Object Model)，一组标准集合，一个项目生命周期(Project Lifecycle)，一个依赖管理系统(Dependency Management System)，和用来运行定义在生命周期阶段(phase)中插件(plugin)目标(goal)的逻辑。当你使用Maven的时候，你用一个明确定义的项目对象模型来描述你的项目，然后Maven可以应用横切的逻辑，这些逻辑来自一组共享的（或者自定义的）插件。<br>现在，我们就来配置一个Maven，并将Maven工具和IDEA进行整合，让我们可以通过IDEA来创建Maven项目。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/26/tool/Maven%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE&IDEA%E6%95%B4%E5%90%88Maven/#more" rel="contents">
+              <a class="btn" href="/2021/02/23/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E7%BB%84/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1701,7 +1121,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1775,7 +1195,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1788,7 +1208,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1850,13 +1270,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">118k</span>
+    <span title="站点总字数">180k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:47</span>
+    <span title="站点阅读时长">2:44</span>
 </div>
         
 <div class="busuanzi-count">

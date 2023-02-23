@@ -29,15 +29,15 @@
 <meta property="og:site_name" content="懒羊羊的青草蛋糕">
 <meta property="og:description" content="执行shell脚本文件，报错syntax error: unexpected end of file。 使用vim工具打开脚本文件，却并没有发现有什么问题。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://herenpeng.github.io/images/2023/02/20210101190743117.png">
-<meta property="og:image" content="https://herenpeng.github.io/images/2023/02/20210101190806488.png">
+<meta property="og:image" content="https://herenpeng.github.io/images/2021/01/20210101190743117.png">
+<meta property="og:image" content="https://herenpeng.github.io/images/2021/01/20210101190806488.png">
 <meta property="article:published_time" content="2021-01-01T11:13:28.000Z">
 <meta property="article:modified_time" content="2021-01-01T11:13:28.000Z">
 <meta property="article:author" content="次时代小羊">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Shell">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://herenpeng.github.io/images/2023/02/20210101190743117.png">
+<meta name="twitter:image" content="https://herenpeng.github.io/images/2021/01/20210101190743117.png">
 
 <link rel="canonical" href="https://herenpeng.github.io/2021/01/01/linux/Shell%E6%8A%A5%E9%94%99/">
 
@@ -139,12 +139,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">36</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">52</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">29</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">39</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -283,10 +283,10 @@
 <span id="more"></span>
 
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim hello.sh</span><br></pre></td></tr></table></figure>
-<p><img src="/images/2023/02/20210101190743117.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/2021/01/20210101190743117.png" alt="在这里插入图片描述"></p>
 <p>但是只需要使用vim+参数的方式打开该文件，就会发现一些端倪。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="literal">-b</span> hello.sh</span><br></pre></td></tr></table></figure>
-<p><img src="/images/2023/02/20210101190806488.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/2021/01/20210101190806488.png" alt="在这里插入图片描述"></p>
 <p>在每一个<code>shell</code>语句的末尾，都多了一个<code>^M</code>的标志，这其实是因为该文件是在<code>windows</code>环境下编写，然后传输到<code>Linux</code>环境来的，但是因为<code>windows</code>环境的文本有<code>\r</code>的回车标识，在<code>Linux</code>环境下就会出现不兼容的问题。</p>
 <p><strong>解决方法：</strong></p>
 <p>1、只需要把<code>^M</code>的标志符删除，该脚本文件即可正常执行。不过这种方法只适用于少量文本，如果是大量的脚本代码，这显然是不适用的。</p>
@@ -352,8 +352,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/09/02/java/Java%E5%AE%9E%E7%8E%B0PDF%E6%96%87%E4%BB%B6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%9B%BE%E7%89%87/" rel="prev" title="Java实现PDF文件转换为图片">
-      <i class="fa fa-chevron-left"></i> Java实现PDF文件转换为图片
+    <a href="/2020/12/10/linux/Liunx%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85JDK%E7%8E%AF%E5%A2%83%EF%BC%88yum%E5%AE%89%E8%A3%85%EF%BC%89/" rel="prev" title="Liunx系统安装JDK环境（yum安装）">
+      <i class="fa fa-chevron-left"></i> Liunx系统安装JDK环境（yum安装）
     </a></div>
       <div class="post-nav-item">
     <a href="/2021/01/10/java/Swagger%E6%8A%A5%E9%94%99/" rel="next" title="Swagger报错：Unable to interpret the implicit parameter configuration with dataType">
@@ -449,7 +449,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -462,7 +462,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -524,13 +524,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">118k</span>
+    <span title="站点总字数">180k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:47</span>
+    <span title="站点阅读时长">2:44</span>
 </div>
         
 <div class="busuanzi-count">

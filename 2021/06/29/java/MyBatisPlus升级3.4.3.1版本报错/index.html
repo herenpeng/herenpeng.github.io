@@ -29,16 +29,16 @@
 <meta property="og:site_name" content="懒羊羊的青草蛋糕">
 <meta property="og:description" content="问题描述 SpringBoot 版本：2.5.2项目原本的 MyBatisPlus 版本为：3.4.0，项目可以正常启动运行，但是在将 MyBatisPlus 的版本升级至 3.4.3.1之后，项目启动 MyBatisPlus 就开始报错了。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://herenpeng.github.io/iamges/2023/02/20210630082030289.png">
-<meta property="og:image" content="https://herenpeng.github.io/iamges/2023/02/20210630082559561.png">
-<meta property="og:image" content="https://herenpeng.github.io/iamges/2023/02/20210630082700362.png">
+<meta property="og:image" content="https://herenpeng.github.io/images/2021/06/20210630082030289.png">
+<meta property="og:image" content="https://herenpeng.github.io/images/2021/06/20210630082559561.png">
+<meta property="og:image" content="https://herenpeng.github.io/images/2021/06/20210630082700362.png">
 <meta property="article:published_time" content="2021-06-29T15:58:10.000Z">
 <meta property="article:modified_time" content="2021-06-29T15:58:10.000Z">
 <meta property="article:author" content="次时代小羊">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="MyBatisPlus">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://herenpeng.github.io/iamges/2023/02/20210630082030289.png">
+<meta name="twitter:image" content="https://herenpeng.github.io/images/2021/06/20210630082030289.png">
 
 <link rel="canonical" href="https://herenpeng.github.io/2021/06/29/java/MyBatisPlus%E5%8D%87%E7%BA%A73.4.3.1%E7%89%88%E6%9C%AC%E6%8A%A5%E9%94%99/">
 
@@ -140,12 +140,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">36</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">52</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">29</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">39</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -309,12 +309,12 @@
 <p>然后在 MyBatisPlus 3.4.3.1 版本中，不知道哪位同学将 <code>instanceof</code> 类型检查的代码去掉了，最终导致 MyBatisPlus 在升级至 3.4.3.1 版本中之后开始报错。</p>
 <h2 id="源码提交日志"><a href="#源码提交日志" class="headerlink" title="源码提交日志"></a>源码提交日志</h2><p>我去 GiHub 上查看了 MyBatisPlus 3.4.0 版本至 3.4.3.1 版本之间的升级日志，没有一条更新日志提到这个问题，我个人觉得这是一个 BUG。</p>
 <h3 id="6月3号"><a href="#6月3号" class="headerlink" title="6月3号"></a>6月3号</h3><p>一位 MyBatisPlus 的维护者提交了代码，对 <code>com.baomidou.mybatisplus.core.MybatisConfiguration#checkGloballyForDiscriminatedNestedResultMaps</code> 方法进行了优化，去掉了该方法中的  <code>instanceof</code> 的安全类型检查，具体如下：</p>
-<p><img src="/iamges/2023/02/20210630082030289.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/2021/06/20210630082030289.png" alt="在这里插入图片描述"></p>
 <p>从这位开发者的角度我觉得这段优化完全没有问题，毕竟这个 Map 容器使用了泛型，完全可以直接返回泛型类型对象，不需要多此一举使用   <code>instanceof</code> 进行安全类型检查。<br>但是这位开发者不知道的是，在这个 Map 容器里面，重写的 put 方法完全不讲武德，对非泛型类型的对象进行强转，放入 Map 容器中。</p>
 <p>这位开发者完全是遭受了无妄之灾，这应该是当初设置这个 Map 容器的这位大神的问题，既然使用了泛型进行类型编译检查，就不应该在 put 的时候进行类型强制转行。或者说，既然需要存放不一致的类型，当初设计的时候就应该将泛型设置为 <code>Object</code> 类型。</p>
-<h3 id="6月15日"><a href="#6月15日" class="headerlink" title="6月15日"></a>6月15日</h3><p>MyBatisPlus 发布了 <code>3.4.3.1</code> 版本，也就是包含这个 BUG 的版本。<br><img src="/iamges/2023/02/20210630082559561.png" alt="在这里插入图片描述"></p>
+<h3 id="6月15日"><a href="#6月15日" class="headerlink" title="6月15日"></a>6月15日</h3><p>MyBatisPlus 发布了 <code>3.4.3.1</code> 版本，也就是包含这个 BUG 的版本。<br><img src="/images/2021/06/20210630082559561.png" alt="在这里插入图片描述"></p>
 <h3 id="6月16日"><a href="#6月16日" class="headerlink" title="6月16日"></a>6月16日</h3><p>另外一位维护者似乎意识到了这个 BUG，提交了代码对该问题进行了修复，也就是将原始代码进行了还原。</p>
-<p><img src="/iamges/2023/02/20210630082700362.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/2021/06/20210630082700362.png" alt="在这里插入图片描述"></p>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>根据 GitHub 上的提交记录，很明显发现，这个问题是一个版本 BUG，虽然在最新的 GiHub 仓库中问题已经被修复了，但是 <code>3.4.3.1</code> 版本中依然存在该 BUG。</p>
 <p>如果你在项目中使用 MyBatisPlus 3.4.3.1 版本，出现了我博客中描述的相关问题，那就只能通过修改版本来解决了。</p>
 <p>要么降回原来的版本，或者等 MyBatisPlus 发布更新的版本，解决该 BUG。</p>
@@ -379,8 +379,8 @@
       <i class="fa fa-chevron-left"></i> IDEA 插件 Alibaba Cloud Toolkit，一键部署前后端项目
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/08/07/java/%E4%B8%8A%E7%8F%AD%E8%81%8A%E5%A4%A9%EF%BC%8C%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF%E5%B7%A5%E5%85%B7%EF%BC%88%E9%99%84%E6%BA%90%E7%A0%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%89/" rel="next" title="上班聊天，摸鱼神器，手写一款即时通讯工具（附源码！！！）">
-      上班聊天，摸鱼神器，手写一款即时通讯工具（附源码！！！） <i class="fa fa-chevron-right"></i>
+    <a href="/2021/07/06/algorithm/LeetCode%EF%BC%9A%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/" rel="next" title="LeetCode：最接近的三数之和">
+      LeetCode：最接近的三数之和 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -473,7 +473,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -486,7 +486,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -548,13 +548,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">118k</span>
+    <span title="站点总字数">180k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:47</span>
+    <span title="站点阅读时长">2:44</span>
 </div>
         
 <div class="busuanzi-count">
