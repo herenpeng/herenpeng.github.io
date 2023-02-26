@@ -61,6 +61,70 @@
   </entry>
   
   <entry>
+    <title>为什么1个字节是8个比特？</title>
+    <link href="https://herenpeng.github.io/2023/01/18/computer/%E4%B8%BA%E4%BB%80%E4%B9%881%E4%B8%AA%E5%AD%97%E8%8A%82%E6%98%AF8%E4%B8%AA%E6%AF%94%E7%89%B9/"/>
+    <id>https://herenpeng.github.io/2023/01/18/computer/%E4%B8%BA%E4%BB%80%E4%B9%881%E4%B8%AA%E5%AD%97%E8%8A%82%E6%98%AF8%E4%B8%AA%E6%AF%94%E7%89%B9/</id>
+    <published>2023-01-18T06:17:02.000Z</published>
+    <updated>2023-01-18T06:17:02.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;字节？比特？&quot;&gt;&lt;a href=&quot;#字节？比特？&quot; class=&quot;headerlink&quot; title=&quot;字节？比特？&quot;&gt;&lt;/a&gt;字节？比特？&lt;/h2&gt;&lt;p&gt;在很多IO操作的底层实现中，字节是最基本的操作单位，很多IO操作，都是将数据读取为字节数组，或者将一个字节数组写成数据。&lt;/p&gt;
+&lt;p&gt;根据我们所学习的计算机知识，一个字节（byte）是八个比特位（bit），那么为什么一个字节是八个比特，而不是7个，或者说9个、16个？&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="计算机" scheme="https://herenpeng.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/"/>
+    
+    
+    <category term="计算机" scheme="https://herenpeng.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>手把手教你用Python操作Excel</title>
+    <link href="https://herenpeng.github.io/2023/01/09/python/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E7%94%A8Python%E6%93%8D%E4%BD%9CExcel/"/>
+    <id>https://herenpeng.github.io/2023/01/09/python/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E7%94%A8Python%E6%93%8D%E4%BD%9CExcel/</id>
+    <published>2023-01-09T13:30:00.000Z</published>
+    <updated>2023-01-09T13:30:00.000Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;工作之中经常要对一些数据进行分析或者整理，而且因为是和非技术人员进行对接，所以经常会使用Excel文件作为数据交接的工具，对于Excel的功能强大是毋庸置疑的，但是对于技术人员而言，使用Excel也有一些不方便的地方。&lt;br&gt;比如将原始数据整理为Excel文件，或者对Excel数据进行分析的时候，一些脚本语言读取Excel困难或者繁复，导致工作效率低下。&lt;br&gt;Python作为数据分析经常使用的脚本语言，自然也支持Excel的操作，今天就以本文来简单介绍几种简单操作Excel的工具。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="Python" scheme="https://herenpeng.github.io/categories/Python/"/>
+    
+    
+    <category term="Python" scheme="https://herenpeng.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>像MySql一样在控制台输出打印漂亮的表格</title>
+    <link href="https://herenpeng.github.io/2022/09/14/other/%E5%83%8FMySql%E4%B8%80%E6%A0%B7%E5%9C%A8%E6%8E%A7%E5%88%B6%E5%8F%B0%E8%BE%93%E5%87%BA%E6%89%93%E5%8D%B0%E6%BC%82%E4%BA%AE%E7%9A%84%E8%A1%A8%E6%A0%BC/"/>
+    <id>https://herenpeng.github.io/2022/09/14/other/%E5%83%8FMySql%E4%B8%80%E6%A0%B7%E5%9C%A8%E6%8E%A7%E5%88%B6%E5%8F%B0%E8%BE%93%E5%87%BA%E6%89%93%E5%8D%B0%E6%BC%82%E4%BA%AE%E7%9A%84%E8%A1%A8%E6%A0%BC/</id>
+    <published>2022-09-14T08:27:16.000Z</published>
+    <updated>2022-09-14T08:27:16.000Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;还记得大学期间第一次学习MySql数据，对于初学者而言，MySql没有漂亮的UI界面，只有那种黑乎乎的控制台界面，所有数据的展示都在控制台上输出和打印。&lt;br&gt;那个时候还是觉得MySql有一点Low，相比较之前学习的Sqlserver，Sqlserver好歹还有一个可以让初学者点击操作的UI界面。&lt;br&gt;但是伴随着在计算机领域的不断深入，编程知识的积累，反而却觉得MySql的控制台界面更加地优雅简洁，尤其记得MySql输出打印表格数据的时候，控制台界面上那个标准整齐的字符表格。&lt;br&gt;今天我就用一些空余时间，自己实现了一个类似表格输出打印程序。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="其他" scheme="https://herenpeng.github.io/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    
+    <category term="MySQL" scheme="https://herenpeng.github.io/tags/MySQL/"/>
+    
+    <category term="Python" scheme="https://herenpeng.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ProtoBuf入门</title>
     <link href="https://herenpeng.github.io/2022/02/14/java/ProtoBuf%E5%85%A5%E9%97%A8/"/>
     <id>https://herenpeng.github.io/2022/02/14/java/ProtoBuf%E5%85%A5%E9%97%A8/</id>
@@ -277,9 +341,9 @@
     <category term="数据结构与算法" scheme="https://herenpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-    <category term="链表" scheme="https://herenpeng.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
-    
     <category term="LeetCode" scheme="https://herenpeng.github.io/tags/LeetCode/"/>
+    
+    <category term="链表" scheme="https://herenpeng.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
     
     <category term="面试" scheme="https://herenpeng.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
     
@@ -328,6 +392,48 @@
   </entry>
   
   <entry>
+    <title>LeetCode：盛最多水的容器</title>
+    <link href="https://herenpeng.github.io/2021/06/19/algorithm/LeetCode%EF%BC%9A%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/"/>
+    <id>https://herenpeng.github.io/2021/06/19/algorithm/LeetCode%EF%BC%9A%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/</id>
+    <published>2021-06-19T07:46:09.000Z</published>
+    <updated>2021-06-19T07:46:09.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;给你 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0) 。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。&lt;br&gt;说明：你不能倾斜容器。 &lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="数据结构与算法" scheme="https://herenpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="LeetCode" scheme="https://herenpeng.github.io/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode：删除有序数组中的重复项</title>
+    <link href="https://herenpeng.github.io/2021/06/17/algorithm/LeetCode%EF%BC%9A%E5%88%A0%E9%99%A4%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/"/>
+    <id>https://herenpeng.github.io/2021/06/17/algorithm/LeetCode%EF%BC%9A%E5%88%A0%E9%99%A4%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</id>
+    <published>2021-06-17T14:29:52.000Z</published>
+    <updated>2021-06-17T14:29:52.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;给你一个有序数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。&lt;br&gt;不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。 &lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="数据结构与算法" scheme="https://herenpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="LeetCode" scheme="https://herenpeng.github.io/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
     <title>IDEA 插件 Alibaba Cloud Toolkit，一键部署前后端项目</title>
     <link href="https://herenpeng.github.io/2021/05/31/tool/IDEA%20%E6%8F%92%E4%BB%B6%20Alibaba%20Cloud%20Toolkit%EF%BC%8C%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E5%89%8D%E5%90%8E%E7%AB%AF%E9%A1%B9%E7%9B%AE/"/>
     <id>https://herenpeng.github.io/2021/05/31/tool/IDEA%20%E6%8F%92%E4%BB%B6%20Alibaba%20Cloud%20Toolkit%EF%BC%8C%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E5%89%8D%E5%90%8E%E7%AB%AF%E9%A1%B9%E7%9B%AE/</id>
@@ -345,106 +451,6 @@
     <category term="IDEA" scheme="https://herenpeng.github.io/tags/IDEA/"/>
     
     <category term="Alibaba" scheme="https://herenpeng.github.io/tags/Alibaba/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>面试算法之如何判断链表有环</title>
-    <link href="https://herenpeng.github.io/2021/04/21/algorithm/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95%E4%B9%8B%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E9%93%BE%E8%A1%A8%E6%9C%89%E7%8E%AF/"/>
-    <id>https://herenpeng.github.io/2021/04/21/algorithm/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95%E4%B9%8B%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E9%93%BE%E8%A1%A8%E6%9C%89%E7%8E%AF/</id>
-    <published>2021-04-21T13:43:57.000Z</published>
-    <updated>2021-04-21T13:43:57.000Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;如何判断链表有环&quot;&gt;&lt;a href=&quot;#如何判断链表有环&quot; class=&quot;headerlink&quot; title=&quot;如何判断链表有环&quot;&gt;&lt;/a&gt;如何判断链表有环&lt;/h1&gt;&lt;p&gt;给一个单向链表，使用程序来判断链表中是否存在环结构。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://herenpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="链表" scheme="https://herenpeng.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
-    
-    <category term="面试" scheme="https://herenpeng.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>排序算法之计数排序</title>
-    <link href="https://herenpeng.github.io/2021/04/18/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F/"/>
-    <id>https://herenpeng.github.io/2021/04/18/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F/</id>
-    <published>2021-04-18T09:05:26.000Z</published>
-    <updated>2021-04-18T09:05:26.000Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;什么是计数排序&quot;&gt;&lt;a href=&quot;#什么是计数排序&quot; class=&quot;headerlink&quot; title=&quot;什么是计数排序&quot;&gt;&lt;/a&gt;什么是计数排序&lt;/h1&gt;&lt;p&gt;计数排序是一种利用数组下标来确定元素的正确位置的排序算法。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://herenpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="排序算法" scheme="https://herenpeng.github.io/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>排序算法之快速排序</title>
-    <link href="https://herenpeng.github.io/2021/04/17/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"/>
-    <id>https://herenpeng.github.io/2021/04/17/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</id>
-    <published>2021-04-17T07:56:22.000Z</published>
-    <updated>2021-04-17T07:56:22.000Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;什么是快速排序&quot;&gt;&lt;a href=&quot;#什么是快速排序&quot; class=&quot;headerlink&quot; title=&quot;什么是快速排序&quot;&gt;&lt;/a&gt;什么是快速排序&lt;/h1&gt;&lt;p&gt;和冒泡排序一样，快速排序也属于交换排序，通过元素直接的比较和交换位置来达到排序的目的。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://herenpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="排序算法" scheme="https://herenpeng.github.io/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JDK8新特性之Optional类</title>
-    <link href="https://herenpeng.github.io/2021/04/06/java/JDK8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BOptional%E7%B1%BB/"/>
-    <id>https://herenpeng.github.io/2021/04/06/java/JDK8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BOptional%E7%B1%BB/</id>
-    <published>2021-04-06T09:35:42.000Z</published>
-    <updated>2021-04-06T09:35:42.000Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;什么是-Optional-类？&quot;&gt;&lt;a href=&quot;#什么是-Optional-类？&quot; class=&quot;headerlink&quot; title=&quot;什么是 Optional 类？&quot;&gt;&lt;/a&gt;什么是 Optional 类？&lt;/h1&gt;&lt;p&gt;Optional 是 JDK8 新增加的一个工具类，位于 &lt;code&gt;java.util&lt;/code&gt; 包下。&lt;/p&gt;
-&lt;p&gt;Optional 类是一个可以为 &lt;code&gt;null&lt;/code&gt; 的容器对象。如果值存在则 isPresent() 方法会返回 &lt;code&gt;true&lt;/code&gt;，调用 get() 方法会返回该对象。&lt;/p&gt;
-&lt;p&gt;Optional 是个容器：它可以保存类型 &lt;code&gt;T&lt;/code&gt; 的值，或者仅仅保存null。Optional提供很多有用的方法，这样我们就不用显式进行空值检测。&lt;/p&gt;
-&lt;p&gt;Optional 类的引入很好的解决空指针异常（微笑）。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>排序算法之聊聊你所不知道的冒泡排序</title>
-    <link href="https://herenpeng.github.io/2021/03/27/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E8%81%8A%E8%81%8A%E4%BD%A0%E6%89%80%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/"/>
-    <id>https://herenpeng.github.io/2021/03/27/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E8%81%8A%E8%81%8A%E4%BD%A0%E6%89%80%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/</id>
-    <published>2021-03-27T03:05:39.000Z</published>
-    <updated>2021-03-27T03:05:39.000Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;什么是冒泡排序&quot;&gt;&lt;a href=&quot;#什么是冒泡排序&quot; class=&quot;headerlink&quot; title=&quot;什么是冒泡排序&quot;&gt;&lt;/a&gt;什么是冒泡排序&lt;/h1&gt;&lt;p&gt;冒泡排序是一种基础的交换排序，其思想是，把相邻的元素两两比较，当一个元素大于右侧相邻的元素时，交换它们的位置：当一个元素小于或等于右侧的元素时，位置不变。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://herenpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="排序算法" scheme="https://herenpeng.github.io/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   

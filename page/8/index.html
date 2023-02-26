@@ -19,7 +19,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"herenpeng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"expandIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"herenpeng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"expandIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
   <meta name="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
@@ -133,17 +133,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">91</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">130</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">42</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">50</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">11</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">13</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -205,7 +205,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/08/10/java/IDEA%20Java%E9%A1%B9%E7%9B%AEJDK%E6%97%A0%E6%95%88/">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2021/01/10/java/Swagger%E6%8A%A5%E9%94%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/author.jpg">
@@ -219,7 +219,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/10/java/IDEA%20Java%E9%A1%B9%E7%9B%AEJDK%E6%97%A0%E6%95%88/" class="post-title-link" itemprop="url">IDEA Java项目JDK无效</a>
+            <a href="/2021/01/10/java/Swagger%E6%8A%A5%E9%94%99/" class="post-title-link" itemprop="url">Swagger报错：Unable to interpret the implicit parameter configuration with dataType</a>
         </h1>
 
         <div class="post-meta">
@@ -229,7 +229,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-08-10 22:16:48" itemprop="dateCreated datePublished" datetime="2020-08-10T22:16:48+08:00">2020-08-10</time>
+              <time title="创建时间：2021-01-10 12:40:16" itemprop="dateCreated datePublished" datetime="2021-01-10T12:40:16+08:00">2021-01-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -247,7 +247,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>272</span>
+              <span>544</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -266,10 +266,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>今天在创建一个新的Java项目的时候，发现项目的JDK失效了，导致main方法的String类爆红，而且其他JDK的类也无法使用。</p>
+          <p>在项目中使用了Swagger作为项目接口API说明文档，但是在启动项目的时候，启动日志中报了一个警告信息，虽然最终并不影响项目功能的使用，但是却依旧让人看得不舒服。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/08/10/java/IDEA%20Java%E9%A1%B9%E7%9B%AEJDK%E6%97%A0%E6%95%88/#more" rel="contents">
+              <a class="btn" href="/2021/01/10/java/Swagger%E6%8A%A5%E9%94%99/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -296,7 +296,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/07/23/tool/IDEA%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9B%86%E6%88%90%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7Database%E7%9A%84%E4%BD%BF%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2021/01/01/linux/Shell%E6%8A%A5%E9%94%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/author.jpg">
@@ -310,7 +310,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/23/tool/IDEA%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9B%86%E6%88%90%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7Database%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">IDEA数据库集成管理工具Database的使用</a>
+            <a href="/2021/01/01/linux/Shell%E6%8A%A5%E9%94%99/" class="post-title-link" itemprop="url">Shell报错syntax error: unexpected end of file</a>
         </h1>
 
         <div class="post-meta">
@@ -320,7 +320,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-07-23 22:55:36" itemprop="dateCreated datePublished" datetime="2020-07-23T22:55:36+08:00">2020-07-23</time>
+              <time title="创建时间：2021-01-01 19:13:28" itemprop="dateCreated datePublished" datetime="2021-01-01T19:13:28+08:00">2021-01-01</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -328,7 +328,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
                 </span>
             </span>
 
@@ -338,7 +338,99 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>321</span>
+              <span>418</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>执行shell脚本文件，报错<code>syntax error: unexpected end of file</code>。</p>
+<p>使用vim工具打开脚本文件，却并没有发现有什么问题。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/01/linux/Shell%E6%8A%A5%E9%94%99/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  <div>
+    
+  </div>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/12/10/linux/Liunx%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85JDK%E7%8E%AF%E5%A2%83%EF%BC%88yum%E5%AE%89%E8%A3%85%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="次时代小羊">
+      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懒羊羊的青草蛋糕">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/10/linux/Liunx%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85JDK%E7%8E%AF%E5%A2%83%EF%BC%88yum%E5%AE%89%E8%A3%85%EF%BC%89/" class="post-title-link" itemprop="url">Liunx系统安装JDK环境（yum安装）</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-10 22:04:19" itemprop="dateCreated datePublished" datetime="2020-12-10T22:04:19+08:00">2020-12-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>519</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -358,11 +450,11 @@
 
       
           <blockquote>
-<p>最近重新安装了一个新的IDEA，新的开发工具，自然带给人新的生活和心情，今天我们来学习使用IDEA自带的数据库集成管理工具Database的使用。</p>
+<p>在之前我曾经写过一篇<a href="/2020/03/15/linux/Linux系统安装JDK环境/">Linux系统安装JDK环境</a>，这篇博客是使用JDK安装包的方式，由自己手动安装并配置JDK的环境变量。<br>而今天使用的是yum来进行JDK自动化安装，卸载。这种方式比起手动安装更加方便，快捷。</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/07/23/tool/IDEA%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9B%86%E6%88%90%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7Database%E7%9A%84%E4%BD%BF%E7%94%A8/#more" rel="contents">
+              <a class="btn" href="/2020/12/10/linux/Liunx%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85JDK%E7%8E%AF%E5%A2%83%EF%BC%88yum%E5%AE%89%E8%A3%85%EF%BC%89/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -389,7 +481,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/06/26/mysql/MySQL%E8%AD%A6%E5%91%8A%E4%BF%A1%E6%81%AF%EF%BC%9A%E4%B8%8D%E5%BB%BA%E8%AE%AE%E5%9C%A8%E6%B2%A1%E6%9C%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%BB%BA%E7%AB%8BSSL%E8%BF%9E%E6%8E%A5/">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/09/02/java/Java%E5%AE%9E%E7%8E%B0PDF%E6%96%87%E4%BB%B6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%9B%BE%E7%89%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/author.jpg">
@@ -403,7 +495,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/06/26/mysql/MySQL%E8%AD%A6%E5%91%8A%E4%BF%A1%E6%81%AF%EF%BC%9A%E4%B8%8D%E5%BB%BA%E8%AE%AE%E5%9C%A8%E6%B2%A1%E6%9C%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%BB%BA%E7%AB%8BSSL%E8%BF%9E%E6%8E%A5/" class="post-title-link" itemprop="url">MySQL警告信息：不建议在没有服务器身份验证的情况下建立SSL连接</a>
+            <a href="/2020/09/02/java/Java%E5%AE%9E%E7%8E%B0PDF%E6%96%87%E4%BB%B6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%9B%BE%E7%89%87/" class="post-title-link" itemprop="url">Java实现PDF文件转换为图片</a>
         </h1>
 
         <div class="post-meta">
@@ -413,7 +505,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-06-26 18:43:10" itemprop="dateCreated datePublished" datetime="2020-06-26T18:43:10+08:00">2020-06-26</time>
+              <time title="创建时间：2020-09-02 23:05:59" itemprop="dateCreated datePublished" datetime="2020-09-02T23:05:59+08:00">2020-09-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -421,7 +513,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
                 </span>
             </span>
 
@@ -431,105 +523,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>790</span>
+              <span>6.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>前段时间重装了MySQL数据库，将原本的MySQL5.5版本换成了5.7版本，今天在运行以前的项目的时候，突然爆出了如下的错误信息：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/26/mysql/MySQL%E8%AD%A6%E5%91%8A%E4%BF%A1%E6%81%AF%EF%BC%9A%E4%B8%8D%E5%BB%BA%E8%AE%AE%E5%9C%A8%E6%B2%A1%E6%9C%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%BB%BA%E7%AB%8BSSL%E8%BF%9E%E6%8E%A5/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  <div>
-    
-  </div>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/05/18/mysql/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85MySQL5.7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="次时代小羊">
-      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="懒羊羊的青草蛋糕">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/18/mysql/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85MySQL5.7/" class="post-title-link" itemprop="url">一篇博客教会你怎么安装MySQL5.7</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-18 13:43:10" itemprop="dateCreated datePublished" datetime="2020-05-18T13:43:10+08:00">2020-05-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>566</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>6 分钟</span>
             </span>
 
         </div>
@@ -542,11 +543,11 @@
 
       
           <blockquote>
-<p>上一次我们学习了在Linux系统环境下，使用docker来进行安装MySQL5.7，具体可以参考博客<a href="/2020/05/07/mysql/一篇博客教会你怎么使用Docker安装MySQL5.7/">一篇博客教会你怎么使用Docker安装MySQL5.7</a>，今天我们来学习在Windows环境下安装MySQL5.7。</p>
+<p>前几天写了一篇博客<a href="/2020/08/05/java/Java实现图片转换PDF文件/">Java实现图片转换PDF文件</a>，在博客下方有同学评论是否能够将PDF文件转换为图片，所以今天就在这里写了一个将PDF文件转换为图片的简单系统。</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/05/18/mysql/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85MySQL5.7/#more" rel="contents">
+              <a class="btn" href="/2020/09/02/java/Java%E5%AE%9E%E7%8E%B0PDF%E6%96%87%E4%BB%B6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%9B%BE%E7%89%87/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -573,7 +574,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/05/07/mysql/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8Docker%E5%AE%89%E8%A3%85MySQL5.7/">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/08/25/java/Java%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%BD%AC%E6%8D%A2PDF%E6%96%87%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/author.jpg">
@@ -587,7 +588,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/07/mysql/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8Docker%E5%AE%89%E8%A3%85MySQL5.7/" class="post-title-link" itemprop="url">一篇博客教会你怎么使用Docker安装MySQL5.7</a>
+            <a href="/2020/08/25/java/Java%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%BD%AC%E6%8D%A2PDF%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">Java实现图片转换PDF文件</a>
         </h1>
 
         <div class="post-meta">
@@ -597,7 +598,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-05-07 13:31:59" itemprop="dateCreated datePublished" datetime="2020-05-07T13:31:59+08:00">2020-05-07</time>
+              <time title="创建时间：2020-08-25 20:32:39" itemprop="dateCreated datePublished" datetime="2020-08-25T20:32:39+08:00">2020-08-25</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -605,7 +606,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
                 </span>
             </span>
 
@@ -615,14 +616,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>408</span>
+              <span>5.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -635,11 +636,11 @@
 
       
           <blockquote>
-<p>首先我们需要安装Docker，如果没有安装Docker的朋友，可以参考我以前的博客<a href="/2020/04/16/tool/一篇博客教会你怎么安装Docker/">一篇博客教会你怎么安装Docker</a>进行Docker的安装。</p>
+<p>最近因为一些事情，需要将一张简单的图片转换为PDF的文件格式，在网上找了一些工具，但是这些工具不是需要注册账号，就是需要下载软件。<br>而对于只是转换一张图片的情况下，这些操作显然是非常繁琐的，所以作者就直接使用Java写了一个图片转换PDF的系统，现在将该系统分享在这里。</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/05/07/mysql/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8Docker%E5%AE%89%E8%A3%85MySQL5.7/#more" rel="contents">
+              <a class="btn" href="/2020/08/25/java/Java%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%BD%AC%E6%8D%A2PDF%E6%96%87%E4%BB%B6/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -666,7 +667,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -740,20 +741,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">130</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -815,13 +816,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">270k</span>
+    <span title="站点总字数">382k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:06</span>
+    <span title="站点阅读时长">5:48</span>
 </div>
         
 <div class="busuanzi-count">

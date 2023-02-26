@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"herenpeng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"expandIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="什么是事务？所谓事务，就是指数据库中的一组操作，这些操作要么全部都执行成功，要么全部都执行失败，执行成功的事务提交到数据库中，执行失败的事务则回滚。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring的事务管理">
+<meta property="og:url" content="https://herenpeng.github.io/2020/02/13/java/Spring%E7%9A%84%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="懒羊羊的青草蛋糕">
+<meta property="og:description" content="什么是事务？所谓事务，就是指数据库中的一组操作，这些操作要么全部都执行成功，要么全部都执行失败，执行成功的事务提交到数据库中，执行失败的事务则回滚。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-13T14:42:47.000Z">
+<meta property="article:modified_time" content="2020-02-13T14:42:47.000Z">
+<meta property="article:author" content="次时代小羊">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Spring">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://herenpeng.github.io/2020/02/13/java/Spring%E7%9A%84%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Spring的事务管理 | 懒羊羊的青草蛋糕</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="懒羊羊的青草蛋糕" type="application/atom+xml">
+</head>
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/schemes/fireworks.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">懒羊羊的青草蛋糕</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">每一秒钟的时间都值得铭记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">130</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">50</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">13</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/herenpeng" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/02/13/java/Spring%E7%9A%84%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="次时代小羊">
+      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懒羊羊的青草蛋糕">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Spring的事务管理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-13 22:42:47" itemprop="dateCreated datePublished" datetime="2020-02-13T22:42:47+08:00">2020-02-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="什么是事务？"><a href="#什么是事务？" class="headerlink" title="什么是事务？"></a>什么是事务？</h1><p>所谓事务，就是指数据库中的一组操作，这些操作要么全部都执行成功，要么全部都执行失败，执行成功的事务提交到数据库中，执行失败的事务则回滚。</p>
+<span id="more"></span>
+
+<h1 id="事务的四大特性"><a href="#事务的四大特性" class="headerlink" title="事务的四大特性"></a>事务的四大特性</h1><ul>
+<li>原子性（Atomicity）<br>原子是最小的单位，代表了不可分割。原子性表明，事务是数据库中操作的最小单元，事务中的操作要么全部成功，要么全部失败。</li>
+<li>一致性（Consistency）<br>事务的执行前后，数据库的状态必须保持一致。</li>
+<li>隔离性（Isolation）<br>一个事务的执行不能被另外的事务所干扰，事务执行的过程对于其他事务而言是隔离的。也就是说，另外的事务查看的数据，要么是一个事务提交前的数据，要么就是一个事务提交后的数据，事务执行的中间过程是隔离的。</li>
+<li>持久性（Durability）<br>一个事务成功提交后，那么这个事务所做的操作引起的数据变化，会被持久化到数据库中。</li>
+</ul>
+<h1 id="数据库的读问题"><a href="#数据库的读问题" class="headerlink" title="数据库的读问题"></a>数据库的读问题</h1><p>事务的四大特性中，隔离性是保证事务安全的一个重要特性，如果不考虑事务的隔离性，就会引发数据库的读问题。</p>
+<ul>
+<li>脏读：一个事务读到另一个事务未提交的数据。【解决方案：读已提交】</li>
+<li>不可重复读：一个事务读到另一个事务已提交的update数据，导致一个事务前后两次读取的数据不一致。【解决方案：重复读】</li>
+<li>幻读：一个事务读到另一个事务已提交的insert数据，导致一个事务中多次查询结果不一致。【解决方案：序列化读】</li>
+</ul>
+<h1 id="数据库的隔离级别"><a href="#数据库的隔离级别" class="headerlink" title="数据库的隔离级别"></a>数据库的隔离级别</h1><p>为了解决数据库的读问题，于是设立了数据的隔离级别。</p>
+<ul>
+<li>Read uncommitted：读未提交，任何读问题解决不了。 </li>
+<li>Read committed：读已提交，这个事务的隔离级别，在事务开启时，要等另一个事务提交后才能读取数据，可以<strong>解决脏读问题</strong>，但是不可重复读和幻读有可能发生。</li>
+<li>Repeatableread：重复读，这个的隔离级别，在事务开启式，不允许其它事务进行update操作，可以<strong>解决脏读和不可重复读</strong>，但是幻读有可能发生。</li>
+<li>Serializable：序列化读，所有事务串行化顺序执行，解决所有读问题。不过这个事务的隔离级别会严重拖慢数据库性能。</li>
+</ul>
+<h1 id="Spring的事务管理"><a href="#Spring的事务管理" class="headerlink" title="Spring的事务管理"></a>Spring的事务管理</h1><p>有了以上的事务知识，那么我们就可以来看一看Spring的事务管理了。<br>在Spring中，PlatformTransactionManager接口是事务平台管理器，是Spring中用于真正管理事务的对象，它有两个具体的实现类，底层分别使用不同的事务管理方式。</p>
+<ul>
+<li>DataSourceTransactionManager：底层使用JDBC管理事务</li>
+<li>HibernateTransactionManager：底层使用Hibernate管理事务</li>
+</ul>
+<p>Spring一共定义了七种事务的传播行为</p>
+<h2 id="保证多个操作在同一个事务中"><a href="#保证多个操作在同一个事务中" class="headerlink" title="保证多个操作在同一个事务中"></a>保证多个操作在同一个事务中</h2><ol>
+<li>PROPAGATION_REQUIRED：<strong>默认值</strong>，如果A中有事务，使用A中的事务，如果A没有，创建一个新的事务，将操作包含进来。</li>
+<li>PROPAGATION_SUPPORTS：支持事务，如果A中有事务，使用A中的事务。如果A没有事务，不使用事务。</li>
+<li>PROPAGATION_MANDATORY：如果A中有事务，使用A中的事务。如果A没有事务，抛出异常。</li>
+</ol>
+<h2 id="保证多个操作不在同一个事务中"><a href="#保证多个操作不在同一个事务中" class="headerlink" title="保证多个操作不在同一个事务中"></a>保证多个操作不在同一个事务中</h2><ol start="4">
+<li>PROPAGATION_REQUIRES_NEW：如果A中有事务，将A的事务挂起（暂停），创建新事务，只包含自身操作。如果A中没有事务，创建一个新事务，包含自身操作。</li>
+<li>PROPAGATION_NOT_SUPPORTED    ：如果A中有事务，将A的事务挂起。不使用事务管理。</li>
+<li>PROPAGATION_NEVER                ：如果A中有事务，报异常。</li>
+</ol>
+<h2 id="嵌套式事务"><a href="#嵌套式事务" class="headerlink" title="嵌套式事务"></a>嵌套式事务</h2><ol start="7">
+<li>PROPAGATION_NESTED：嵌套事务，如果A中有事务，按照A的事务执行，执行完成后，设置一个保存点，执行B中的操作，如果没有异常，执行通过，如果有异常，可以选择回滚到最初始位置，也可以回滚到保存点。</li>
+</ol>
+<h1 id="Spring编程式事务管理（了解）"><a href="#Spring编程式事务管理（了解）" class="headerlink" title="Spring编程式事务管理（了解）"></a>Spring编程式事务管理（了解）</h1><p>spring编程式事务管理，由于代码书写多，在正式开发中几乎不会使用，该知识点仅限于了解。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 第一步：在spring的配置文件中配置事务管理器 --&gt;</span><br><span class="line">&lt;bean id=<span class="string">&quot;transactionManager&quot;</span> class=<span class="string">&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;</span>&gt;</span><br><span class="line">    &lt;property name=<span class="string">&quot;dataSource&quot;</span> ref=<span class="string">&quot;dataSource&quot;</span>/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 第二步：在spring的配置文件中配置事务模板 --&gt;</span><br><span class="line">&lt;bean id=<span class="string">&quot;transactionTemplate&quot;</span> class=<span class="string">&quot;org.springframework.transaction.support.TransactionTemplate&quot;</span>&gt;</span><br><span class="line">    &lt;property name=<span class="string">&quot;transactionManager&quot;</span> ref=<span class="string">&quot;transactionManager&quot;</span>&gt;&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> UserDao userDao;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *第三步，在service层中注入事务模板</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> TransactionTemplate transactionTemplate;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteUser</span><span class="params">(Integer id)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 *第四步：使用事务模板中的execute方式，传入一个匿名内部借口，</span></span><br><span class="line"><span class="comment">	 *并实现接口中的方法，将所有代码放在这个方法中</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">    transactionTemplate.execute(<span class="keyword">new</span> <span class="title class_">TransactionCallbackWithoutResult</span>() &#123;</span><br><span class="line">        <span class="meta">@SneakyThrows</span></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doInTransactionWithoutResult</span><span class="params">(TransactionStatus status)</span> &#123;</span><br><span class="line">            userDao.deleteUser(id);</span><br><span class="line">            <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>/<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Spring的声明式事务管理"><a href="#Spring的声明式事务管理" class="headerlink" title="Spring的声明式事务管理"></a>Spring的声明式事务管理</h1><h2 id="基于xml配置文件的方式"><a href="#基于xml配置文件的方式" class="headerlink" title="基于xml配置文件的方式"></a>基于xml配置文件的方式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--spring提供的事务管理器，注入dataSource--&gt;</span><br><span class="line">&lt;bean id=<span class="string">&quot;transactionManager&quot;</span> class=<span class="string">&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;</span>&gt;</span><br><span class="line">    &lt;property name=<span class="string">&quot;dataSource&quot;</span> ref=<span class="string">&quot;dataSource&quot;</span>/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--声明式事务管理，事务的通知--&gt;</span><br><span class="line">&lt;tx:advice id=<span class="string">&quot;txAdvice&quot;</span> transaction-manager=<span class="string">&quot;transactionManager&quot;</span>&gt;</span><br><span class="line">    &lt;tx:attributes&gt;</span><br><span class="line">        &lt;!--事务的传播行为，所有的保存方法使用save打头，事务的传播行为为REQUIRED--&gt;</span><br><span class="line">        &lt;tx:method name=<span class="string">&quot;save*&quot;</span> propagation=<span class="string">&quot;REQUIRED&quot;</span> /&gt;</span><br><span class="line">        &lt;!--所有的删除方法使用delete打头，事务的传播行为为REQUIRED--&gt;</span><br><span class="line">        &lt;tx:method name=<span class="string">&quot;delete*&quot;</span> propagation=<span class="string">&quot;REQUIRED&quot;</span> /&gt;</span><br><span class="line">        &lt;!--所有的更新方法使用update打头，事务的传播行为为REQUIRED--&gt;</span><br><span class="line">        &lt;tx:method name=<span class="string">&quot;update*&quot;</span> propagation=<span class="string">&quot;REQUIRED&quot;</span> /&gt;</span><br><span class="line">        &lt;!--所有的查询方法使用find打头，事务的传播行为为SUPPORTS，事务只读--&gt;</span><br><span class="line">        &lt;tx:method name=<span class="string">&quot;find*&quot;</span> propagation=<span class="string">&quot;SUPPORTS&quot;</span> read-only=<span class="string">&quot;true&quot;</span> /&gt;</span><br><span class="line">    &lt;/tx:attributes&gt;</span><br><span class="line">&lt;/tx:advice&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--配置切面，service.impl包下的所有类所有方法都进行切面拦截--&gt;</span><br><span class="line">&lt;aop:config&gt;</span><br><span class="line">    &lt;aop:pointcut id=<span class="string">&quot;pointcut&quot;</span> expression=<span class="string">&quot;execution(* com.hrp.service.impl.*.*(..))&quot;</span>/&gt;</span><br><span class="line">    &lt;aop:advisor advice-ref=<span class="string">&quot;txAdvice&quot;</span> pointcut-ref=<span class="string">&quot;pointcut&quot;</span> /&gt;</span><br><span class="line">&lt;/aop:config&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="基于-Transactional注解方式"><a href="#基于-Transactional注解方式" class="headerlink" title="基于@Transactional注解方式"></a>基于@Transactional注解方式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--开启spring的基于注解的的事务管理--&gt;</span><br><span class="line">&lt;tx:annotation-driven transaction-manager=<span class="string">&quot;transactionManager&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteUser</span><span class="params">(Integer id)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    userDao.deleteUser(id);</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>/<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>基于@Transactional注解方式的事务管理，也可以通过注解中属性来定义事务管理的方式。</p>
+<ul>
+<li>rollbackFor ：（值为异常的字节码对象）遇到该异常时回滚</li>
+<li>noRollbackFor：（值为异常的字节码对象）遇到该异常时不回滚</li>
+<li>propagation ：（值为Propagation枚举对象）事务的传播行为</li>
+<li>readOnly：（值为true或者false）事务是否只读</li>
+</ul>
+<p><strong>Spring事务的回滚规则</strong>：在Spring的事务管理中，默认只有遇到运行时异常才会回滚事务，遇到编译期异常默认不回滚事务。<br>当然，开发者也可以通过自己指定遇到某种异常回滚或者不回滚。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="次时代小羊 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="次时代小羊 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>次时代小羊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://herenpeng.github.io/2020/02/13/java/Spring%E7%9A%84%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/" title="Spring的事务管理">https://herenpeng.github.io/2020/02/13/java/Spring的事务管理/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+              <a href="/tags/Spring/" rel="tag"><i class="fa fa-tag"></i> Spring</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/12/java/SpringMVC%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6/" rel="prev" title="SpringMVC异常处理机制">
+      <i class="fa fa-chevron-left"></i> SpringMVC异常处理机制
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/14/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E2%80%94%E2%80%94%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97%EF%BC%88Java%E5%AE%9E%E7%8E%B0%EF%BC%89/" rel="next" title="数据结构——栈与队列（Java实现）">
+      数据结构——栈与队列（Java实现） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  <div>
+    
+      <div>
+    
+        <div style="text-align:center;color: #9f9f9f;font-size:14px;">-------------这是我的底线^_^-------------</div>
+    
+</div>
+
+    
+  </div>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8B%E5%8A%A1%EF%BC%9F"><span class="nav-text">什么是事务？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7"><span class="nav-text">事务的四大特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%AF%BB%E9%97%AE%E9%A2%98"><span class="nav-text">数据库的读问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="nav-text">数据库的隔离级别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring%E7%9A%84%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="nav-text">Spring的事务管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%9D%E8%AF%81%E5%A4%9A%E4%B8%AA%E6%93%8D%E4%BD%9C%E5%9C%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E4%BA%8B%E5%8A%A1%E4%B8%AD"><span class="nav-text">保证多个操作在同一个事务中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%9D%E8%AF%81%E5%A4%9A%E4%B8%AA%E6%93%8D%E4%BD%9C%E4%B8%8D%E5%9C%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E4%BA%8B%E5%8A%A1%E4%B8%AD"><span class="nav-text">保证多个操作不在同一个事务中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B5%8C%E5%A5%97%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="nav-text">嵌套式事务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring%E7%BC%96%E7%A8%8B%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89"><span class="nav-text">Spring编程式事务管理（了解）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring%E7%9A%84%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="nav-text">Spring的声明式事务管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8Exml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-text">基于xml配置文件的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E-Transactional%E6%B3%A8%E8%A7%A3%E6%96%B9%E5%BC%8F"><span class="nav-text">基于@Transactional注解方式</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="次时代小羊"
+      src="/images/author.jpg">
+  <p class="site-author-name" itemprop="name">次时代小羊</p>
+  <div class="site-description" itemprop="description">记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹</div>
+
+  <div>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86
+    src="//music.163.com/outchain/player?type=2&id=1966782828&auto=1&height=66"></iframe>
+  </div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">130</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/herenpeng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;herenpeng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_45193304" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45193304" rel="noopener" target="_blank"><i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/herenpeng" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;herenpeng" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:he.ren.peng@qq.com" title="E-Mail → mailto:he.ren.peng@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="">
+    <a target="_blank" class="social-link" href="/atom.xml" style="color: burlywood;">
+      <span class="icon">
+        <i class="fa fa-rss"></i>
+      </span>
+      <span class="label">RSS</span>
+    </a>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+
+  </aside>
+
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">次时代小羊</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">382k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">5:48</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="90" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

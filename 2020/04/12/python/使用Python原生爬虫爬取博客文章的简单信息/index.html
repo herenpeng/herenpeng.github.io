@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"herenpeng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"expandIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="今天我们使用Python的原生方式，来爬取我们自己的博客的一些简单信息。  准备在制作一个简单的Python爬虫之前，我们需要先分析一下我们需要使用爬虫来爬取什么信息，又该通过什么方式来解析出我们所需要的信息。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Python原生爬虫爬取博客文章的简单信息">
+<meta property="og:url" content="https://herenpeng.github.io/2020/04/12/python/%E4%BD%BF%E7%94%A8Python%E5%8E%9F%E7%94%9F%E7%88%AC%E8%99%AB%E7%88%AC%E5%8F%96%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E7%9A%84%E7%AE%80%E5%8D%95%E4%BF%A1%E6%81%AF/index.html">
+<meta property="og:site_name" content="懒羊羊的青草蛋糕">
+<meta property="og:description" content="今天我们使用Python的原生方式，来爬取我们自己的博客的一些简单信息。  准备在制作一个简单的Python爬虫之前，我们需要先分析一下我们需要使用爬虫来爬取什么信息，又该通过什么方式来解析出我们所需要的信息。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://herenpeng.github.io/images/2020/04/20200411224221195.png">
+<meta property="article:published_time" content="2020-04-12T00:58:40.000Z">
+<meta property="article:modified_time" content="2020-04-12T00:58:40.000Z">
+<meta property="article:author" content="次时代小羊">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://herenpeng.github.io/images/2020/04/20200411224221195.png">
+
+<link rel="canonical" href="https://herenpeng.github.io/2020/04/12/python/%E4%BD%BF%E7%94%A8Python%E5%8E%9F%E7%94%9F%E7%88%AC%E8%99%AB%E7%88%AC%E5%8F%96%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E7%9A%84%E7%AE%80%E5%8D%95%E4%BF%A1%E6%81%AF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>使用Python原生爬虫爬取博客文章的简单信息 | 懒羊羊的青草蛋糕</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="懒羊羊的青草蛋糕" type="application/atom+xml">
+</head>
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/schemes/fireworks.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">懒羊羊的青草蛋糕</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">每一秒钟的时间都值得铭记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">130</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">50</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">13</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/herenpeng" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/04/12/python/%E4%BD%BF%E7%94%A8Python%E5%8E%9F%E7%94%9F%E7%88%AC%E8%99%AB%E7%88%AC%E5%8F%96%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E7%9A%84%E7%AE%80%E5%8D%95%E4%BF%A1%E6%81%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="次时代小羊">
+      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懒羊羊的青草蛋糕">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用Python原生爬虫爬取博客文章的简单信息
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-12 08:58:40" itemprop="dateCreated datePublished" datetime="2020-04-12T08:58:40+08:00">2020-04-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>今天我们使用Python的原生方式，来爬取我们自己的博客的一些简单信息。</p>
+</blockquote>
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>在制作一个简单的Python爬虫之前，我们需要先分析一下我们需要使用爬虫来爬取什么信息，又该通过什么方式来解析出我们所需要的信息。</p>
+<span id="more"></span>
+<p>因为今天制作的是一个简单的Python爬虫，所以我们想要爬取的信息也不是非常复杂。<br>我们需要爬取博客中的5个信息，分别是：<strong>文章URL，文章标题，文章上传时间，文章阅读数，文章评论数</strong>。<br>因为我们使用的是Python原生的方式来爬取信息，所以我们也直接使用正则表达式来解析爬取的数据，从数据中获取我们所需要的信息。</p>
+<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><img src="/images/2020/04/20200411224221195.png" alt="在这里插入图片描述"></p>
+<h1 id="article-py模块（信息对象）"><a href="#article-py模块（信息对象）" class="headerlink" title="article.py模块（信息对象）"></a>article.py模块（信息对象）</h1><p>为了便于封装爬取的信息，我们在article.py模块下创建一个信息类，里面封装了我们需要爬取的信息。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Article</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    url = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    title = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    date = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    read_num = <span class="number">0</span></span><br><span class="line">    comment_num = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, url, title, date, read_num, comment_num</span>):</span><br><span class="line">        self.url = url</span><br><span class="line">        self.title = title</span><br><span class="line">        self.date = date</span><br><span class="line">        self.read_num = read_num</span><br><span class="line">        self.comment_num = comment_num</span><br></pre></td></tr></table></figure>
+
+<h1 id="spider-py模块（爬虫）"><a href="#spider-py模块（爬虫）" class="headerlink" title="spider.py模块（爬虫）"></a>spider.py模块（爬虫）</h1><p>我们在spider.py模块下创建一个爬虫类。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> request</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> article <span class="keyword">import</span> Article</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Spider</span>():</span><br><span class="line">    <span class="comment"># 博客路径</span></span><br><span class="line">    url = <span class="string">&#x27;https://blog.csdn.net/qq_45193304/article/list/&#x27;</span></span><br><span class="line">    <span class="comment"># 单个博客文章内容块的正则表达式</span></span><br><span class="line">    article_pattern = <span class="string">&#x27;&lt;div class=&quot;article-item-box csdn-tracking-statistics&quot; data-articleid=&quot;[\d]*?&quot;&gt;[\s\S]*?&lt;/div&gt;[\S\s]*?&lt;/div&gt;&#x27;</span></span><br><span class="line">    <span class="comment"># 单个博客文章URL和标题的正则表达式</span></span><br><span class="line">    title_pattern = <span class="string">&#x27;&lt;a href=&quot;([\s\S]*?)&quot; target=&quot;_blank&quot;&gt;[\S\s]*?&lt;span class=&quot;article-type type-1 float-none&quot;&gt;原创&lt;/span&gt;([\s\S]*?)&lt;/a&gt;&#x27;</span></span><br><span class="line">    <span class="comment"># 单个博客文章上传时间的正则表达式</span></span><br><span class="line">    date_pattern = <span class="string">&#x27;&lt;span class=&quot;date&quot;&gt;([\d\D]*?)&lt;/span&gt;&#x27;</span></span><br><span class="line">    <span class="comment"># 单个博客文章阅读次数的正则表达式</span></span><br><span class="line">    read_num_pattern = <span class="string">&#x27;&lt;span class=&quot;read-num&quot;&gt;阅读数 &lt;span class=&quot;num&quot;&gt;([\d]*?)&lt;/span&gt; &lt;/span&gt;&#x27;</span></span><br><span class="line">    <span class="comment"># 单个博客文章评论次数的正则表达式</span></span><br><span class="line">    comment_num_pattern = <span class="string">&#x27;&lt;span class=&quot;read-num&quot;&gt;评论数 &lt;span class=&quot;num&quot;&gt;([\d]*?)&lt;/span&gt; &lt;/span&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 通过url获取html页面内容，并通过utf-8进行解码</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__fetch_content</span>(<span class="params">self, url</span>):</span><br><span class="line">        r = request.urlopen(url)</span><br><span class="line">        html = r.read()</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(html, encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 通过html页面获取页面中的文章内容块</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__get_article</span>(<span class="params">self, html</span>):</span><br><span class="line">        article_html = re.findall(self.article_pattern, html)</span><br><span class="line">        <span class="keyword">return</span> article_html</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 对每个文章内容块进行处理，获取博客的url和标题</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__get_url_and_title</span>(<span class="params">self, article</span>):</span><br><span class="line">        r = re.search(self.title_pattern, article)</span><br><span class="line">        url = r.group(<span class="number">1</span>).strip()</span><br><span class="line">        title = r.group(<span class="number">2</span>).strip()</span><br><span class="line">        <span class="keyword">return</span> url, title</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 对每个文章内容块进行处理，获取博客的上传时间</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__get_date</span>(<span class="params">self, article</span>):</span><br><span class="line">        r = re.search(self.date_pattern, article)</span><br><span class="line">        date = r.group(<span class="number">1</span>).strip()</span><br><span class="line">        <span class="keyword">return</span> date</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 对每个文章内容块进行处理，获取博客的阅读数</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__get_read_num</span>(<span class="params">self, article</span>):</span><br><span class="line">        r = re.search(self.read_num_pattern, article)</span><br><span class="line">        read_num = <span class="built_in">int</span>(r.group(<span class="number">1</span>))</span><br><span class="line">        <span class="keyword">return</span> read_num</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 对每个文章内容块进行处理，获取博客的评论数</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__get_comment_num</span>(<span class="params">self, article</span>):</span><br><span class="line">        r = re.search(self.comment_num_pattern, article)</span><br><span class="line">        comment_num = <span class="built_in">int</span>(r.group(<span class="number">1</span>))</span><br><span class="line">        <span class="keyword">return</span> comment_num</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 对博客文章列表进行遍历，然后分别处理每一个博客文章内容，进行封装处理</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__do_package</span>(<span class="params">self, article_html, article_list</span>):</span><br><span class="line">        <span class="keyword">for</span> article <span class="keyword">in</span> article_html:</span><br><span class="line">            url, title = self.__get_url_and_title(article)</span><br><span class="line">            date = self.__get_date(article)</span><br><span class="line">            read_num = self.__get_read_num(article)</span><br><span class="line">            comment_num = self.__get_comment_num(article)</span><br><span class="line">            article = Article(url, title, date, read_num, comment_num)</span><br><span class="line">            article_list.append(article)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 爬虫的入口函数</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">go</span>(<span class="params">self</span>):</span><br><span class="line">        page = <span class="number">1</span></span><br><span class="line">        article_list = []</span><br><span class="line">        <span class="keyword">while</span> page:</span><br><span class="line">            url = self.url + <span class="built_in">str</span>(page)</span><br><span class="line">            page += <span class="number">1</span></span><br><span class="line">            html = self.__fetch_content(url)</span><br><span class="line">            article_html = self.__get_article(html)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(article_html) == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            self.__do_package(article_html,article_list)</span><br><span class="line">        <span class="keyword">return</span> article_list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例化一个Spider对象</span></span><br><span class="line">spider = Spider()</span><br><span class="line"><span class="comment"># 调用spider的go()方法，获取一个article对象的列表</span></span><br><span class="line">article_list = spider.go()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一共爬取了多少条信息</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;爬虫一共爬取了&#x27;</span> + <span class="built_in">str</span>(<span class="built_in">len</span>(article_list)) + <span class="string">&#x27;条博客文章信息&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历列表，打印列表中的数据</span></span><br><span class="line"><span class="keyword">for</span> article <span class="keyword">in</span> article_list:</span><br><span class="line">    <span class="built_in">print</span>(article.__dict__)</span><br></pre></td></tr></table></figure>
+<h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1><p>通过上面的代码，我们使用Python原生的方式爬取的信息，就会直接在控制台打印出来。<br>如果我们需要爬取其他博客用户的信息，只需要修改<code>url</code>的值即可。</p>
+<p>最后需要说一句的是，CSDN没有对博客内容进行反爬虫，但是对于访问量等博客数据却有着反爬虫机制，可以防止用户通过爬虫来恶意刷访问量，所以那些想通过爬虫来刷访问量的同学可以洗洗睡了。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="次时代小羊 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="次时代小羊 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>次时代小羊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://herenpeng.github.io/2020/04/12/python/%E4%BD%BF%E7%94%A8Python%E5%8E%9F%E7%94%9F%E7%88%AC%E8%99%AB%E7%88%AC%E5%8F%96%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E7%9A%84%E7%AE%80%E5%8D%95%E4%BF%A1%E6%81%AF/" title="使用Python原生爬虫爬取博客文章的简单信息">https://herenpeng.github.io/2020/04/12/python/使用Python原生爬虫爬取博客文章的简单信息/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/10/python/Python%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/" rel="prev" title="Python环境安装">
+      <i class="fa fa-chevron-left"></i> Python环境安装
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/12/golang/Golang%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8BCRUD/" rel="next" title="Golang连接MySQL数据库之CRUD">
+      Golang连接MySQL数据库之CRUD <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  <div>
+    
+      <div>
+    
+        <div style="text-align:center;color: #9f9f9f;font-size:14px;">-------------这是我的底线^_^-------------</div>
+    
+</div>
+
+    
+  </div>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%86%E5%A4%87"><span class="nav-text">准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#article-py%E6%A8%A1%E5%9D%97%EF%BC%88%E4%BF%A1%E6%81%AF%E5%AF%B9%E8%B1%A1%EF%BC%89"><span class="nav-text">article.py模块（信息对象）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#spider-py%E6%A8%A1%E5%9D%97%EF%BC%88%E7%88%AC%E8%99%AB%EF%BC%89"><span class="nav-text">spider.py模块（爬虫）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E6%9D%9F"><span class="nav-text">结束</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="次时代小羊"
+      src="/images/author.jpg">
+  <p class="site-author-name" itemprop="name">次时代小羊</p>
+  <div class="site-description" itemprop="description">记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹</div>
+
+  <div>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86
+    src="//music.163.com/outchain/player?type=2&id=1966782828&auto=1&height=66"></iframe>
+  </div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">130</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/herenpeng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;herenpeng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_45193304" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45193304" rel="noopener" target="_blank"><i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/herenpeng" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;herenpeng" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:he.ren.peng@qq.com" title="E-Mail → mailto:he.ren.peng@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="">
+    <a target="_blank" class="social-link" href="/atom.xml" style="color: burlywood;">
+      <span class="icon">
+        <i class="fa fa-rss"></i>
+      </span>
+      <span class="label">RSS</span>
+    </a>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+
+  </aside>
+
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">次时代小羊</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">382k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">5:48</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="90" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
