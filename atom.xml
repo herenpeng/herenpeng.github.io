@@ -428,9 +428,9 @@
     
     <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
     
-    <category term="MyBatisPlus" scheme="https://herenpeng.github.io/tags/MyBatisPlus/"/>
-    
     <category term="SpringBoot" scheme="https://herenpeng.github.io/tags/SpringBoot/"/>
+    
+    <category term="MyBatisPlus" scheme="https://herenpeng.github.io/tags/MyBatisPlus/"/>
     
   </entry>
   
