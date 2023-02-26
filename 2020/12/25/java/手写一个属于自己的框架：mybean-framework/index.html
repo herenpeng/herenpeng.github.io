@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"herenpeng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"expandIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="前言MyBean框架最早的时候是在今年2月份创建的，那个时候正值疫情期间无事可做，于是创建了MyBean框架这个项目，本意是模仿Spring框架，加深自己对Web框架和知识的了解，在二、三月份，MyBean框架只做了一个简单的IOC和DI功能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手写一个属于自己的框架：mybean-framework">
+<meta property="og:url" content="https://herenpeng.github.io/2020/12/25/java/%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A1%86%E6%9E%B6%EF%BC%9Amybean-framework/index.html">
+<meta property="og:site_name" content="懒羊羊的青草蛋糕">
+<meta property="og:description" content="前言MyBean框架最早的时候是在今年2月份创建的，那个时候正值疫情期间无事可做，于是创建了MyBean框架这个项目，本意是模仿Spring框架，加深自己对Web框架和知识的了解，在二、三月份，MyBean框架只做了一个简单的IOC和DI功能。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-25T14:40:21.000Z">
+<meta property="article:modified_time" content="2020-12-25T14:40:21.000Z">
+<meta property="article:author" content="次时代小羊">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://herenpeng.github.io/2020/12/25/java/%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A1%86%E6%9E%B6%EF%BC%9Amybean-framework/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>手写一个属于自己的框架：mybean-framework | 懒羊羊的青草蛋糕</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="懒羊羊的青草蛋糕" type="application/atom+xml">
+</head>
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/schemes/fireworks.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">懒羊羊的青草蛋糕</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">每一秒钟的时间都值得铭记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">160</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">56</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">13</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/herenpeng" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/12/25/java/%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A1%86%E6%9E%B6%EF%BC%9Amybean-framework/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="次时代小羊">
+      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懒羊羊的青草蛋糕">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          手写一个属于自己的框架：mybean-framework
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-25 22:40:21" itemprop="dateCreated datePublished" datetime="2020-12-25T22:40:21+08:00">2020-12-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>15k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>13 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>MyBean框架最早的时候是在今年2月份创建的，那个时候正值疫情期间无事可做，于是创建了MyBean框架这个项目，本意是模仿Spring框架，加深自己对Web框架和知识的了解，在二、三月份，MyBean框架只做了一个简单的IOC和DI功能。</p>
+<span id="more"></span>
+<p>后来则因为一系列事情，MyBean框架项目就被暂时搁置，很长一段时间都没有继续开发和完善下去。直到最近一段时间，终于抽出时间来重新审视这个在半年多前做的项目，并对其进行了完善。</p>
+<p>在这次的MyBean框架中，几乎对之前的框架进行了完全的重构，并实现了一些Spring框架中开发者常用的功能。</p>
+<p>当然，MyBean框架还远远无法和Spring比较，MyBean框架只能算是一个闲暇之余的“玩具”项目，用来学习和娱乐尚可，但是还无法真正承担起生产中的Web开发的重任。</p>
+<h1 id="mybean-framework"><a href="#mybean-framework" class="headerlink" title="mybean-framework"></a>mybean-framework</h1><blockquote>
+<p>MyBean框架是一个类似于Spring的简化版本的轻量级框架。<br>github地址：<a target="_blank" rel="noopener" href="https://github.com/herenpeng/mybean-framework.git">https://github.com/herenpeng/mybean-framework.git</a><br>gitee地址：<a target="_blank" rel="noopener" href="https://gitee.com/herenpeng/mybean-framework.git">https://gitee.com/herenpeng/mybean-framework.git</a></p>
+</blockquote>
+<p><strong>mybean-framwork目前支持功能：</strong></p>
+<ul>
+<li>IOC和DI功能</li>
+<li>兼容Web开发</li>
+<li>HTTP请求路径映射</li>
+<li>控制层注解式绑定请求参数</li>
+<li>静态视图解析</li>
+<li>Json解析工具</li>
+<li>JDBC封装模板</li>
+</ul>
+<h2 id="Bean实例注册"><a href="#Bean实例注册" class="headerlink" title="Bean实例注册"></a>Bean实例注册</h2><p>MyBean框架可以通过注解、xml配置文件、properties配置文件三种方式注册一个Bean实例，被注册的Bean实例会进入MyBean框架的核心容器之中。</p>
+<ul>
+<li><p>注解</p>
+<p>1、在Java类上标注@MyBean注解，即可将JavaBean注入核心容器。</p>
+<p>2、使用@MyBean注解方式注册Bean实例，必须开启包扫描。</p>
+<p>3、@MyBean注解有一个属性值，如果该属性值为空，则注册的Bean实例id默认为对应的类的首字母小写名称，如果该属性不为空，则注册的Bean实例id则为属性值。</p>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MyBean</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>xml配置</p>
+<p>1、在application.xml配置文件中进行容器id值和Java全限定类名的对应配置，即可将JavaBean注入核心容器。</p>
+<p>2、bean节点必须放在<code>&lt;mybean&gt;</code> <code>&lt;beans&gt;</code>节点下面，否则bean实例无法注册。</p>
+<p>3、bean节点的id值为必填，id值即为Bean实例注册的id名称，class属性必填，class值即为Bean实例的全限定类名。</p>
+<p>例：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mybean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;person&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.mybean.test.Person&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;student&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.mybean.test.Student&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mybean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>properties配置</p>
+<p>1、在application.properties配置文件中进行容器id值和Java全限定类名的对应配置，即可将JavaBean注入核心容器。</p>
+<p>例：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">student</span>=<span class="string">com.mybean.test.Student</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h2 id="Bean实例注入"><a href="#Bean实例注入" class="headerlink" title="Bean实例注入"></a>Bean实例注入</h2><p>MyBean框架目前允许通过注解的方式和xml配置的方式注入一个Bean实例属性。</p>
+<ul>
+<li>注解</li>
+</ul>
+<p>1、 在类属性上添加@SetBean注解，即可将对应的实例注入类属性中。</p>
+<p>2、注入属性的Java类必须是已经在MyBean框架核心容器注册的JavaBean，否则无法注入。</p>
+<p>3、@SetBean有一个属性值，如果属性值为空，则使用类型注入模式，如果属性值不为空，则使用id名称注入方式。</p>
+<p>4、MyBean框架的注解注入方式是默认开启的，如果在一个属性中，既使用了@SetBean注解注入，又使用了xml配置文件注入，默认使用@SetBean注解注入的方式，xml配置方式默认放弃注入。</p>
+<p> 例：<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MyBean</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SetBean</span></span><br><span class="line">    <span class="keyword">private</span> Student student;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SetBean(&quot;student&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Student student2;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>xml配置</p>
+<p>1、注入属性的Java类必须是已经在xml配置文件中配置过的JavaBean，否则无法注入。</p>
+<p>2、<code>&lt;set&gt;</code>标签有两个属性，其中name属性为Java类中对应的属性名称，ref为已经在xml配置文件中注册，或者开启包扫描后使用@MyBean注解标识的JavaBean的Id。</p>
+<p>例：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mybean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;person&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.mybean.test.Person&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">&quot;student&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;student&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;student&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.mybean.test.Student&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mybean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="包扫描"><a href="#包扫描" class="headerlink" title="包扫描"></a>包扫描</h2><p>如果使用@MyBean注解的方式注册Bean实例，必须配置包扫描范围，这样MyBean框架核心容器才能够扫描被注解的Bean实例。</p>
+<p>包扫描方式分为三种，注解和xml配置文件和properties配置文件方式。</p>
+<ul>
+<li><p>注解</p>
+<p>1、在启动类或者测试类上添加@PackageScan注解，即可扫描对应包下的所有@MyBean注解实例。</p>
+<p>2、@PackageScan有一个value属性，为包扫描范围，如果该值为空，则默认扫描标识@PackageScan注解的包下的所有@MyBean实例。</p>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PackageScan(&quot;com.mybean.test&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ApplicationTest</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.mybean.test;</span><br><span class="line"></span><br><span class="line"><span class="meta">@PackageScan</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ApplicationTest</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>xml配置</li>
+</ul>
+<p>1、在application.xml配置文件中配置package-scan标签即可，range属性即为包扫描范围值。</p>
+<p>例：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mybean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">package-scan</span> <span class="attr">range</span>=<span class="string">&quot;com.test&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">package-scan</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mybean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>properties配置</li>
+</ul>
+<p>1、在application.properties配置文件中配置package.scan属性即可。</p>
+<p>例：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">package.scan</span>=<span class="string">com.mybean.test</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Bean实例获取"><a href="#Bean实例获取" class="headerlink" title="Bean实例获取"></a>Bean实例获取</h2><p>MyBean框架可以通过注解、xml配置文件、properties配置文件三种方式注册一个Bean实例，也可以通过三种不同的方式获取一个Bean实例对象。</p>
+<ul>
+<li><p>注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Application</span> <span class="variable">application</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AnnotationApplication</span>(<span class="built_in">this</span>.getClass());</span><br><span class="line"><span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> application.getBean(<span class="string">&quot;student&quot;</span>);</span><br><span class="line">student.study();</span><br></pre></td></tr></table></figure></li>
+<li><p>xml配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Application</span> <span class="variable">application</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">XmlApplication</span>();</span><br><span class="line"><span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> application.getBean(<span class="string">&quot;student&quot;</span>);</span><br><span class="line">student.study();</span><br></pre></td></tr></table></figure></li>
+<li><p>properties配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Application</span> <span class="variable">application</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PropertiesApplication</span>();</span><br><span class="line"><span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> application.getBean(<span class="string">&quot;student&quot;</span>);</span><br><span class="line">student.study();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="mybean-mvc"><a href="#mybean-mvc" class="headerlink" title="mybean-mvc"></a>mybean-mvc</h1><p>MyBeanMVC是MyBean框架的Web开发部分，能够简化原生的Servlet开发。</p>
+<h2 id="RequestPath"><a href="#RequestPath" class="headerlink" title="@RequestPath"></a>@RequestPath</h2><p>@RequestPath为一个MVC层的注解，可以注解在类和方法上，有两个属性：</p>
+<ul>
+<li>value：value属性为请求路径，使用该属性可以将对应的类或方法映射到注解的类和方法上。</li>
+<li>type：type属性为一个ResponseTypeEnum枚举类型，该属性在类上无效，在方法上可以映射为响应数据的类型，该属性默认为ResponseTypeEnum.VIEW，默认解析返回值为视图。</li>
+</ul>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MyBean</span></span><br><span class="line"><span class="meta">@RequestPath(&quot;user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestPath(&quot;index&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">index</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> request.getParameter(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;index.html&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="RequestParam"><a href="#RequestParam" class="headerlink" title="@RequestParam"></a>@RequestParam</h2><p>@RequestParam是一个MVC层注解，用于解析HTTP请求上的参数，该注解只能标注在方法参数上。</p>
+<p>1、@RequestParam注解有一个value属性值，该值为对应的参数名称，如果请求中有对应名称和类型的参数值，该注解会自动将参数解析到方法参数中。</p>
+<p>2、@RequestParam注解目前只支持解析Java的八种基本数据类型和对应的包装类，以及Map类型，其余类型无法解析。Map类型入参，会将布尔类型参数和数字类型参数进行解析，并转换为Boolean，Integer，Long等类型。</p>
+<p>3、MyBeanMVC的控制层方法参数注入只支持10个参数，超过10个参数，框架会出现解析异常。</p>
+<p>4、如果控制层方法参数中有HttpServletRequest和HttpServletResponse类型，对应的参数会自动注入。</p>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MyBean</span></span><br><span class="line"><span class="meta">@RequestPath(&quot;user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestPath(value = &quot;string&quot;, type = ResponseTypeEnum.JSON)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">string</span><span class="params">(<span class="meta">@RequestParam(&quot;username&quot;)</span> String username)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestPath(value = &quot;number&quot;, type = ResponseTypeEnum.JSON)</span></span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">number</span><span class="params">(HttpServletRequest request, HttpServletResponse response, <span class="meta">@RequestParam(&quot;number&quot;)</span> Integer number)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> number;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="静态资源解析"><a href="#静态资源解析" class="headerlink" title="静态资源解析"></a>静态资源解析</h2><p>1、MyBeanMVC目前只支持静态资源文件，对于<code>.jsp</code>，<code>.ftl</code>等动态文件暂不支持。</p>
+<p>2、在MyBeanMVC中，所有的静态资源文件都需要放在resources包下的static文件夹中，否则无法解析。例如上述的案例代码中，返回的inex.html会默认解析为resources/static包下的index.html文件。</p>
+<p>3、在MyBeanMVC的静态文件中，如果需要引入其他静态文件，请使用绝对路径，或者MyBeanMVC专属的<code>@</code>符号解析路径。使用相对路径引入静态文件，会无法解析静态文件。</p>
+<p>4、其中的<code>@</code>符号为MyBean框架的静态资源解析符号，能够直接解析到resources/static文件下面。</p>
+<p>例：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">resources</span><br><span class="line">    |__static</span><br><span class="line">        |__index.css</span><br><span class="line">        |__index.html</span><br></pre></td></tr></table></figure>
+
+<p>在上述的文件目录层级中，在index.html文件中，应该使用如下方式引入index.css文件。</p>
+<p>正确：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/index.css&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;@index.css&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>错误：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;index.css&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="ResponseTypeEnum枚举类型"><a href="#ResponseTypeEnum枚举类型" class="headerlink" title="ResponseTypeEnum枚举类型"></a>ResponseTypeEnum枚举类型</h2><p>@RequestPath注解的type属性为ResponseTypeEnum枚举类型，该枚举有三个属性值。</p>
+<ul>
+<li>VIEW：该值为@RequestPath注解type属性的默认值，默认为视图解析，会将返回值作为路径解析，会自动寻找resources/static包下的静态文件。</li>
+</ul>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MyBean</span></span><br><span class="line"><span class="meta">@RequestPath(&quot;user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestPath(&quot;index&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">index</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> request.getParameter(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">        <span class="comment">// 会跳转到resources/static包的index.html文件</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;index.html&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>TEXT：该值会将方法返回值作为普通文本解析，如果返回值为String类型，会直接输出字符串，如果返回值为其他类型，会默认调用返回对象的toString()方法输出字符串。</li>
+</ul>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MyBean</span></span><br><span class="line"><span class="meta">@RequestPath(&quot;user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestPath(value = &quot;string&quot;, type = ResponseTypeEnum.TEXT)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">string</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> request.getParameter(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestPath(value = &quot;text&quot;, type = ResponseTypeEnum.TEXT)</span></span><br><span class="line">    <span class="keyword">public</span> User <span class="title function_">text</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> &#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">        user.setUsername(<span class="string">&quot;池总&quot;</span>);</span><br><span class="line">        user.setPassword(<span class="string">&quot;123456&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><p>JSON：该值会将方法返回值作为JSON格式解析。MyBean框架的JSON解析方式为MyBean框架自带的JSON解析工具，不依赖第三方JSON解析库，由于自带的JSON解析工具比较简单，目前JSON格式支持的类型有：</p>
+<ul>
+<li>Java八大基本数据类型以及对应的包装类型</li>
+<li>Date类型</li>
+<li>BigDecimal类型</li>
+<li>Map类型</li>
+<li>Collection类型</li>
+<li>遵循规范的JavaBean类型</li>
+</ul>
+</li>
+</ul>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MyBean</span></span><br><span class="line"><span class="meta">@RequestPath(&quot;user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestPath(value = &quot;json&quot;, type = ResponseTypeEnum.JSON)</span></span><br><span class="line">    <span class="keyword">public</span> User <span class="title function_">json</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> &#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;池总&quot;</span>, <span class="string">&quot;123456&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestPath(value = &quot;map&quot;, type = ResponseTypeEnum.JSON)</span></span><br><span class="line">    <span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title function_">map</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> &#123;</span><br><span class="line">        Map&lt;String, Object&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        map.put(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;池总&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;password&quot;</span>, <span class="string">&quot;123456&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;enabled&quot;</span>, <span class="literal">true</span>);</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestPath(value = &quot;list&quot;, type = ResponseTypeEnum.JSON)</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;User&gt; <span class="title function_">list</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> &#123;</span><br><span class="line">        List&lt;User&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        list.add(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;池总&quot;</span>, <span class="string">&quot;123456&quot;</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;刘老板&quot;</span>, <span class="string">&quot;111111&quot;</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;波波&quot;</span>, <span class="string">&quot;bbbbbb&quot;</span>));</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestPath(value = &quot;set&quot;, type = ResponseTypeEnum.JSON)</span></span><br><span class="line">    <span class="keyword">public</span> Set&lt;User&gt; <span class="title function_">set</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> &#123;</span><br><span class="line">        Set&lt;User&gt; Set = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">        Set.add(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;池总&quot;</span>, <span class="string">&quot;set:123456&quot;</span>));</span><br><span class="line">        Set.add(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;刘老板&quot;</span>, <span class="string">&quot;set:111111&quot;</span>));</span><br><span class="line">        Set.add(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;波波&quot;</span>, <span class="string">&quot;set:bbbbbb&quot;</span>));</span><br><span class="line">        <span class="keyword">return</span> Set;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestPath(value = &quot;listMap&quot;, type = ResponseTypeEnum.JSON)</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Map&lt;String, Object&gt;&gt; <span class="title function_">listMap</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> &#123;</span><br><span class="line">        List&lt;Map&lt;String, Object&gt;&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        Map&lt;String, Object&gt; map1 = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        map1.put(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;池总&quot;</span>);</span><br><span class="line">        map1.put(<span class="string">&quot;password&quot;</span>, <span class="string">&quot;123456&quot;</span>);</span><br><span class="line">        map1.put(<span class="string">&quot;enabled&quot;</span>, <span class="literal">true</span>);</span><br><span class="line">        list.add(map1);</span><br><span class="line">        Map&lt;String, Object&gt; map2 = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        map2.put(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;刘老板&quot;</span>);</span><br><span class="line">        map2.put(<span class="string">&quot;password&quot;</span>, <span class="string">&quot;111111&quot;</span>);</span><br><span class="line">        map2.put(<span class="string">&quot;enabled&quot;</span>, <span class="literal">false</span>);</span><br><span class="line">        map2.put(<span class="string">&quot;birthday&quot;</span>, <span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">        list.add(map2);</span><br><span class="line">        Map&lt;String, Object&gt; map3 = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        map3.put(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;刘老板&quot;</span>);</span><br><span class="line">        map3.put(<span class="string">&quot;password&quot;</span>, <span class="string">&quot;111111&quot;</span>);</span><br><span class="line">        map3.put(<span class="string">&quot;money&quot;</span>, <span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="number">100000000</span>));</span><br><span class="line">        map3.put(<span class="string">&quot;enabled&quot;</span>, <span class="literal">false</span>);</span><br><span class="line">        map3.put(<span class="string">&quot;person&quot;</span>, <span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;员工1&quot;</span>, <span class="string">&quot;123456&quot;</span>));</span><br><span class="line">        List&lt;User&gt; list2 = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        list2.add(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;池总&quot;</span>, <span class="string">&quot;123456&quot;</span>));</span><br><span class="line">        list2.add(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;刘老板&quot;</span>, <span class="string">&quot;111111&quot;</span>));</span><br><span class="line">        list2.add(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;波波&quot;</span>, <span class="string">&quot;bbbbbb&quot;</span>));</span><br><span class="line">        map3.put(<span class="string">&quot;list2&quot;</span>, list2);</span><br><span class="line">        list.add(map3);</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="mybean-common"><a href="#mybean-common" class="headerlink" title="mybean-common"></a>mybean-common</h1><h2 id="JsonUtils"><a href="#JsonUtils" class="headerlink" title="JsonUtils"></a>JsonUtils</h2><p>MyBean框架没有依赖于第三方的Json解析框架，而是MyBean框架自己实现了一个JsonUtils，用于解析Json数据。</p>
+<ul>
+<li><p>Json工具类可以对以下的Java类型进行解析：</p>
+<ul>
+<li>Java八大基本数据类型以及对应的包装类型</li>
+<li>Date类型</li>
+<li>BigDecimal类型</li>
+<li>Map类型</li>
+<li>Collection类型</li>
+<li>遵循规范的JavaBean类型</li>
+</ul>
+</li>
+<li><p>@JsonNullIgnore</p>
+<p>  @JsonNullIgnore可以注解在JavaBean的属性上，被注解的属性如果值为null，在格式化Json字符串的时候会自动忽略该属性。</p>
+</li>
+</ul>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@JsonNullIgnore</span></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="comment">// 省略get/set方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>@JsonDateFormat</p>
+<p>  @JsonDateFormat可以注解在JavaBean的Date类型的属性上，被注解的属性会按照注解的value值的格式，对日期格式进行Json格式化，如果value属性值为null，则会使用默认的<code>yyyy-MM-dd HH:mm:ss</code>格式进行日期格式化。</p>
+</li>
+</ul>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@JsonDateFormat</span></span><br><span class="line">    <span class="keyword">private</span> Date birthday;</span><br><span class="line">    <span class="comment">// 省略get/set方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="StringUtils"><a href="#StringUtils" class="headerlink" title="StringUtils"></a>StringUtils</h2><p>StringUtils是MyBean框架封装的字符串工具类，包含了对于字符串的处理方法。</p>
+<h2 id="ObjectUtils"><a href="#ObjectUtils" class="headerlink" title="ObjectUtils"></a>ObjectUtils</h2><p>对象工具类</p>
+<h2 id="CollectionUtils"><a href="#CollectionUtils" class="headerlink" title="CollectionUtils"></a>CollectionUtils</h2><p>集合工具类</p>
+<h1 id="mybean-jdbc"><a href="#mybean-jdbc" class="headerlink" title="mybean-jdbc"></a>mybean-jdbc</h1><p>mybean-jdbc是MyBean框架的持久层部分，封装了MyBean框架对持久层的操作。<br>其中mybean-jdbc默认使用MySQL驱动，并内置了druid连接池。</p>
+<h2 id="DataSource"><a href="#DataSource" class="headerlink" title="DataSource"></a>DataSource</h2><p>在使用mybean-jdbc之前，需要在application.xml配置文件中配置数据源。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mybean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">data-source</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">driver-name</span>&gt;</span>com.mysql.cj.jdbc.Driver<span class="tag">&lt;/<span class="name">driver-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>jdbc:mysql://localhost:3306/mybean?serverTimezone=Asia/Shanghai<span class="symbol">&amp;amp;</span>useSSL=false<span class="symbol">&amp;amp;</span>characterEncoding=UTF-8<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">username</span>&gt;</span>root<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">password</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">data-source</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mybean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="JdbcTemplate"><a href="#JdbcTemplate" class="headerlink" title="JdbcTemplate"></a>JdbcTemplate</h2><p>1、在使用JdbcTemplate之前，需要在application.xml配置文件中配置该Bean实例。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mybean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;jdbcTemplate&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.mybeanframework.jdbc.JdbcTemplate&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mybean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2、然后就直接在Java类中注入即可使用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MyBean</span></span><br><span class="line"><span class="meta">@RequestPath(&quot;user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SetBean</span></span><br><span class="line">    <span class="keyword">private</span> JdbcTemplate jdbcTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestPath(value = &quot;list&quot;, type = ResponseTypeEnum.JSON)</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;User&gt; <span class="title function_">list</span><span class="params">()</span> &#123;</span><br><span class="line">        List&lt;User&gt; list = jdbcTemplate.selectList(<span class="string">&quot;select * from sys_user&quot;</span>, User.class);</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>List<E> selectList(String sql, Object[] params, Class<E> clazz)</p>
+<pre><code>有参查询所有，并返回一个泛型对应的List集合</code></pre></li>
+<li><p>List<E> selectList(String sql, Class<E> clazz)</p>
+<pre><code>无参查询所有，并返回一个泛型对应的List集合</code></pre></li>
+<li><p>selectOne(String sql, Object[] params, Class<E> clazz)</p>
+<pre><code>有参查询一个泛型对象，多条记录时，默认返回第一条记录</code></pre></li>
+<li><p>selectOne(String sql, Class<E> clazz)</p>
+<pre><code>无参查询一个泛型对象，多条记录时，默认返回第一条记录</code></pre></li>
+<li><p>int update(String sql, Object[] params)</p>
+<pre><code>有参更新方法</code></pre></li>
+<li><p>delete(String sql, Object[] params)</p>
+<pre><code>有参删除方法</code></pre></li>
+<li><p>insert(String sql, Object[] params)</p>
+<pre><code>有参插入方法</code></pre></li>
+</ul>
+<h1 id="框架的使用"><a href="#框架的使用" class="headerlink" title="框架的使用"></a>框架的使用</h1><p>如果开发者想要在本地使用MyBean框架进行开发，需要进行如下几个步骤：</p>
+<p>1、将项目从github或者gitee上下载下来。</p>
+<blockquote>
+<p>github地址：<a target="_blank" rel="noopener" href="https://github.com/herenpeng/mybean-framework.git">https://github.com/herenpeng/mybean-framework.git</a><br>gitee地址：<a target="_blank" rel="noopener" href="https://gitee.com/herenpeng/mybean-framework.git">https://gitee.com/herenpeng/mybean-framework.git</a></p>
+</blockquote>
+<p>2、将项目设置为Maven项目，并使用Maven下载相关依赖。</p>
+<p>3、使用Maven将root项目<code>mybean-framework</code>安装到本地仓库。</p>
+<p>4、使用Maven创建一个新的工程，并在工程中引入mybean-framework的坐标依赖，其中myeban-mvc为MVC模块的依赖，mybean-jdbc为持久层jdbc模块的依赖，这两个依赖均已依赖于mybean-core模块，所以本地无需引入mybean-core模块。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--mvc模块的依赖--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybeanframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybean-mvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--jdbc模块的依赖--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybeanframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybean-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>5、使用Maven Tomcat插件运行项目。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- tomcat插件控制 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat7-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--端口控制--&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">port</span>&gt;</span>8080<span class="tag">&lt;/<span class="name">port</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--项目路径控制意味着http://localhost:8080/abc--&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">path</span>&gt;</span>/<span class="tag">&lt;/<span class="name">path</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--编码--&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">uriEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">uriEncoding</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- maven插件控制 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">encoding</span>&gt;</span>utf-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>6、在新项目中配置application.xml配置文件，并配置包扫描范围或者注册Bean实例。</p>
+<p>7、启动项目。</p>
+<blockquote>
+<p><strong>如果开发者不想自己搭建项目，也可以使用MyBean框架自带的一个mybean-demo项目。</strong></p>
+</blockquote>
+<p>1、将项目从github或者gitee上下载下来。</p>
+<p>2、将项目设置为Maven项目，并使用Maven下载相关依赖。</p>
+<p>3、使用Maven将root项目<code>mybean-framework</code>安装到本地仓库。</p>
+<p>4、使用Maven Tomcat插件运行<code>mybean-demo</code>项目即可。</p>
+<h1 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h1><p>MyBean框架目前虽然已经有了一些Web开发的基础功能，但是依然还有一些不足之处需待完善：</p>
+<ul>
+<li><p>mybean-jdbc项目，这个项目是作者用一个下午写出来，只能说是一个简单的JDBC的封装，后续作者希望在这个项目的基础上对Web开发的持久层进行优化，或者重新写一个类似于MyBatis的框架。</p>
+</li>
+<li><p>JsonUtils目前只支持将Java类转换为Json字符串，但是不支持Json字符串转换为Java对象，这是后续需要继续完善的。</p>
+</li>
+<li><p>Web控制层，目前实现了注解绑定参数，Map入参，但是没有实现Java对象入参，后续待完善。</p>
+</li>
+<li><p>除此之外，MyBean框架还有很多细节或者功能需要完善，也欢迎各位在博客下方或者github上提出问题。</p>
+</li>
+</ul>
+<blockquote>
+<p>最后，欢迎对这个项目有兴趣的同学，给<code>mybean-framework</code>这个项目点<code>star</code>，给作者一些支持和鼓励，谢谢！<br>github地址：<a target="_blank" rel="noopener" href="https://github.com/herenpeng/mybean-framework.git">https://github.com/herenpeng/mybean-framework.git</a><br>gitee地址：<a target="_blank" rel="noopener" href="https://gitee.com/herenpeng/mybean-framework.git">https://gitee.com/herenpeng/mybean-framework.git</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="次时代小羊 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="次时代小羊 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>次时代小羊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://herenpeng.github.io/2020/12/25/java/%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A1%86%E6%9E%B6%EF%BC%9Amybean-framework/" title="手写一个属于自己的框架：mybean-framework">https://herenpeng.github.io/2020/12/25/java/手写一个属于自己的框架：mybean-framework/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/10/linux/Liunx%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85JDK%E7%8E%AF%E5%A2%83%EF%BC%88yum%E5%AE%89%E8%A3%85%EF%BC%89/" rel="prev" title="Liunx系统安装JDK环境（yum安装）">
+      <i class="fa fa-chevron-left"></i> Liunx系统安装JDK环境（yum安装）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/01/other/%E5%86%8D%E8%A7%81%EF%BC%8C2020%EF%BC%9B%E4%BD%A0%E5%A5%BD%EF%BC%8C2021%EF%BC%81/" rel="next" title="再见，2020；你好，2021！">
+      再见，2020；你好，2021！ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  <div>
+    
+      <div>
+    
+        <div style="text-align:center;color: #9f9f9f;font-size:14px;">-------------这是我的底线^_^-------------</div>
+    
+</div>
+
+    
+  </div>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mybean-framework"><span class="nav-text">mybean-framework</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bean%E5%AE%9E%E4%BE%8B%E6%B3%A8%E5%86%8C"><span class="nav-text">Bean实例注册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bean%E5%AE%9E%E4%BE%8B%E6%B3%A8%E5%85%A5"><span class="nav-text">Bean实例注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%85%E6%89%AB%E6%8F%8F"><span class="nav-text">包扫描</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bean%E5%AE%9E%E4%BE%8B%E8%8E%B7%E5%8F%96"><span class="nav-text">Bean实例获取</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mybean-mvc"><span class="nav-text">mybean-mvc</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RequestPath"><span class="nav-text">@RequestPath</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RequestParam"><span class="nav-text">@RequestParam</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%A7%A3%E6%9E%90"><span class="nav-text">静态资源解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ResponseTypeEnum%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B"><span class="nav-text">ResponseTypeEnum枚举类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mybean-common"><span class="nav-text">mybean-common</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JsonUtils"><span class="nav-text">JsonUtils</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StringUtils"><span class="nav-text">StringUtils</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ObjectUtils"><span class="nav-text">ObjectUtils</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CollectionUtils"><span class="nav-text">CollectionUtils</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mybean-jdbc"><span class="nav-text">mybean-jdbc</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DataSource"><span class="nav-text">DataSource</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JdbcTemplate"><span class="nav-text">JdbcTemplate</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A1%86%E6%9E%B6%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">框架的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E5%B0%BE"><span class="nav-text">结尾</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="次时代小羊"
+      src="/images/author.jpg">
+  <p class="site-author-name" itemprop="name">次时代小羊</p>
+  <div class="site-description" itemprop="description">记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹</div>
+
+  <div>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86
+    src="//music.163.com/outchain/player?type=2&id=1966782828&auto=1&height=66"></iframe>
+  </div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">160</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/herenpeng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;herenpeng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_45193304" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45193304" rel="noopener" target="_blank"><i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/herenpeng" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;herenpeng" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:he.ren.peng@qq.com" title="E-Mail → mailto:he.ren.peng@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="">
+    <a target="_blank" class="social-link" href="/atom.xml" style="color: burlywood;">
+      <span class="icon">
+        <i class="fa fa-rss"></i>
+      </span>
+      <span class="label">RSS</span>
+    </a>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+
+  </aside>
+
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">次时代小羊</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">492k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">7:27</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="90" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

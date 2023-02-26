@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"herenpeng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"expandIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="在工作中，apache lang3是一个非常常用的工具包，其中包含了很多通用的方法，能够在工作中提升我们的效率，简化我们的代码开发。其中StringUtils是apache lang3对字符串方法封装的一个常用工具类，今天我们就来学习一下这个字符串工具类。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache lang3 StringUtils工具类常用方法">
+<meta property="og:url" content="https://herenpeng.github.io/2020/08/26/java/Apache%20lang3%20StringUtils%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="懒羊羊的青草蛋糕">
+<meta property="og:description" content="在工作中，apache lang3是一个非常常用的工具包，其中包含了很多通用的方法，能够在工作中提升我们的效率，简化我们的代码开发。其中StringUtils是apache lang3对字符串方法封装的一个常用工具类，今天我们就来学习一下这个字符串工具类。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-25T23:21:04.000Z">
+<meta property="article:modified_time" content="2020-08-25T23:21:04.000Z">
+<meta property="article:author" content="次时代小羊">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://herenpeng.github.io/2020/08/26/java/Apache%20lang3%20StringUtils%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Apache lang3 StringUtils工具类常用方法 | 懒羊羊的青草蛋糕</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="懒羊羊的青草蛋糕" type="application/atom+xml">
+</head>
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/schemes/fireworks.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">懒羊羊的青草蛋糕</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">每一秒钟的时间都值得铭记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">160</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">56</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">13</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/herenpeng" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/08/26/java/Apache%20lang3%20StringUtils%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="次时代小羊">
+      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懒羊羊的青草蛋糕">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Apache lang3 StringUtils工具类常用方法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-26 07:21:04" itemprop="dateCreated datePublished" datetime="2020-08-26T07:21:04+08:00">2020-08-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>在工作中，apache lang3是一个非常常用的工具包，其中包含了很多通用的方法，能够在工作中提升我们的效率，简化我们的代码开发。<br>其中StringUtils是apache lang3对字符串方法封装的一个常用工具类，今天我们就来学习一下这个字符串工具类。</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-lang3<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="StringUtils常用方法"><a href="#StringUtils常用方法" class="headerlink" title="StringUtils常用方法"></a>StringUtils常用方法</h1><h2 id="isBlank"><a href="#isBlank" class="headerlink" title="isBlank"></a>isBlank</h2><ul>
+<li><p><strong>字符串非空判断，只要传入的字符串不为<code>null</code>并且长度不为0，则返回<code>false</code>。</strong></p>
+</li>
+<li><p><strong>注意：如果字符串是一些特殊字符，也会被判定为空，返回<code>true</code>。</strong></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">System.out.println(StringUtils.isBlank(str1));  <span class="comment">//true</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isBlank(str2));  <span class="comment">//true</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str3</span> <span class="operator">=</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isBlank(str3));  <span class="comment">//true</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str4</span> <span class="operator">=</span> <span class="string">&quot;\u001C&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isBlank(str4));  <span class="comment">//true</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str5</span> <span class="operator">=</span> <span class="string">&quot;字符串&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isBlank(str5));  <span class="comment">//false</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str6</span> <span class="operator">=</span> <span class="string">&quot;  abc  &quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isBlank(str6));  <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="isNotBlank"><a href="#isNotBlank" class="headerlink" title="isNotBlank"></a>isNotBlank</h2><ul>
+<li><strong>返回结果正好是isBlank的非值，因为该方法的底层实现其实就是<code>return !isBlank(cs);</code></strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">System.out.println(StringUtils.isNotBlank(str1));  <span class="comment">//false</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isNotBlank(str2));  <span class="comment">//false</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str3</span> <span class="operator">=</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isNotBlank(str3));  <span class="comment">//false</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str4</span> <span class="operator">=</span> <span class="string">&quot;\u001C&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isNotBlank(str4));  <span class="comment">//false</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str5</span> <span class="operator">=</span> <span class="string">&quot;字符串&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isNotBlank(str5));  <span class="comment">//true</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str6</span> <span class="operator">=</span> <span class="string">&quot;  abc  &quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isNotBlank(str6));  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<h2 id="isEmpty"><a href="#isEmpty" class="headerlink" title="isEmpty"></a>isEmpty</h2><ul>
+<li><strong>isEmpty的作用和isBlank类似，但是在效果上有所区别，因为isEmpty不会判断特殊字符，如果存在特殊字符，会将其当成普通字符串处理。</strong></li>
+<li><strong>isEmpty的判断逻辑为，只要字符串不为<code>null</code>，并且长度不为0，则说明非空，返回<code>false</code></strong></li>
+<li><strong>建议在工作开发中使用isBlank或者isNotBlank方法来判断字符串是否非空。</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">System.out.println(StringUtils.isEmpty(str1));  <span class="comment">//true</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isEmpty(str2));  <span class="comment">//true</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str3</span> <span class="operator">=</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isEmpty(str3));  <span class="comment">//false</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str4</span> <span class="operator">=</span> <span class="string">&quot;\u001C&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isEmpty(str4));  <span class="comment">//false</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str5</span> <span class="operator">=</span> <span class="string">&quot;字符串&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isEmpty(str5));  <span class="comment">//false</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str6</span> <span class="operator">=</span> <span class="string">&quot;  abc  &quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isEmpty(str6));  <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h2 id="isNotEmpty"><a href="#isNotEmpty" class="headerlink" title="isNotEmpty"></a>isNotEmpty</h2><ul>
+<li><strong>返回结果正好是isEmpty的非值，因为该方法的底层实现其实就是<code>return !isEmpty(cs);</code></strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">System.out.println(StringUtils.isNotEmpty(str1));  <span class="comment">//false</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isNotEmpty(str2));  <span class="comment">//false</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str3</span> <span class="operator">=</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isNotEmpty(str3));  <span class="comment">//true</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str4</span> <span class="operator">=</span> <span class="string">&quot;\u001C&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isNotEmpty(str4));  <span class="comment">//true</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str5</span> <span class="operator">=</span> <span class="string">&quot;字符串&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isNotEmpty(str5));  <span class="comment">//true</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str6</span> <span class="operator">=</span> <span class="string">&quot;  abc  &quot;</span>;</span><br><span class="line">System.out.println(StringUtils.isNotEmpty(str6));  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="join"><a href="#join" class="headerlink" title="join"></a>join</h2><ul>
+<li><strong>join是StringUtils提供的一个字符串拼接的方法。</strong></li>
+<li><strong>该方法的实现是以StringBuilder的方式来进行字符串拼接的，线程不安全，多线程环境下不建议使用。</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;abc&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;def&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str3</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str4</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str5</span> <span class="operator">=</span> <span class="string">&quot;123&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">join</span> <span class="operator">=</span> StringUtils.join(str1, str2, str3,str4,str5);</span><br><span class="line">System.out.println(join);   <span class="comment">//abcdef123</span></span><br></pre></td></tr></table></figure>
+<h2 id="equals"><a href="#equals" class="headerlink" title="equals"></a>equals</h2><ul>
+<li><strong><code>StringUtils.equals()</code>方法是字符串<code>String.equals()</code>方法的一个增强，在StringUtils中添加了字符串为<code>null</code>的判断逻辑，即使使用<code>null</code>进行比较，也不会出现空指针异常。</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;abc&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;def&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.equals(str1, str2)); <span class="comment">//false</span></span><br><span class="line">str1 = <span class="string">&quot;&quot;</span>;</span><br><span class="line">str2 = <span class="string">&quot;def&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.equals(str1, str2)); <span class="comment">//false</span></span><br><span class="line">str1 = <span class="literal">null</span>;</span><br><span class="line">str2 = <span class="string">&quot;&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.equals(str1, str2)); <span class="comment">//false</span></span><br><span class="line">str1 = <span class="literal">null</span>;</span><br><span class="line">str2 = <span class="literal">null</span>;</span><br><span class="line">System.out.println(StringUtils.equals(str1, str2)); <span class="comment">//true</span></span><br><span class="line">str1 = <span class="string">&quot;&quot;</span>;</span><br><span class="line">str2 = <span class="string">&quot;&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.equals(str1, str2)); <span class="comment">//true</span></span><br><span class="line">str1 = <span class="string">&quot;123&quot;</span>;</span><br><span class="line">str2 = <span class="string">&quot;123&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.equals(str1, str2)); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="equalsIgnoreCase"><a href="#equalsIgnoreCase" class="headerlink" title="equalsIgnoreCase"></a>equalsIgnoreCase</h2><ul>
+<li><strong>忽略大小写比较字符串是否相同</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;abc&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;ABC&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.equalsIgnoreCase(str1, str2)); <span class="comment">//true</span></span><br><span class="line">str1 = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">str2 = <span class="string">&quot;ABc&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.equalsIgnoreCase(str1, str2)); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="split"><a href="#split" class="headerlink" title="split"></a>split</h2><ul>
+<li><strong>StringUtils中的split同样是字符串split方法的一个增强。</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;abc 123\nDEF&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot; &quot;</span>;</span><br><span class="line">String[] split1 = StringUtils.split(str1);</span><br><span class="line"><span class="keyword">for</span> (String str : split1) &#123;</span><br><span class="line">    System.out.println(str);</span><br><span class="line">&#125;   <span class="comment">// abc  123   DEF</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str3</span> <span class="operator">=</span> <span class="string">&quot;abc,123,DEF$456&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str4</span> <span class="operator">=</span> <span class="string">&quot;,&quot;</span>;</span><br><span class="line">String[] split2 = StringUtils.split(str3, str4);</span><br><span class="line"><span class="keyword">for</span> (String str : split2) &#123;</span><br><span class="line">    System.out.println(str);</span><br><span class="line">&#125;   <span class="comment">// abc  123   DEF$456</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str5</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str6</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">String[] split3 = StringUtils.split(str5, str6);</span><br><span class="line">System.out.println(split3); <span class="comment">// null</span></span><br></pre></td></tr></table></figure>
+<h2 id="trim"><a href="#trim" class="headerlink" title="trim"></a>trim</h2><ul>
+<li><strong>用于除去字符串两边的空格，如果为<code>null</code>，则返回<code>null</code>。</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;  abcdef  &quot;</span>;</span><br><span class="line">System.out.println(StringUtils.trim(str1)); <span class="comment">//abcdef</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;abcdef  &quot;</span>;</span><br><span class="line">System.out.println(StringUtils.trim(str2)); <span class="comment">//abcdef</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str3</span> <span class="operator">=</span> <span class="string">&quot;  abcdef&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.trim(str3)); <span class="comment">//abcdef</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str4</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.trim(str4)); <span class="comment">//      [空字符串]</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str5</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">System.out.println(StringUtils.trim(str5)); <span class="comment">//null</span></span><br></pre></td></tr></table></figure>
+<h2 id="contains"><a href="#contains" class="headerlink" title="contains"></a>contains</h2><ul>
+<li><strong>用于判断字符串中是否包含另外的字符串，如果有值为<code>null</code>，则返回<code>false</code>。</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;abcdef123ghijk&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;23&quot;</span>;</span><br><span class="line">System.out.println(StringUtils.contains(str1, str2)); <span class="comment">//true</span></span><br><span class="line">str1 = <span class="literal">null</span>;</span><br><span class="line">str2 = <span class="literal">null</span>;</span><br><span class="line">System.out.println(StringUtils.contains(str1, str2)); <span class="comment">//false</span></span><br><span class="line">str1 = <span class="string">&quot;abcdef&quot;</span>;</span><br><span class="line">str2 = <span class="literal">null</span>;</span><br><span class="line">System.out.println(StringUtils.contains(str1, str2)); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>Apache lang3 StringUtils中封装的字符串方法较为常用的就是上面的这些方法，除此之外，还有其他一些方法，以后如果有时间也会向各位同学一一介绍。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="次时代小羊 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="次时代小羊 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>次时代小羊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://herenpeng.github.io/2020/08/26/java/Apache%20lang3%20StringUtils%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/" title="Apache lang3 StringUtils工具类常用方法">https://herenpeng.github.io/2020/08/26/java/Apache lang3 StringUtils工具类常用方法/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/25/java/Java%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%BD%AC%E6%8D%A2PDF%E6%96%87%E4%BB%B6/" rel="prev" title="Java实现图片转换PDF文件">
+      <i class="fa fa-chevron-left"></i> Java实现图片转换PDF文件
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/02/java/Java%E5%AE%9E%E7%8E%B0PDF%E6%96%87%E4%BB%B6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%9B%BE%E7%89%87/" rel="next" title="Java实现PDF文件转换为图片">
+      Java实现PDF文件转换为图片 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  <div>
+    
+      <div>
+    
+        <div style="text-align:center;color: #9f9f9f;font-size:14px;">-------------这是我的底线^_^-------------</div>
+    
+</div>
+
+    
+  </div>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-text">引入依赖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#StringUtils%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">StringUtils常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#isBlank"><span class="nav-text">isBlank</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isNotBlank"><span class="nav-text">isNotBlank</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isEmpty"><span class="nav-text">isEmpty</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isNotEmpty"><span class="nav-text">isNotEmpty</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#join"><span class="nav-text">join</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#equals"><span class="nav-text">equals</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#equalsIgnoreCase"><span class="nav-text">equalsIgnoreCase</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#split"><span class="nav-text">split</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#trim"><span class="nav-text">trim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#contains"><span class="nav-text">contains</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="次时代小羊"
+      src="/images/author.jpg">
+  <p class="site-author-name" itemprop="name">次时代小羊</p>
+  <div class="site-description" itemprop="description">记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹</div>
+
+  <div>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86
+    src="//music.163.com/outchain/player?type=2&id=1966782828&auto=1&height=66"></iframe>
+  </div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">160</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/herenpeng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;herenpeng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_45193304" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45193304" rel="noopener" target="_blank"><i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/herenpeng" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;herenpeng" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:he.ren.peng@qq.com" title="E-Mail → mailto:he.ren.peng@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="">
+    <a target="_blank" class="social-link" href="/atom.xml" style="color: burlywood;">
+      <span class="icon">
+        <i class="fa fa-rss"></i>
+      </span>
+      <span class="label">RSS</span>
+    </a>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+
+  </aside>
+
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">次时代小羊</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">492k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">7:27</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="90" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

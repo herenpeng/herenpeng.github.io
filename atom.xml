@@ -206,9 +206,9 @@
     
     <category term="JavaScript" scheme="https://herenpeng.github.io/tags/JavaScript/"/>
     
-    <category term="WebStrom" scheme="https://herenpeng.github.io/tags/WebStrom/"/>
-    
     <category term="Vue" scheme="https://herenpeng.github.io/tags/Vue/"/>
+    
+    <category term="WebStrom" scheme="https://herenpeng.github.io/tags/WebStrom/"/>
     
   </entry>
   
@@ -350,6 +350,25 @@
   </entry>
   
   <entry>
+    <title>JavaScript 导出 table 为 Excel 表格</title>
+    <link href="https://herenpeng.github.io/2021/07/05/javascript/JavaScript%20%E5%AF%BC%E5%87%BA%20table%20%E4%B8%BA%20Excel%20%E8%A1%A8%E6%A0%BC/"/>
+    <id>https://herenpeng.github.io/2021/07/05/javascript/JavaScript%20%E5%AF%BC%E5%87%BA%20table%20%E4%B8%BA%20Excel%20%E8%A1%A8%E6%A0%BC/</id>
+    <published>2021-07-05T14:50:23.000Z</published>
+    <updated>2021-07-05T14:50:23.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;JavaScript 是一种可以运行在浏览器中的语言，结合浏览器，JavaScript 可以实现非常多的功能。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="JavaScript" scheme="https://herenpeng.github.io/categories/JavaScript/"/>
+    
+    
+    <category term="JavaScript" scheme="https://herenpeng.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
     <title>MyBatisPlus升级3.4.3.1版本报错：MybatisConfiguration$StrictMap$Ambiguity cannot be cast to ResultMap</title>
     <link href="https://herenpeng.github.io/2021/06/29/java/MyBatisPlus%E5%8D%87%E7%BA%A73.4.3.1%E7%89%88%E6%9C%AC%E6%8A%A5%E9%94%99/"/>
     <id>https://herenpeng.github.io/2021/06/29/java/MyBatisPlus%E5%8D%87%E7%BA%A73.4.3.1%E7%89%88%E6%9C%AC%E6%8A%A5%E9%94%99/</id>
@@ -392,6 +411,30 @@
   </entry>
   
   <entry>
+    <title>SpringBoot（八）：基于MyBatisPlus的基类抽取</title>
+    <link href="https://herenpeng.github.io/2021/06/27/java/SpringBoot%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8EMyBatisPlus%E7%9A%84%E5%9F%BA%E7%B1%BB%E6%8A%BD%E5%8F%96/"/>
+    <id>https://herenpeng.github.io/2021/06/27/java/SpringBoot%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8EMyBatisPlus%E7%9A%84%E5%9F%BA%E7%B1%BB%E6%8A%BD%E5%8F%96/</id>
+    <published>2021-06-27T12:45:11.000Z</published>
+    <updated>2021-06-27T12:45:11.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;什么是基类？&quot;&gt;&lt;a href=&quot;#什么是基类？&quot; class=&quot;headerlink&quot; title=&quot;什么是基类？&quot;&gt;&lt;/a&gt;什么是基类？&lt;/h1&gt;&lt;p&gt;在 Web 项目中，基于实体类衍生出来的 Mapper 接口，Service 业务层， Controller 层等等，在一些功能上都会有一些基础的通用的代码。这些代码通用性强，重复率高，在每个类中写这些代码的意义不大。&lt;/p&gt;
+&lt;p&gt;而基类就是在这些通用代码的基础上，进行重复代码的抽取，从而实现了代码的复用，其它 Java 类只需要继承基类，就可以拥有这些通用代码的功能。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+    <category term="MyBatisPlus" scheme="https://herenpeng.github.io/tags/MyBatisPlus/"/>
+    
+    <category term="SpringBoot" scheme="https://herenpeng.github.io/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
     <title>LeetCode：盛最多水的容器</title>
     <link href="https://herenpeng.github.io/2021/06/19/algorithm/LeetCode%EF%BC%9A%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/"/>
     <id>https://herenpeng.github.io/2021/06/19/algorithm/LeetCode%EF%BC%9A%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/</id>
@@ -409,48 +452,6 @@
     
     
     <category term="LeetCode" scheme="https://herenpeng.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode：删除有序数组中的重复项</title>
-    <link href="https://herenpeng.github.io/2021/06/17/algorithm/LeetCode%EF%BC%9A%E5%88%A0%E9%99%A4%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/"/>
-    <id>https://herenpeng.github.io/2021/06/17/algorithm/LeetCode%EF%BC%9A%E5%88%A0%E9%99%A4%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</id>
-    <published>2021-06-17T14:29:52.000Z</published>
-    <updated>2021-06-17T14:29:52.000Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;给你一个有序数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。&lt;br&gt;不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。 &lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://herenpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="LeetCode" scheme="https://herenpeng.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IDEA 插件 Alibaba Cloud Toolkit，一键部署前后端项目</title>
-    <link href="https://herenpeng.github.io/2021/05/31/tool/IDEA%20%E6%8F%92%E4%BB%B6%20Alibaba%20Cloud%20Toolkit%EF%BC%8C%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E5%89%8D%E5%90%8E%E7%AB%AF%E9%A1%B9%E7%9B%AE/"/>
-    <id>https://herenpeng.github.io/2021/05/31/tool/IDEA%20%E6%8F%92%E4%BB%B6%20Alibaba%20Cloud%20Toolkit%EF%BC%8C%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E5%89%8D%E5%90%8E%E7%AB%AF%E9%A1%B9%E7%9B%AE/</id>
-    <published>2021-05-31T15:47:45.000Z</published>
-    <updated>2021-05-31T15:47:45.000Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;Alibaba-Cloud-Toolkit&quot;&gt;&lt;a href=&quot;#Alibaba-Cloud-Toolkit&quot; class=&quot;headerlink&quot; title=&quot;Alibaba Cloud Toolkit&quot;&gt;&lt;/a&gt;Alibaba Cloud Toolkit&lt;/h1&gt;&lt;p&gt;Alibaba Cloud Toolkit，顾名思义，这是一个由阿里开发的，用于快速部署云服务项目的 IDEA 插件工具。&lt;br&gt;使用该插件，可以在本地直接一键部署项目到云端服务器。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="开发工具" scheme="https://herenpeng.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
-    
-    
-    <category term="IDEA" scheme="https://herenpeng.github.io/tags/IDEA/"/>
-    
-    <category term="Alibaba" scheme="https://herenpeng.github.io/tags/Alibaba/"/>
     
   </entry>
   
