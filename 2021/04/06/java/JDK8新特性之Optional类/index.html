@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"herenpeng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"expandIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="什么是 Optional 类？Optional 是 JDK8 新增加的一个工具类，位于 java.util 包下。 Optional 类是一个可以为 null 的容器对象。如果值存在则 isPresent() 方法会返回 true，调用 get() 方法会返回该对象。 Optional 是个容器：它可以保存类型 T 的值，或者仅仅保存null。Optional提供很多有用的方法，这样我们就不用显式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JDK8新特性之Optional类">
+<meta property="og:url" content="https://herenpeng.github.io/2021/04/06/java/JDK8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BOptional%E7%B1%BB/index.html">
+<meta property="og:site_name" content="懒羊羊的青草蛋糕">
+<meta property="og:description" content="什么是 Optional 类？Optional 是 JDK8 新增加的一个工具类，位于 java.util 包下。 Optional 类是一个可以为 null 的容器对象。如果值存在则 isPresent() 方法会返回 true，调用 get() 方法会返回该对象。 Optional 是个容器：它可以保存类型 T 的值，或者仅仅保存null。Optional提供很多有用的方法，这样我们就不用显式">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-06T09:35:42.000Z">
+<meta property="article:modified_time" content="2021-04-06T09:35:42.000Z">
+<meta property="article:author" content="次时代小羊">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://herenpeng.github.io/2021/04/06/java/JDK8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BOptional%E7%B1%BB/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>JDK8新特性之Optional类 | 懒羊羊的青草蛋糕</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="懒羊羊的青草蛋糕" type="application/atom+xml">
+</head>
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/schemes/fireworks.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">懒羊羊的青草蛋糕</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">每一秒钟的时间都值得铭记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">91</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">42</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">11</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/herenpeng" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2021/04/06/java/JDK8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BOptional%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="次时代小羊">
+      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懒羊羊的青草蛋糕">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JDK8新特性之Optional类
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-06 17:35:42" itemprop="dateCreated datePublished" datetime="2021-04-06T17:35:42+08:00">2021-04-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="什么是-Optional-类？"><a href="#什么是-Optional-类？" class="headerlink" title="什么是 Optional 类？"></a>什么是 Optional 类？</h1><p>Optional 是 JDK8 新增加的一个工具类，位于 <code>java.util</code> 包下。</p>
+<p>Optional 类是一个可以为 <code>null</code> 的容器对象。如果值存在则 isPresent() 方法会返回 <code>true</code>，调用 get() 方法会返回该对象。</p>
+<p>Optional 是个容器：它可以保存类型 <code>T</code> 的值，或者仅仅保存null。Optional提供很多有用的方法，这样我们就不用显式进行空值检测。</p>
+<p>Optional 类的引入很好的解决空指针异常（微笑）。</p>
+<span id="more"></span>
+
+<h1 id="Optional-类的方法及使用"><a href="#Optional-类的方法及使用" class="headerlink" title="Optional 类的方法及使用"></a>Optional 类的方法及使用</h1><p>Optional 类中提供了一些常用的方法，同时结合 JDK8 的 Lambda 新特性使用，能够更加方便。</p>
+<h2 id="私有构造"><a href="#私有构造" class="headerlink" title="私有构造"></a>私有构造</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="title function_">Optional</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.value = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 Optional 类中，构造函数被私有访问修饰符修饰，也就意味着我们无法使用 <code>new</code> 关键字来创建对象。</p>
+<h2 id="empty"><a href="#empty" class="headerlink" title="empty()"></a>empty()</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Optional&lt;User&gt; empty = Optional.empty();</span><br><span class="line">System.out.println(empty != <span class="literal">null</span>);</span><br><span class="line">System.out.println(empty);</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>Optional</code> 类的静态方法 <code>empty()</code> ，可以创建一个容器内值为 <code>null</code> 的 <code>Optional</code> 对象。使用该方法，得到的 <code>Optional</code> 类是存在的，只不过该类中的值为 <code>null</code>。</p>
+<p>源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Optional&lt;?&gt; EMPTY = <span class="keyword">new</span> <span class="title class_">Optional</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span>&lt;T&gt; Optional&lt;T&gt; <span class="title function_">empty</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">    Optional&lt;T&gt; t = (Optional&lt;T&gt;) EMPTY;</span><br><span class="line">    <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="of-T-value"><a href="#of-T-value" class="headerlink" title="of(T value)"></a>of(T value)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">User</span> <span class="variable">user1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">Optional&lt;User&gt; optionalUser1 = Optional.of(user1);</span><br><span class="line"><span class="type">User</span> <span class="variable">user2</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">Optional&lt;User&gt; optionalUser2 = Optional.of(user2);</span><br></pre></td></tr></table></figure>
+
+<p><code>of(T value)</code> 方法是 <code>Optional</code> 类创建容器的主要方法，使用该方法，可以创建一个泛型为 <code>T</code> 的 <code>Optional</code> 容器，并向容器内注入一个值对象。</p>
+<p>需要注意的是，使用 <code>of(T value)</code> 方法，参数不可以为 <code>null</code>，否则程序会报空指针异常。</p>
+<p>源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; Optional&lt;T&gt; <span class="title function_">of</span><span class="params">(T value)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Optional</span>&lt;&gt;(value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="title function_">Optional</span><span class="params">(T value)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.value = Objects.requireNonNull(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T <span class="title function_">requireNonNull</span><span class="params">(T obj)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (obj == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NullPointerException</span>();</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ofNullable-T-value"><a href="#ofNullable-T-value" class="headerlink" title="ofNullable(T value)"></a>ofNullable(T value)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">User</span> <span class="variable">user1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">Optional&lt;User&gt; optionalUser1 = Optional.ofNullable(user1);</span><br><span class="line"><span class="type">User</span> <span class="variable">user2</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">Optional&lt;User&gt; optionalUser2 = Optional.ofNullable(user2);</span><br></pre></td></tr></table></figure>
+
+<p><code>ofNullable(T value)</code> 方法和 <code>of(T value)</code> 方法唯一的区别在于，参数可以为 <code>null</code>，如果参数为 <code>null</code>，会调用 <code>empty()</code> 方法返回一个空的 <code>Optional</code> 对象。</p>
+<p>源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; Optional&lt;T&gt; <span class="title function_">ofNullable</span><span class="params">(T value)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> value == <span class="literal">null</span> ? empty() : of(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="get"><a href="#get" class="headerlink" title="get()"></a>get()</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">User</span> <span class="variable">user1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">Optional&lt;User&gt; optionalUser1 = Optional.ofNullable(user1);</span><br><span class="line">optionalUser1.get();</span><br><span class="line"><span class="type">User</span> <span class="variable">user2</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">Optional&lt;User&gt; optionalUser2 = Optional.ofNullable(user2);</span><br><span class="line">optionalUser2.get();</span><br></pre></td></tr></table></figure>
+<p><code>get()</code> 方法，用于返回 <code>Optional</code> 容器中的值对象。但是如果 <code>Optional</code> 容器为一个空容器，即内部的值为 <code>null</code>，则会抛出 <code>NoSuchElementException</code> 异常。</p>
+<p>源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> T <span class="title function_">get</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (value == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NoSuchElementException</span>(<span class="string">&quot;No value present&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="isPresent"><a href="#isPresent" class="headerlink" title="isPresent()"></a>isPresent()</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">User</span> <span class="variable">user1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">Optional&lt;User&gt; optionalUser1 = Optional.ofNullable(user1);</span><br><span class="line">System.out.println(optionalUser1.isPresent());</span><br><span class="line"><span class="type">User</span> <span class="variable">user2</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">Optional&lt;User&gt; optionalUser2 = Optional.ofNullable(user2);</span><br><span class="line">System.out.println(optionalUser2.isPresent());</span><br></pre></td></tr></table></figure>
+<p><code>isPresent()</code> 方法，用于判断 <code>Optional</code> 容器内是否有值，有则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isPresent</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> value != <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ifPresent-Consumer-lt-super-T-gt-consumer"><a href="#ifPresent-Consumer-lt-super-T-gt-consumer" class="headerlink" title="ifPresent(Consumer&lt;? super T&gt; consumer)"></a>ifPresent(Consumer&lt;? super T&gt; consumer)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">User</span> <span class="variable">user1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">Optional&lt;User&gt; optionalUser1 = Optional.ofNullable(user1);</span><br><span class="line">optionalUser1.ifPresent((o) -&gt; System.out.println(o));</span><br><span class="line"><span class="type">User</span> <span class="variable">user2</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">Optional&lt;User&gt; optionalUser2 = Optional.ofNullable(user2);</span><br><span class="line">optionalUser2.ifPresent((o) -&gt; System.out.println(o));</span><br></pre></td></tr></table></figure>
+
+<p><code>ifPresent(Consumer&lt;? super T&gt; consumer)</code> 方法，参数是一个消费型函数式接口，可以配合 Lambda 表达式使用。<br>该方法的作用为：如果 <code>Optional</code> 容器中有值，则执行 <code>Consumer</code> 接口中的方法，否则不做其他任何操作。</p>
+<p>源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">ifPresent</span><span class="params">(Consumer&lt;? <span class="built_in">super</span> T&gt; consumer)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (value != <span class="literal">null</span>)</span><br><span class="line">        consumer.accept(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="filter-Predicate-lt-super-T-gt-predicate"><a href="#filter-Predicate-lt-super-T-gt-predicate" class="headerlink" title="filter(Predicate&lt;? super T&gt; predicate)"></a>filter(Predicate&lt;? super T&gt; predicate)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">User</span> <span class="variable">user1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">user1.setUsername(<span class="string">&quot;zhangsan&quot;</span>);</span><br><span class="line">Optional&lt;User&gt; optionalUser1 = Optional.ofNullable(user1);</span><br><span class="line">System.out.println(optionalUser1.filter((o) -&gt; o.getUsername().equals(<span class="string">&quot;zhangsan&quot;</span>)));;</span><br><span class="line"></span><br><span class="line"><span class="type">User</span> <span class="variable">user2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">user2.setUsername(<span class="string">&quot;lisi&quot;</span>);</span><br><span class="line">Optional&lt;User&gt; optionalUser2 = Optional.ofNullable(user2);</span><br><span class="line">System.out.println(optionalUser2.filter((o) -&gt; o.getUsername().equals(<span class="string">&quot;zhangsan&quot;</span>)));;</span><br></pre></td></tr></table></figure>
+
+<p><code>filter(Predicate&lt;? super T&gt; predicate)</code> 方法用于过滤 <code>Optional</code> 容器中的值，如果 容器内的值符合 <code>Predicate</code> 函数所定义的接口，即返回 <code>true</code>，则返回原来的 <code>Optional</code> 对象，否则返回空的 <code>Optional</code> 容器对象。</p>
+<p>源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Optional&lt;T&gt; <span class="title function_">filter</span><span class="params">(Predicate&lt;? <span class="built_in">super</span> T&gt; predicate)</span> &#123;</span><br><span class="line">    Objects.requireNonNull(predicate);</span><br><span class="line">    <span class="keyword">if</span> (!isPresent())</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> predicate.test(value) ? <span class="built_in">this</span> : empty();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="map-Function-lt-super-T-extends-U-gt-mapper"><a href="#map-Function-lt-super-T-extends-U-gt-mapper" class="headerlink" title="map(Function&lt;? super T, ? extends U&gt; mapper)"></a>map(Function&lt;? super T, ? extends U&gt; mapper)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">User</span> <span class="variable">user1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">user1.setUsername(<span class="string">&quot;zhangsan&quot;</span>);</span><br><span class="line">Optional&lt;User&gt; optionalUser1 = Optional.ofNullable(user1);</span><br><span class="line">System.out.println(optionalUser1.map((o) -&gt; o.getUsername()).get());</span><br></pre></td></tr></table></figure>
+
+<p><code>map(Function&lt;? super T, ? extends U&gt; mapper)</code> 方法，可以将 <code>Optional</code> 容器内的值替换为其他类型的值，具体的替换规则由 <code>Function</code> 函数定义。<br>例如上面的代码中，将 <code>User</code> 类型的 <code>Optional</code> 容器替换为了 <code>String</code> 类型的 <code>Optional</code> 容器。</p>
+<p>源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>&lt;U&gt; Optional&lt;U&gt; <span class="title function_">map</span><span class="params">(Function&lt;? <span class="built_in">super</span> T, ? extends U&gt; mapper)</span> &#123;</span><br><span class="line">    Objects.requireNonNull(mapper);</span><br><span class="line">    <span class="keyword">if</span> (!isPresent())</span><br><span class="line">        <span class="keyword">return</span> empty();</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Optional.ofNullable(mapper.apply(value));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="flatMap-Function-lt-super-T-Optional-gt-mapper"><a href="#flatMap-Function-lt-super-T-Optional-gt-mapper" class="headerlink" title="flatMap(Function&lt;? super T, Optional&gt; mapper)"></a>flatMap(Function&lt;? super T, Optional<U>&gt; mapper)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">User</span> <span class="variable">user1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">user1.setUsername(<span class="string">&quot;zhangsan&quot;</span>);</span><br><span class="line">Optional&lt;User&gt; optionalUser1 = Optional.ofNullable(user1);</span><br><span class="line">System.out.println(optionalUser1.flatMap((o) -&gt; Optional.ofNullable(o.getUsername())).get());</span><br></pre></td></tr></table></figure>
+
+<p>该方法与 <code>map(Function&lt;? super T, ? extends U&gt; mapper)</code> 方法类似，不过该方法要求在 <code>Function</code> 函数中返回 <code>Optional</code> 对象，并且返回的 <code>Optional</code> 对象不允许为 <code>null</code>。</p>
+<p>源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>&lt;U&gt; Optional&lt;U&gt; <span class="title function_">flatMap</span><span class="params">(Function&lt;? <span class="built_in">super</span> T, Optional&lt;U&gt;&gt; mapper)</span> &#123;</span><br><span class="line">    Objects.requireNonNull(mapper);</span><br><span class="line">    <span class="keyword">if</span> (!isPresent())</span><br><span class="line">        <span class="keyword">return</span> empty();</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Objects.requireNonNull(mapper.apply(value));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="orElse-T-other"><a href="#orElse-T-other" class="headerlink" title="orElse(T other)"></a>orElse(T other)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">User</span> <span class="variable">user1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">Optional&lt;User&gt; optionalUser1 = Optional.ofNullable(user1);</span><br><span class="line"><span class="type">User</span> <span class="variable">user2</span> <span class="operator">=</span> optionalUser1.orElse(<span class="keyword">new</span> <span class="title class_">User</span>());</span><br><span class="line">System.out.println(user1 == user2);</span><br></pre></td></tr></table></figure>
+
+<p> <code>orElse(T other)</code> 方法和 <code>get()</code> 方法类似，不过比 <code>get()</code> 方法多了一层保险机制，如果 <code>Optional</code> 容器中的值为 <code>null</code>，则会返回 <code>orElse(T other)</code> 方法参数中的对象，该参数类型必须和 <code>Optional</code> 泛型类型一致。</p>
+<p>源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> T <span class="title function_">orElse</span><span class="params">(T other)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> value != <span class="literal">null</span> ? value : other;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="orElseGet-Supplier-lt-extends-T-gt-other"><a href="#orElseGet-Supplier-lt-extends-T-gt-other" class="headerlink" title="orElseGet(Supplier&lt;? extends T&gt; other)"></a>orElseGet(Supplier&lt;? extends T&gt; other)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">User</span> <span class="variable">user1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">Optional&lt;User&gt; optionalUser1 = Optional.ofNullable(user1);</span><br><span class="line"><span class="type">User</span> <span class="variable">user2</span> <span class="operator">=</span> optionalUser1.orElseGet(() -&gt; <span class="keyword">new</span> <span class="title class_">User</span>());</span><br><span class="line">System.out.println(user1 == user2);</span><br></pre></td></tr></table></figure>
+
+<p>该方法和功能类似，不过和 orElse(T other) 方法不同的是， <code>Optional</code> 容器中的值为 <code>null</code>时返回的对象通过生产型函数接口来创建并返回。</p>
+<p>源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> T <span class="title function_">orElseGet</span><span class="params">(Supplier&lt;? extends T&gt; other)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> value != <span class="literal">null</span> ? value : other.get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="orElseThrow-Supplier-lt-extends-X-gt-exceptionSupplier"><a href="#orElseThrow-Supplier-lt-extends-X-gt-exceptionSupplier" class="headerlink" title="orElseThrow(Supplier&lt;? extends X&gt; exceptionSupplier)"></a>orElseThrow(Supplier&lt;? extends X&gt; exceptionSupplier)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">User</span> <span class="variable">user1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">Optional&lt;User&gt; optionalUser1 = Optional.ofNullable(user1);</span><br><span class="line"><span class="type">User</span> <span class="variable">user2</span> <span class="operator">=</span> optionalUser1.orElseThrow(() -&gt; <span class="keyword">new</span> <span class="title class_">Exception</span>(<span class="string">&quot;抛出异常信息&quot;</span>));</span><br><span class="line">System.out.println(user1 == user2);</span><br></pre></td></tr></table></figure>
+
+<p>该方法的逻辑和 <code>orElse(T other)</code>、<code>orElseGet(Supplier&lt;? extends T&gt; other)</code> 基本类似，不过当 <code>Optional</code> 容器的值为 <code>null</code> 时，会抛出生产型函数返回的异常对象。</p>
+<p>源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;X <span class="keyword">extends</span> <span class="title class_">Throwable</span>&gt; T <span class="title function_">orElseThrow</span><span class="params">(Supplier&lt;? extends X&gt; exceptionSupplier)</span> <span class="keyword">throws</span> X &#123;</span><br><span class="line">    <span class="keyword">if</span> (value != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> exceptionSupplier.get();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h2><p><code>Optional</code> 类除了上述的特有方法之外，还重写了 <code>equals()</code>、<code>hashCode()</code>、<code>toString()</code> 等通用方法，在本篇文章中不做过多的讲述。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="次时代小羊 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="次时代小羊 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>次时代小羊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://herenpeng.github.io/2021/04/06/java/JDK8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BOptional%E7%B1%BB/" title="JDK8新特性之Optional类">https://herenpeng.github.io/2021/04/06/java/JDK8新特性之Optional类/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/27/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E8%81%8A%E8%81%8A%E4%BD%A0%E6%89%80%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" rel="prev" title="排序算法之聊聊你所不知道的冒泡排序">
+      <i class="fa fa-chevron-left"></i> 排序算法之聊聊你所不知道的冒泡排序
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/17/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="next" title="排序算法之快速排序">
+      排序算法之快速排序 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  <div>
+    
+      <div>
+    
+        <div style="text-align:center;color: #9f9f9f;font-size:14px;">-------------这是我的底线^_^-------------</div>
+    
+</div>
+
+    
+  </div>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Optional-%E7%B1%BB%EF%BC%9F"><span class="nav-text">什么是 Optional 类？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Optional-%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95%E5%8F%8A%E4%BD%BF%E7%94%A8"><span class="nav-text">Optional 类的方法及使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%81%E6%9C%89%E6%9E%84%E9%80%A0"><span class="nav-text">私有构造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#empty"><span class="nav-text">empty()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#of-T-value"><span class="nav-text">of(T value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ofNullable-T-value"><span class="nav-text">ofNullable(T value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#get"><span class="nav-text">get()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isPresent"><span class="nav-text">isPresent()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ifPresent-Consumer-lt-super-T-gt-consumer"><span class="nav-text">ifPresent(Consumer&lt;? super T&gt; consumer)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#filter-Predicate-lt-super-T-gt-predicate"><span class="nav-text">filter(Predicate&lt;? super T&gt; predicate)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#map-Function-lt-super-T-extends-U-gt-mapper"><span class="nav-text">map(Function&lt;? super T, ? extends U&gt; mapper)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flatMap-Function-lt-super-T-Optional-gt-mapper"><span class="nav-text">flatMap(Function&lt;? super T, Optional&gt; mapper)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orElse-T-other"><span class="nav-text">orElse(T other)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orElseGet-Supplier-lt-extends-T-gt-other"><span class="nav-text">orElseGet(Supplier&lt;? extends T&gt; other)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orElseThrow-Supplier-lt-extends-X-gt-exceptionSupplier"><span class="nav-text">orElseThrow(Supplier&lt;? extends X&gt; exceptionSupplier)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95"><span class="nav-text">其他方法</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="次时代小羊"
+      src="/images/author.jpg">
+  <p class="site-author-name" itemprop="name">次时代小羊</p>
+  <div class="site-description" itemprop="description">记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹</div>
+
+  <div>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86
+    src="//music.163.com/outchain/player?type=2&id=1966782828&auto=1&height=66"></iframe>
+  </div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/herenpeng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;herenpeng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_45193304" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45193304" rel="noopener" target="_blank"><i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/herenpeng" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;herenpeng" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:he.ren.peng@qq.com" title="E-Mail → mailto:he.ren.peng@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="">
+    <a target="_blank" class="social-link" href="/atom.xml" style="color: burlywood;">
+      <span class="icon">
+        <i class="fa fa-rss"></i>
+      </span>
+      <span class="label">RSS</span>
+    </a>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+
+  </aside>
+
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">次时代小羊</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">270k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:06</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="90" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

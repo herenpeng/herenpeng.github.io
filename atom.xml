@@ -6,7 +6,7 @@
   <link href="https://herenpeng.github.io/atom.xml" rel="self"/>
   
   <link href="https://herenpeng.github.io/"/>
-  <updated>2023-02-18T09:34:32.364Z</updated>
+  <updated>2023-02-25T15:42:32.344Z</updated>
   <id>https://herenpeng.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://herenpeng.github.io/2023/02/18/java/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E5%86%99%E5%BA%8F%E5%88%97%E5%8C%96%E5%B7%A5%E5%85%B7/"/>
     <id>https://herenpeng.github.io/2023/02/18/java/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E5%86%99%E5%BA%8F%E5%88%97%E5%8C%96%E5%B7%A5%E5%85%B7/</id>
     <published>2023-02-18T04:23:00.000Z</published>
-    <updated>2023-02-18T09:34:32.364Z</updated>
+    <updated>2023-02-25T15:42:32.344Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;什么是序列化？&quot;&gt;&lt;a href=&quot;#什么是序列化？&quot; class=&quot;headerlink&quot; title=&quot;什么是序列化？&quot;&gt;&lt;/a&gt;什么是序列化？&lt;/h2&gt;&lt;p&gt;总所周知，在Java语言中，所有的数据都是以对象的形式存在Java堆中。&lt;/p&gt;
@@ -65,7 +65,7 @@
     <link href="https://herenpeng.github.io/2022/02/14/java/ProtoBuf%E5%85%A5%E9%97%A8/"/>
     <id>https://herenpeng.github.io/2022/02/14/java/ProtoBuf%E5%85%A5%E9%97%A8/</id>
     <published>2022-02-14T07:17:11.000Z</published>
-    <updated>2023-02-18T09:43:34.968Z</updated>
+    <updated>2023-02-25T15:42:32.496Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;什么是-ProtoBuf&quot;&gt;&lt;a href=&quot;#什么是-ProtoBuf&quot; class=&quot;headerlink&quot; title=&quot;什么是 ProtoBuf&quot;&gt;&lt;/a&gt;什么是 ProtoBuf&lt;/h2&gt;&lt;p&gt;&lt;code&gt;protocol buffers&lt;/code&gt; 是一种语言无关、平台无关、可扩展的序列化结构数据的方法，它可用于（数据）通信协议、数据存储等。&lt;/p&gt;
@@ -88,7 +88,7 @@
     <link href="https://herenpeng.github.io/2021/11/29/python/Python%E5%BA%8F%E5%88%97/"/>
     <id>https://herenpeng.github.io/2021/11/29/python/Python%E5%BA%8F%E5%88%97/</id>
     <published>2021-11-28T22:00:00.000Z</published>
-    <updated>2023-02-18T09:54:30.127Z</updated>
+    <updated>2023-02-25T15:42:32.505Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -109,7 +109,7 @@
     <link href="https://herenpeng.github.io/2021/11/21/python/Python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
     <id>https://herenpeng.github.io/2021/11/21/python/Python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</id>
     <published>2021-11-21T07:51:43.000Z</published>
-    <updated>2023-02-18T09:50:28.722Z</updated>
+    <updated>2023-02-25T15:42:32.047Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -130,7 +130,7 @@
     <link href="https://herenpeng.github.io/2021/08/30/javascript/WebStrom%20%E5%BC%80%E5%8F%91%20Vue%20%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%AE%89%E8%A3%85%20ESLint%20%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E6%A3%80%E6%9F%A5%E5%B7%A5%E5%85%B7/"/>
     <id>https://herenpeng.github.io/2021/08/30/javascript/WebStrom%20%E5%BC%80%E5%8F%91%20Vue%20%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%AE%89%E8%A3%85%20ESLint%20%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E6%A3%80%E6%9F%A5%E5%B7%A5%E5%85%B7/</id>
     <published>2021-08-30T01:02:20.000Z</published>
-    <updated>2023-02-18T09:35:27.184Z</updated>
+    <updated>2023-02-25T15:42:32.152Z</updated>
     
     
     <summary type="html">&lt;p&gt;WebStrom 开发 Vue 项目，安装 ESLint 代码风格检查工具&lt;/p&gt;</summary>
@@ -149,11 +149,34 @@
   </entry>
   
   <entry>
+    <title>Netty4入门教程，搭建简单的Netty服务端和客户端</title>
+    <link href="https://herenpeng.github.io/2021/08/25/java/Netty4%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%EF%BC%8C%E6%90%AD%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84Netty%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/"/>
+    <id>https://herenpeng.github.io/2021/08/25/java/Netty4%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%EF%BC%8C%E6%90%AD%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84Netty%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/</id>
+    <published>2021-08-25T09:05:17.000Z</published>
+    <updated>2021-08-25T09:05:17.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;什么是-Netty&quot;&gt;&lt;a href=&quot;#什么是-Netty&quot; class=&quot;headerlink&quot; title=&quot;什么是 Netty?&quot;&gt;&lt;/a&gt;什么是 Netty?&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;Netty 是 jboss 提供的一个 Java 开源框架，Netty 提供异步的、事件驱动的网络应用程序框架和工具，用以快速开发高性能、高可用性的网络服务器和客户端程序。也就是说 Netty 是一个基于 NIO 的编程框架，使用 Netty 可以快速的开发出一个网络应用。&lt;br&gt;由于 Java 自带的 NIO API 使用起来非常复杂，并且还可能出现 Epoll Bug，这使得我们使用原生的 NIO 来进行网络编程存在很大的难度且非常耗时。但是 Netty 良好的设计可以使开发人员快速高效的进行网络应用开发。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+    <category term="Netty" scheme="https://herenpeng.github.io/tags/Netty/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java位运算，Int类型存储用户的登录足迹</title>
     <link href="https://herenpeng.github.io/2021/08/23/java/Java%E4%BD%8D%E8%BF%90%E7%AE%97%EF%BC%8CInt%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%82%A8%E7%94%A8%E6%88%B7%E7%9A%84%E7%99%BB%E5%BD%95%E8%B6%B3%E8%BF%B9/"/>
     <id>https://herenpeng.github.io/2021/08/23/java/Java%E4%BD%8D%E8%BF%90%E7%AE%97%EF%BC%8CInt%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%82%A8%E7%94%A8%E6%88%B7%E7%9A%84%E7%99%BB%E5%BD%95%E8%B6%B3%E8%BF%B9/</id>
     <published>2021-08-23T15:08:20.000Z</published>
-    <updated>2023-02-18T09:45:43.606Z</updated>
+    <updated>2023-02-25T15:42:32.078Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -175,7 +198,7 @@
     <link href="https://herenpeng.github.io/2021/08/11/java/%E4%BD%8E%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/"/>
     <id>https://herenpeng.github.io/2021/08/11/java/%E4%BD%8E%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/</id>
     <published>2021-08-10T16:21:44.000Z</published>
-    <updated>2023-02-18T09:43:58.650Z</updated>
+    <updated>2023-02-25T15:42:32.370Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -198,7 +221,7 @@
     <link href="https://herenpeng.github.io/2021/08/07/java/%E4%B8%8A%E7%8F%AD%E8%81%8A%E5%A4%A9%EF%BC%8C%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF%E5%B7%A5%E5%85%B7%EF%BC%88%E9%99%84%E6%BA%90%E7%A0%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%89/"/>
     <id>https://herenpeng.github.io/2021/08/07/java/%E4%B8%8A%E7%8F%AD%E8%81%8A%E5%A4%A9%EF%BC%8C%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF%E5%B7%A5%E5%85%B7%EF%BC%88%E9%99%84%E6%BA%90%E7%A0%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%89/</id>
     <published>2021-08-07T02:46:02.000Z</published>
-    <updated>2023-02-18T09:33:22.322Z</updated>
+    <updated>2023-02-25T15:42:32.568Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -213,6 +236,27 @@
     <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
     
     <category term="Netty" scheme="https://herenpeng.github.io/tags/Netty/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【小剧场】Java注解：斩颜良诛文丑，插标卖首尔</title>
+    <link href="https://herenpeng.github.io/2021/08/03/java/%E3%80%90%E5%B0%8F%E5%89%A7%E5%9C%BA%E3%80%91Java%E6%B3%A8%E8%A7%A3%EF%BC%9A%E6%96%A9%E9%A2%9C%E8%89%AF%E8%AF%9B%E6%96%87%E4%B8%91%EF%BC%8C%E6%8F%92%E6%A0%87%E5%8D%96%E9%A6%96%E5%B0%94/"/>
+    <id>https://herenpeng.github.io/2021/08/03/java/%E3%80%90%E5%B0%8F%E5%89%A7%E5%9C%BA%E3%80%91Java%E6%B3%A8%E8%A7%A3%EF%BC%9A%E6%96%A9%E9%A2%9C%E8%89%AF%E8%AF%9B%E6%96%87%E4%B8%91%EF%BC%8C%E6%8F%92%E6%A0%87%E5%8D%96%E9%A6%96%E5%B0%94/</id>
+    <published>2021-08-03T06:23:09.000Z</published>
+    <updated>2021-08-03T06:23:09.000Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;关公举目一望，谓操曰：”吾观颜良，如插标卖首耳！”&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
     
   </entry>
   
@@ -261,6 +305,25 @@
     <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
     
     <category term="MyBatisPlus" scheme="https://herenpeng.github.io/tags/MyBatisPlus/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ServiceLoader加载接口的所有实现</title>
+    <link href="https://herenpeng.github.io/2021/06/27/java/ServiceLoader%E5%8A%A0%E8%BD%BD%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%89%80%E6%9C%89%E5%AE%9E%E7%8E%B0/"/>
+    <id>https://herenpeng.github.io/2021/06/27/java/ServiceLoader%E5%8A%A0%E8%BD%BD%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%89%80%E6%9C%89%E5%AE%9E%E7%8E%B0/</id>
+    <published>2021-06-27T14:21:46.000Z</published>
+    <updated>2021-06-27T14:21:46.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;什么是ServiceLoader？&quot;&gt;&lt;a href=&quot;#什么是ServiceLoader？&quot; class=&quot;headerlink&quot; title=&quot;什么是ServiceLoader？&quot;&gt;&lt;/a&gt;什么是ServiceLoader？&lt;/h1&gt;&lt;p&gt;ServiceLoader 是由 JDK 提供的，在 &lt;code&gt;java.util&lt;/code&gt; 包下的一个工具类，使用该工具类，可以加载一个接口的所有实现类。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
     
   </entry>
   
@@ -345,6 +408,28 @@
   </entry>
   
   <entry>
+    <title>JDK8新特性之Optional类</title>
+    <link href="https://herenpeng.github.io/2021/04/06/java/JDK8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BOptional%E7%B1%BB/"/>
+    <id>https://herenpeng.github.io/2021/04/06/java/JDK8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BOptional%E7%B1%BB/</id>
+    <published>2021-04-06T09:35:42.000Z</published>
+    <updated>2021-04-06T09:35:42.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;什么是-Optional-类？&quot;&gt;&lt;a href=&quot;#什么是-Optional-类？&quot; class=&quot;headerlink&quot; title=&quot;什么是 Optional 类？&quot;&gt;&lt;/a&gt;什么是 Optional 类？&lt;/h1&gt;&lt;p&gt;Optional 是 JDK8 新增加的一个工具类，位于 &lt;code&gt;java.util&lt;/code&gt; 包下。&lt;/p&gt;
+&lt;p&gt;Optional 类是一个可以为 &lt;code&gt;null&lt;/code&gt; 的容器对象。如果值存在则 isPresent() 方法会返回 &lt;code&gt;true&lt;/code&gt;，调用 get() 方法会返回该对象。&lt;/p&gt;
+&lt;p&gt;Optional 是个容器：它可以保存类型 &lt;code&gt;T&lt;/code&gt; 的值，或者仅仅保存null。Optional提供很多有用的方法，这样我们就不用显式进行空值检测。&lt;/p&gt;
+&lt;p&gt;Optional 类的引入很好的解决空指针异常（微笑）。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>排序算法之聊聊你所不知道的冒泡排序</title>
     <link href="https://herenpeng.github.io/2021/03/27/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E8%81%8A%E8%81%8A%E4%BD%A0%E6%89%80%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/"/>
     <id>https://herenpeng.github.io/2021/03/27/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E8%81%8A%E8%81%8A%E4%BD%A0%E6%89%80%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/</id>
@@ -360,86 +445,6 @@
     
     
     <category term="排序算法" scheme="https://herenpeng.github.io/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据结构之什么是二叉堆？</title>
-    <link href="https://herenpeng.github.io/2021/03/06/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8C%E5%8F%89%E5%A0%86/"/>
-    <id>https://herenpeng.github.io/2021/03/06/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8C%E5%8F%89%E5%A0%86/</id>
-    <published>2021-03-06T15:16:40.000Z</published>
-    <updated>2021-03-06T15:16:40.000Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;什么是二叉堆？&quot;&gt;&lt;a href=&quot;#什么是二叉堆？&quot; class=&quot;headerlink&quot; title=&quot;什么是二叉堆？&quot;&gt;&lt;/a&gt;什么是二叉堆？&lt;/h1&gt;&lt;p&gt;二叉堆本质上是一种完全二叉树，它分为两个类型：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;最大堆&lt;/li&gt;
-&lt;li&gt;最小堆</summary>
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://herenpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="堆" scheme="https://herenpeng.github.io/tags/%E5%A0%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据结构之什么是树？</title>
-    <link href="https://herenpeng.github.io/2021/02/28/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E6%A0%91/"/>
-    <id>https://herenpeng.github.io/2021/02/28/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E6%A0%91/</id>
-    <published>2021-02-28T09:27:30.000Z</published>
-    <updated>2021-02-28T09:27:30.000Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;什么是树？&quot;&gt;&lt;a href=&quot;#什么是树？&quot; class=&quot;headerlink&quot; title=&quot;什么是树？&quot;&gt;&lt;/a&gt;什么是树？&lt;/h1&gt;&lt;p&gt;数据结构中的树和现实生活中的树虽然不是同一种事物，但是却有着相同的特点。&lt;/p&gt;
-&lt;p&gt;数据结构中的树，其实就是一种和现实生活中的树有着相似结构的数据逻辑结构，从同一个“根”衍生出许多“枝干”，最后衍生出更多的“叶子”。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://herenpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="树" scheme="https://herenpeng.github.io/tags/%E6%A0%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据结构之什么是链表？</title>
-    <link href="https://herenpeng.github.io/2021/02/24/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E9%93%BE%E8%A1%A8/"/>
-    <id>https://herenpeng.github.io/2021/02/24/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E9%93%BE%E8%A1%A8/</id>
-    <published>2021-02-24T14:28:15.000Z</published>
-    <updated>2021-02-24T14:28:15.000Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;什么是链表？&quot;&gt;&lt;a href=&quot;#什么是链表？&quot; class=&quot;headerlink&quot; title=&quot;什么是链表？&quot;&gt;&lt;/a&gt;什么是链表？&lt;/h1&gt;&lt;p&gt;链表（linked list）是一种在物理上非连续、非顺序的数据结构，由若干个节点（node）所组成。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://herenpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="链表" scheme="https://herenpeng.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据结构之什么是数组？</title>
-    <link href="https://herenpeng.github.io/2021/02/23/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E7%BB%84/"/>
-    <id>https://herenpeng.github.io/2021/02/23/algorithm/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E7%BB%84/</id>
-    <published>2021-02-23T12:31:48.000Z</published>
-    <updated>2021-02-23T12:31:48.000Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;什么是数组？&quot;&gt;&lt;a href=&quot;#什么是数组？&quot; class=&quot;headerlink&quot; title=&quot;什么是数组？&quot;&gt;&lt;/a&gt;什么是数组？&lt;/h1&gt;&lt;p&gt;数组对应的英文是array，是有限个相同类型的变量所组成的有序集合，数组中的每一个变量被称为元素。数组是最为简单、最为常用的数据结构。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://herenpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="数组" scheme="https://herenpeng.github.io/tags/%E6%95%B0%E7%BB%84/"/>
     
   </entry>
   

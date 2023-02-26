@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"herenpeng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"expandIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="File类File是Java中的文件类，用于处理和文件相关的一些操作，例如文件的创建，删除等等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础——File类和IO">
+<meta property="og:url" content="https://herenpeng.github.io/2020/03/09/java/Java%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94File%E7%B1%BB%E5%92%8CIO/index.html">
+<meta property="og:site_name" content="懒羊羊的青草蛋糕">
+<meta property="og:description" content="File类File是Java中的文件类，用于处理和文件相关的一些操作，例如文件的创建，删除等等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://herenpeng.github.io/images/2020/03/20200309001534514.png">
+<meta property="og:image" content="https://herenpeng.github.io/images/2020/03/20200309002348424.png">
+<meta property="article:published_time" content="2020-03-08T16:19:28.000Z">
+<meta property="article:modified_time" content="2020-03-08T16:19:28.000Z">
+<meta property="article:author" content="次时代小羊">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://herenpeng.github.io/images/2020/03/20200309001534514.png">
+
+<link rel="canonical" href="https://herenpeng.github.io/2020/03/09/java/Java%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94File%E7%B1%BB%E5%92%8CIO/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Java基础——File类和IO | 懒羊羊的青草蛋糕</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="懒羊羊的青草蛋糕" type="application/atom+xml">
+</head>
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/schemes/fireworks.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">懒羊羊的青草蛋糕</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">每一秒钟的时间都值得铭记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">91</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">42</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">11</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/herenpeng" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2020/03/09/java/Java%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94File%E7%B1%BB%E5%92%8CIO/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="次时代小羊">
+      <meta itemprop="description" content="记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懒羊羊的青草蛋糕">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java基础——File类和IO
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-09 00:19:28" itemprop="dateCreated datePublished" datetime="2020-03-09T00:19:28+08:00">2020-03-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h2><p>File是Java中的文件类，用于处理和文件相关的一些操作，例如文件的创建，删除等等。</p>
+<span id="more"></span>
+<p><strong>构造方法</strong></p>
+<ul>
+<li>File(File parent, String child)<br>从父抽象路径名和子路径名字符串创建新的 File实例。 </li>
+<li>File(String parent, String child)<br>从父路径名字符串和子路径名字符串创建新的 File实例。 </li>
+<li>File(String pathname)<br>通过将给定的路径名字符串转换为抽象路径名来创建新的 File实例。 </li>
+<li>File(URI uri)<br>通过将给定的 file: URI转换为抽象路径名来创建新的 File实例。 </li>
+</ul>
+<p><strong>常用方法</strong></p>
+<ul>
+<li>boolean mkdir()<br>创建由此抽象路径名命名的目录。  </li>
+<li>boolean mkdirs()<br>创建由此抽象路径名命名的目录，包括任何必需但不存在的父目录。  </li>
+<li>boolean delete()<br>删除由此抽象路径名表示的文件或目录。  </li>
+<li>boolean exists()<br>测试此抽象路径名表示的文件或目录是否存在。  </li>
+<li>String getName()<br>返回由此抽象路径名表示的文件或目录的名称。</li>
+<li>String getPath()<br>将此抽象路径名转换为路径名字符串。</li>
+<li>boolean isDirectory()<br>测试此抽象路径名表示的文件是否为目录。  </li>
+<li>boolean isFile()<br>测试此抽象路径名表示的文件是否为普通文件。  </li>
+<li>String[] list()<br>返回一个字符串数组，命名由此抽象路径名表示的目录中的文件和目录。  </li>
+</ul>
+<h2 id="IO流"><a href="#IO流" class="headerlink" title="IO流"></a>IO流</h2><p>所谓IO流，便是Input和Output，即输入流和输出流，具体是指文件的输入流和输出流。<br>IO流分为很多类，其中最为常用的就是IO字节流和IO字符流，除此之外，还有缓冲流，转换流，序列化流，打印流等等。</p>
+<p><strong>IO字节流</strong><br>IO字节流有两个上层接口，分别是InputStream和OutputStream接口，我们常用的具体实现类有FileInputStream和FileOutputStream，即文件输入字节流和文件输出字节流。</p>
+<ul>
+<li>FileInputStream</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int read(byte[] b)</td>
+<td>从输入流读取一些字节数，并将它们存储到缓冲区 b 。</td>
+</tr>
+<tr>
+<td>void close()</td>
+<td>关闭此输入流并释放与流相关联的任何系统资源。</td>
+</tr>
+</tbody></table>
+<ul>
+<li>FileOutputStream</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void write(byte[] b, int off, int len)</td>
+<td>从指定的字节数组写入 len个字节，从偏移 off开始输出到此输出流。</td>
+</tr>
+<tr>
+<td>void flush()</td>
+<td>刷新此输出流并强制任何缓冲的输出字节被写出。</td>
+</tr>
+<tr>
+<td>void close()</td>
+<td>关闭此输出流并释放与此流相关联的任何系统资源。</td>
+</tr>
+</tbody></table>
+<p><strong>IO字节流代码示例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">	<span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;a.txt&quot;</span>);</span><br><span class="line">	<span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;b.txt&quot;</span>);</span><br><span class="line">	<span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">	<span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>((len = fis.read(bytes)) != -<span class="number">1</span>) &#123;</span><br><span class="line">		fos.write(bytes,<span class="number">0</span>,len);</span><br><span class="line">	&#125;</span><br><span class="line">	fos.flush();</span><br><span class="line">	fos.close();</span><br><span class="line">	fis.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>IO字符流</strong><br>IO字符流有两个上层接口，分别是Reader和Writer接口，我们常用的具体实现类有FileReader和FileWriter，即文件输入字符流和文件输出字符流。</p>
+<ul>
+<li>FileReader</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int read(char ch)</td>
+<td>从输入流读取一些字符数，并将它们存储到缓冲区 b 。</td>
+</tr>
+<tr>
+<td>void close()</td>
+<td>关闭此输入流并释放与流相关联的任何系统资源。</td>
+</tr>
+</tbody></table>
+<ul>
+<li>FileWriter</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void write(char[] b, int off, int len)</td>
+<td>从指定的字符数组写入 len个字节，从偏移 off开始输出到此输出流。</td>
+</tr>
+<tr>
+<td>void flush()</td>
+<td>刷新此输出流并强制任何缓冲的输出字符被写出。</td>
+</tr>
+<tr>
+<td>void close()</td>
+<td>关闭此输出流并释放与此流相关联的任何系统资源。</td>
+</tr>
+</tbody></table>
+<p><strong>IO字符流代码示例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">	<span class="type">FileReader</span> <span class="variable">fr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;a.txt&quot;</span>);</span><br><span class="line">	<span class="type">FileWriter</span> <span class="variable">fw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileWriter</span>(<span class="string">&quot;b.txt&quot;</span>);</span><br><span class="line">	<span class="type">char</span>[] ch = <span class="keyword">new</span> <span class="title class_">char</span>[<span class="number">1024</span>];</span><br><span class="line">	<span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>((len = fr.read(ch)) != -<span class="number">1</span>) &#123;</span><br><span class="line">		fw.write(ch,<span class="number">0</span>,len);</span><br><span class="line">	&#125;</span><br><span class="line">	fw.flush();</span><br><span class="line">	fw.close();</span><br><span class="line">	fr.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="缓冲流"><a href="#缓冲流" class="headerlink" title="缓冲流"></a>缓冲流</h2><p><strong>缓冲字节流</strong></p>
+<ul>
+<li>BufferedInputStream(InputStream in)<br>创建一个 BufferedInputStream并保存其参数，输入流 in ，供以后使用。 </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int read(byte[] b, int off, int len)</td>
+<td>从给定的偏移开始，将字节输入流中的字节读入指定的字节数组。</td>
+</tr>
+<tr>
+<td>void close()</td>
+<td>关闭此输入流并释放与流相关联的任何系统资源。</td>
+</tr>
+</tbody></table>
+<ul>
+<li>BufferedOutputStream(OutputStream out)<br>创建一个新的缓冲输出流，以将数据写入指定的底层输出流。 </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void write(byte[] b, int off, int len)</td>
+<td>从指定的字节数组写入 len个字节，从偏移 off开始到缓冲的输出流。</td>
+</tr>
+<tr>
+<td>void flush()</td>
+<td>刷新缓冲输出流。</td>
+</tr>
+<tr>
+<td>void close()</td>
+<td>关闭此输出流并释放与流相关联的任何系统资源。</td>
+</tr>
+</tbody></table>
+<p><strong>缓冲字节流代码示例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">	<span class="type">BufferedInputStream</span> <span class="variable">bis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;a.txt&quot;</span>));</span><br><span class="line">	<span class="type">BufferedOutputStream</span> <span class="variable">bos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedOutputStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;b.txt&quot;</span>));</span><br><span class="line">	<span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">	<span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>((len = bis.read(bytes)) != -<span class="number">1</span>) &#123;</span><br><span class="line">		bos.write(bytes,<span class="number">0</span>,len);</span><br><span class="line">	&#125;</span><br><span class="line">	bos.flush();</span><br><span class="line">	bos.close();</span><br><span class="line">	bis.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>缓冲字符流</strong></p>
+<ul>
+<li>BufferedReader(Reader in)<br>创建使用默认大小的输入缓冲区的缓冲字符输入流。 </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int read(char[] cbuf, int off, int len)</td>
+<td>将字符读入数组的一部分。</td>
+</tr>
+<tr>
+<td>String readLine()</td>
+<td>读一行文字。</td>
+</tr>
+<tr>
+<td>void close()</td>
+<td>关闭流并释放与之相关联的任何系统资源。</td>
+</tr>
+</tbody></table>
+<ul>
+<li>BufferedWriter(Writer out)<br>创建使用默认大小的输出缓冲区的缓冲字符输出流。 </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void write(char[] cbuf, int off, int len)</td>
+<td>写入字符数组的一部分。</td>
+</tr>
+<tr>
+<td>void newLine()</td>
+<td>写一行行分隔符。</td>
+</tr>
+<tr>
+<td>void flush()</td>
+<td>刷新流。</td>
+</tr>
+<tr>
+<td>void close()</td>
+<td>关闭流，先刷新。</td>
+</tr>
+</tbody></table>
+<p><strong>缓冲字符流代码示例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">	<span class="type">BufferedReader</span> <span class="variable">br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;a.txt&quot;</span>));</span><br><span class="line">	<span class="type">BufferedWriter</span> <span class="variable">bw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedWriter</span>(<span class="keyword">new</span> <span class="title class_">FileWriter</span>(<span class="string">&quot;b.txt&quot;</span>));</span><br><span class="line">	<span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">	<span class="keyword">while</span>((line = br.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">		bw.write(line);</span><br><span class="line">		bw.newLine();</span><br><span class="line">	&#125;</span><br><span class="line">	bw.close();</span><br><span class="line">	br.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="转换流"><a href="#转换流" class="headerlink" title="转换流"></a>转换流</h2><ul>
+<li>InputStreamReader(InputStream in, String charsetName)<br>创建一个使用命名字符集的InputStreamReader。 </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int read(char[] cbuf, int offset, int length)</td>
+<td>将字符读入数组的一部分。</td>
+</tr>
+<tr>
+<td>void close()</td>
+<td>关闭流并释放与之相关联的任何系统资源。</td>
+</tr>
+<tr>
+<td>String getEncoding()</td>
+<td>返回此流使用的字符编码的名称。</td>
+</tr>
+</tbody></table>
+<ul>
+<li>OutputStreamWriter(OutputStream out, String charsetName)<br>创建一个使用命名字符集的OutputStreamWriter。 </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void write(char[] cbuf, int off, int len)</td>
+<td>写入字符数组的一部分。</td>
+</tr>
+<tr>
+<td>void flush()</td>
+<td>刷新流。</td>
+</tr>
+<tr>
+<td>void close()</td>
+<td>关闭流，先刷新。</td>
+</tr>
+<tr>
+<td>String getEncoding()</td>
+<td>返回此流使用的字符编码的名称。</td>
+</tr>
+</tbody></table>
+<p><strong>转换流代码示例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">	<span class="type">InputStreamReader</span> <span class="variable">isr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;a.txt&quot;</span>),<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">	<span class="type">OutputStreamWriter</span> <span class="variable">osw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OutputStreamWriter</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;b.txt&quot;</span>),<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">	<span class="type">char</span>[] ch = <span class="keyword">new</span> <span class="title class_">char</span>[<span class="number">1024</span>];</span><br><span class="line">	<span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>((len = isr.read(ch)) != -<span class="number">1</span>) &#123;</span><br><span class="line">		osw.write(ch,<span class="number">0</span>,len);</span><br><span class="line">	&#125;</span><br><span class="line">	osw.close();</span><br><span class="line">	isr.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="序列化流"><a href="#序列化流" class="headerlink" title="序列化流"></a>序列化流</h2><ul>
+<li>ObjectInputStream(InputStream in)<br>反序列化流：创建从指定的InputStream读取的ObjectInputStream。 </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Object readObject()</td>
+<td>从ObjectInputStream读取一个对象。</td>
+</tr>
+<tr>
+<td>int read(byte[] buf, int off, int len)</td>
+<td>读入一个字节数组。</td>
+</tr>
+</tbody></table>
+<ul>
+<li>ObjectOutputStream(OutputStream out)<br>序列化流：创建一个写入指定的OutputStream的ObjectOutputStream。 </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void writeObject(Object obj)</td>
+<td>将指定的对象写入ObjectOutputStream。</td>
+</tr>
+<tr>
+<td>void write(byte[] buf, int off, int len)</td>
+<td>写入一个子字节数组。</td>
+</tr>
+</tbody></table>
+<p>【注意】需要序列化的对象，必须要实现Serializable接口。</p>
+<p><strong>序列化流代码示例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException &#123;</span><br><span class="line">	<span class="type">ObjectOutputStream</span> <span class="variable">oos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;a.txt&quot;</span>));</span><br><span class="line">	<span class="type">ObjectInputStream</span> <span class="variable">ois</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;a.txt&quot;</span>));</span><br><span class="line">	oos.writeObject(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="number">1</span>,<span class="string">&quot;张三&quot;</span>,<span class="string">&quot;123&quot;</span>));</span><br><span class="line">	<span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> (User) ois.readObject();</span><br><span class="line">	System.out.println(user);</span><br><span class="line">	oos.close();</span><br><span class="line">	ois.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="打印流"><a href="#打印流" class="headerlink" title="打印流"></a>打印流</h2><ul>
+<li>PrintStream(File file)<br>使用指定的文件创建一个新的打印流，而不需要自动换行。 </li>
+<li>PrintStream(String fileName)<br>使用指定的文件名创建新的打印流，无需自动换行。 </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void print(String s)</td>
+<td>打印字符串。</td>
+</tr>
+</tbody></table>
+<p><strong>System.out的本质就是一个打印流</strong></p>
+<p><strong>打印流代码示例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> FileNotFoundException &#123;</span><br><span class="line">	<span class="type">PrintStream</span> <span class="variable">out</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PrintStream</span>(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;a.txt&quot;</span>));</span><br><span class="line">	out.print(<span class="string">&quot;打印流&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h2><p><img src="/images/2020/03/20200309001534514.png" alt="在这里插入图片描述"><br><img src="/images/2020/03/20200309002348424.png" alt="在这里插入图片描述"></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="次时代小羊 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="次时代小羊 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>次时代小羊
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://herenpeng.github.io/2020/03/09/java/Java%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94File%E7%B1%BB%E5%92%8CIO/" title="Java基础——File类和IO">https://herenpeng.github.io/2020/03/09/java/Java基础——File类和IO/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/08/java/Java%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E7%B1%BB%E8%A3%85%E8%BD%BD%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/" rel="prev" title="Java基础——类装载的执行过程">
+      <i class="fa fa-chevron-left"></i> Java基础——类装载的执行过程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/10/java/Java%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="next" title="Java基础——多线程">
+      Java基础——多线程 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  <div>
+    
+      <div>
+    
+        <div style="text-align:center;color: #9f9f9f;font-size:14px;">-------------这是我的底线^_^-------------</div>
+    
+</div>
+
+    
+  </div>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#File%E7%B1%BB"><span class="nav-text">File类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO%E6%B5%81"><span class="nav-text">IO流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%93%E5%86%B2%E6%B5%81"><span class="nav-text">缓冲流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2%E6%B5%81"><span class="nav-text">转换流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E6%B5%81"><span class="nav-text">序列化流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8D%B0%E6%B5%81"><span class="nav-text">打印流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="nav-text">思维导图</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="次时代小羊"
+      src="/images/author.jpg">
+  <p class="site-author-name" itemprop="name">次时代小羊</p>
+  <div class="site-description" itemprop="description">记录我的学习与成长，让这个世界知道，我曾经在这里留下了足迹</div>
+
+  <div>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86
+    src="//music.163.com/outchain/player?type=2&id=1966782828&auto=1&height=66"></iframe>
+  </div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/herenpeng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;herenpeng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_45193304" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45193304" rel="noopener" target="_blank"><i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/herenpeng" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;herenpeng" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:he.ren.peng@qq.com" title="E-Mail → mailto:he.ren.peng@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="">
+    <a target="_blank" class="social-link" href="/atom.xml" style="color: burlywood;">
+      <span class="icon">
+        <i class="fa fa-rss"></i>
+      </span>
+      <span class="label">RSS</span>
+    </a>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+
+  </aside>
+
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">次时代小羊</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">270k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:06</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="90" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
