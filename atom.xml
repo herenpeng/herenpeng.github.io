@@ -6,7 +6,7 @@
   <link href="https://herenpeng.github.io/atom.xml" rel="self"/>
   
   <link href="https://herenpeng.github.io/"/>
-  <updated>2023-02-25T15:42:32.344Z</updated>
+  <updated>2023-03-14T14:21:09.000Z</updated>
   <id>https://herenpeng.github.io/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>推荐几种简洁美观的博客背景效果</title>
+    <link href="https://herenpeng.github.io/2023/03/14/javascript/%E6%8E%A8%E8%8D%90%E5%87%A0%E7%A7%8D%E7%AE%80%E6%B4%81%E7%BE%8E%E8%A7%82%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%83%8C%E6%99%AF%E6%95%88%E6%9E%9C/"/>
+    <id>https://herenpeng.github.io/2023/03/14/javascript/%E6%8E%A8%E8%8D%90%E5%87%A0%E7%A7%8D%E7%AE%80%E6%B4%81%E7%BE%8E%E8%A7%82%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%83%8C%E6%99%AF%E6%95%88%E6%9E%9C/</id>
+    <published>2023-03-14T14:21:09.000Z</published>
+    <updated>2023-03-14T14:21:09.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;在很多的博客网页中，都有一些非常简洁美观的博客动画背景，比如 &lt;code&gt;Canvas-Ribbon&lt;/code&gt;、 &lt;code&gt;three-waves&lt;/code&gt;、 &lt;code&gt;canvas-nest&lt;/code&gt;、 &lt;code&gt;canvas_lines&lt;/code&gt;、 &lt;code&gt;canvas_sphere&lt;/code&gt; 等等。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="JavaScript" scheme="https://herenpeng.github.io/categories/JavaScript/"/>
+    
+    
+    <category term="JavaScript" scheme="https://herenpeng.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://herenpeng.github.io/2023/03/06/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%90%AD%E5%BB%BAGitLab%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>https://herenpeng.github.io/2023/03/06/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%90%AD%E5%BB%BAGitLab%E6%9C%8D%E5%8A%A1%E5%99%A8/</id>
+    <published>2023-03-06T14:06:14.256Z</published>
+    <updated>2023-03-06T14:08:05.023Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;GitLab 是一个用于仓库管理系统的开源项目，使用 Git 作为代码管理工具，并在此基础上搭建起来的Web服务。&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>一篇博客教会你写序列化工具</title>
@@ -407,51 +445,6 @@
     
     
     <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringBoot（八）：基于MyBatisPlus的基类抽取</title>
-    <link href="https://herenpeng.github.io/2021/06/27/java/SpringBoot%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8EMyBatisPlus%E7%9A%84%E5%9F%BA%E7%B1%BB%E6%8A%BD%E5%8F%96/"/>
-    <id>https://herenpeng.github.io/2021/06/27/java/SpringBoot%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8EMyBatisPlus%E7%9A%84%E5%9F%BA%E7%B1%BB%E6%8A%BD%E5%8F%96/</id>
-    <published>2021-06-27T12:45:11.000Z</published>
-    <updated>2021-06-27T12:45:11.000Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;什么是基类？&quot;&gt;&lt;a href=&quot;#什么是基类？&quot; class=&quot;headerlink&quot; title=&quot;什么是基类？&quot;&gt;&lt;/a&gt;什么是基类？&lt;/h1&gt;&lt;p&gt;在 Web 项目中，基于实体类衍生出来的 Mapper 接口，Service 业务层， Controller 层等等，在一些功能上都会有一些基础的通用的代码。这些代码通用性强，重复率高，在每个类中写这些代码的意义不大。&lt;/p&gt;
-&lt;p&gt;而基类就是在这些通用代码的基础上，进行重复代码的抽取，从而实现了代码的复用，其它 Java 类只需要继承基类，就可以拥有这些通用代码的功能。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
-    
-    <category term="MyBatisPlus" scheme="https://herenpeng.github.io/tags/MyBatisPlus/"/>
-    
-    <category term="SpringBoot" scheme="https://herenpeng.github.io/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode：盛最多水的容器</title>
-    <link href="https://herenpeng.github.io/2021/06/19/algorithm/LeetCode%EF%BC%9A%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/"/>
-    <id>https://herenpeng.github.io/2021/06/19/algorithm/LeetCode%EF%BC%9A%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/</id>
-    <published>2021-06-19T07:46:09.000Z</published>
-    <updated>2021-06-19T07:46:09.000Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;给你 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0) 。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。&lt;br&gt;说明：你不能倾斜容器。 &lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://herenpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="LeetCode" scheme="https://herenpeng.github.io/tags/LeetCode/"/>
     
   </entry>
   
