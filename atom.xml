@@ -36,25 +36,6 @@
   </entry>
   
   <entry>
-    <title></title>
-    <link href="https://herenpeng.github.io/2023/03/06/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%90%AD%E5%BB%BAGitLab%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    <id>https://herenpeng.github.io/2023/03/06/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%90%AD%E5%BB%BAGitLab%E6%9C%8D%E5%8A%A1%E5%99%A8/</id>
-    <published>2023-03-06T14:06:14.256Z</published>
-    <updated>2023-03-06T14:08:05.023Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;GitLab 是一个用于仓库管理系统的开源项目，使用 Git 作为代码管理工具，并在此基础上搭建起来的Web服务。&lt;/p&gt;
-</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>一篇博客教会你写序列化工具</title>
     <link href="https://herenpeng.github.io/2023/02/18/java/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E5%86%99%E5%BA%8F%E5%88%97%E5%8C%96%E5%B7%A5%E5%85%B7/"/>
     <id>https://herenpeng.github.io/2023/02/18/java/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E5%86%99%E5%BA%8F%E5%88%97%E5%8C%96%E5%B7%A5%E5%85%B7/</id>
@@ -445,6 +426,30 @@
     
     
     <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot（八）：基于MyBatisPlus的基类抽取</title>
+    <link href="https://herenpeng.github.io/2021/06/27/java/SpringBoot%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8EMyBatisPlus%E7%9A%84%E5%9F%BA%E7%B1%BB%E6%8A%BD%E5%8F%96/"/>
+    <id>https://herenpeng.github.io/2021/06/27/java/SpringBoot%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8EMyBatisPlus%E7%9A%84%E5%9F%BA%E7%B1%BB%E6%8A%BD%E5%8F%96/</id>
+    <published>2021-06-27T12:45:11.000Z</published>
+    <updated>2021-06-27T12:45:11.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;什么是基类？&quot;&gt;&lt;a href=&quot;#什么是基类？&quot; class=&quot;headerlink&quot; title=&quot;什么是基类？&quot;&gt;&lt;/a&gt;什么是基类？&lt;/h1&gt;&lt;p&gt;在 Web 项目中，基于实体类衍生出来的 Mapper 接口，Service 业务层， Controller 层等等，在一些功能上都会有一些基础的通用的代码。这些代码通用性强，重复率高，在每个类中写这些代码的意义不大。&lt;/p&gt;
+&lt;p&gt;而基类就是在这些通用代码的基础上，进行重复代码的抽取，从而实现了代码的复用，其它 Java 类只需要继承基类，就可以拥有这些通用代码的功能。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+    <category term="SpringBoot" scheme="https://herenpeng.github.io/tags/SpringBoot/"/>
+    
+    <category term="MyBatisPlus" scheme="https://herenpeng.github.io/tags/MyBatisPlus/"/>
     
   </entry>
   
