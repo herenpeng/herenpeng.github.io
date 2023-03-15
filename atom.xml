@@ -6,7 +6,7 @@
   <link href="https://herenpeng.github.io/atom.xml" rel="self"/>
   
   <link href="https://herenpeng.github.io/"/>
-  <updated>2023-03-14T14:21:09.000Z</updated>
+  <updated>2023-03-15T12:24:04.473Z</updated>
   <id>https://herenpeng.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用Python写一个一键项目部署工具</title>
+    <link href="https://herenpeng.github.io/2023/03/15/python/%E4%BD%BF%E7%94%A8Python%E5%86%99%E4%B8%80%E4%B8%AA%E4%B8%80%E9%94%AE%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7/"/>
+    <id>https://herenpeng.github.io/2023/03/15/python/%E4%BD%BF%E7%94%A8Python%E5%86%99%E4%B8%80%E4%B8%AA%E4%B8%80%E9%94%AE%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7/</id>
+    <published>2023-03-15T12:07:54.000Z</published>
+    <updated>2023-03-15T12:24:04.473Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;最近在工作中总是需要在开发和测试环境频繁部署项目，之前使用的工具是 &lt;code&gt;filezilla&lt;/code&gt; 和 &lt;code&gt;XShell&lt;/code&gt;，分别用来上传文件和登录远程终端，这两个工具虽然功能强大，但是都需要手动执行操作。&lt;/p&gt;
+&lt;p&gt;为了减少这些繁琐的工作，于是使用功能强大的 &lt;code&gt;Python&lt;/code&gt; 编写了一个一键部署项目的脚本。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Python" scheme="https://herenpeng.github.io/categories/Python/"/>
+    
+    
+    <category term="Python" scheme="https://herenpeng.github.io/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>推荐几种简洁美观的博客背景效果</title>
@@ -426,30 +446,6 @@
     
     
     <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringBoot（八）：基于MyBatisPlus的基类抽取</title>
-    <link href="https://herenpeng.github.io/2021/06/27/java/SpringBoot%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8EMyBatisPlus%E7%9A%84%E5%9F%BA%E7%B1%BB%E6%8A%BD%E5%8F%96/"/>
-    <id>https://herenpeng.github.io/2021/06/27/java/SpringBoot%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8EMyBatisPlus%E7%9A%84%E5%9F%BA%E7%B1%BB%E6%8A%BD%E5%8F%96/</id>
-    <published>2021-06-27T12:45:11.000Z</published>
-    <updated>2021-06-27T12:45:11.000Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;什么是基类？&quot;&gt;&lt;a href=&quot;#什么是基类？&quot; class=&quot;headerlink&quot; title=&quot;什么是基类？&quot;&gt;&lt;/a&gt;什么是基类？&lt;/h1&gt;&lt;p&gt;在 Web 项目中，基于实体类衍生出来的 Mapper 接口，Service 业务层， Controller 层等等，在一些功能上都会有一些基础的通用的代码。这些代码通用性强，重复率高，在每个类中写这些代码的意义不大。&lt;/p&gt;
-&lt;p&gt;而基类就是在这些通用代码的基础上，进行重复代码的抽取，从而实现了代码的复用，其它 Java 类只需要继承基类，就可以拥有这些通用代码的功能。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
-    
-    <category term="SpringBoot" scheme="https://herenpeng.github.io/tags/SpringBoot/"/>
-    
-    <category term="MyBatisPlus" scheme="https://herenpeng.github.io/tags/MyBatisPlus/"/>
     
   </entry>
   
