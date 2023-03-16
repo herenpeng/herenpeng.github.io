@@ -6,7 +6,7 @@
   <link href="https://herenpeng.github.io/atom.xml" rel="self"/>
   
   <link href="https://herenpeng.github.io/"/>
-  <updated>2023-03-15T12:24:04.473Z</updated>
+  <updated>2023-03-16T15:13:31.000Z</updated>
   <id>https://herenpeng.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一篇博客教会你怎么使用Docker安装并配置Nginx</title>
+    <link href="https://herenpeng.github.io/2023/03/16/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8Docker%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AENginx/"/>
+    <id>https://herenpeng.github.io/2023/03/16/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8Docker%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AENginx/</id>
+    <published>2023-03-16T15:13:31.000Z</published>
+    <updated>2023-03-16T15:13:31.000Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;首先我们需要安装Docker，如果没有安装Docker的朋友，可以参考我以前的博客&lt;a href=&quot;/2020/04/16/tool/一篇博客教会你怎么安装Docker/&quot;&gt;一篇博客教会你怎么安装Docker&lt;/a&gt;进行Docker的安装。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://herenpeng.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://herenpeng.github.io/tags/Linux/"/>
+    
+    <category term="Docker" scheme="https://herenpeng.github.io/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>使用Python写一个一键项目部署工具</title>
@@ -427,25 +450,6 @@
     <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
     
     <category term="MyBatisPlus" scheme="https://herenpeng.github.io/tags/MyBatisPlus/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ServiceLoader加载接口的所有实现</title>
-    <link href="https://herenpeng.github.io/2021/06/27/java/ServiceLoader%E5%8A%A0%E8%BD%BD%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%89%80%E6%9C%89%E5%AE%9E%E7%8E%B0/"/>
-    <id>https://herenpeng.github.io/2021/06/27/java/ServiceLoader%E5%8A%A0%E8%BD%BD%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%89%80%E6%9C%89%E5%AE%9E%E7%8E%B0/</id>
-    <published>2021-06-27T14:21:46.000Z</published>
-    <updated>2021-06-27T14:21:46.000Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;什么是ServiceLoader？&quot;&gt;&lt;a href=&quot;#什么是ServiceLoader？&quot; class=&quot;headerlink&quot; title=&quot;什么是ServiceLoader？&quot;&gt;&lt;/a&gt;什么是ServiceLoader？&lt;/h1&gt;&lt;p&gt;ServiceLoader 是由 JDK 提供的，在 &lt;code&gt;java.util&lt;/code&gt; 包下的一个工具类，使用该工具类，可以加载一个接口的所有实现类。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
     
   </entry>
   
