@@ -142,7 +142,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">162</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">164</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -325,9 +325,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">user  nginx;</span><br><span class="line">worker_processes  1;</span><br><span class="line"></span><br><span class="line">error_log  /var/log/nginx/error.log warn;</span><br><span class="line">pid        /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       /etc/nginx/mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    log_format  main  &#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span><br><span class="line">                      &#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span><br><span class="line">                      &#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;;</span><br><span class="line"></span><br><span class="line">    access_log  /var/log/nginx/access.log  main;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line"></span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br><span class="line"></span><br><span class="line">    #include /etc/nginx/conf.d/*.conf;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        server_name zero-admin;</span><br><span class="line">        location / &#123;</span><br><span class="line">            root   /usr/app/zero-admin/dist;</span><br><span class="line">            index  index.html;</span><br><span class="line">        &#125;</span><br><span class="line">        location /api/ &#123;</span><br><span class="line">            proxy_pass http://127.0.0.1:10000/;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>修改后的配置文件 <code>nginx.conf</code> 与原文件相比，改动了两处：</p>
-<p>1、将 <code>include /etc/nginx/conf.d/*.conf;</code> 这一行进行了注释。</p>
-<p>2、在 http 内添加了一个 server。</p>
+<p>修改后的配置文件 <code>nginx.conf</code> 与原文件相比，改动了两处：<br>1、将 <code>include /etc/nginx/conf.d/*.conf;</code> 这一行进行了注释。<br>2、在 http 内添加了一个 server。</p>
 </blockquote>
 <p>将修改后的配置文件 <code>nginx.conf</code> 复制回容器 Nginx 内。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp /tmp/nginx.conf nginx:/etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
@@ -398,7 +396,10 @@
     <a href="/2023/03/15/python/%E4%BD%BF%E7%94%A8Python%E5%86%99%E4%B8%80%E4%B8%AA%E4%B8%80%E9%94%AE%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7/" rel="prev" title="使用Python写一个一键项目部署工具">
       <i class="fa fa-chevron-left"></i> 使用Python写一个一键项目部署工具
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/04/28/algorithm/JavaScript%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB/" rel="next" title="JavaScript实现一个排序算法的演示动画">
+      JavaScript实现一个排序算法的演示动画 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -490,7 +491,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">162</span>
+          <span class="site-state-item-count">164</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -565,13 +566,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">497k</span>
+    <span title="站点总字数">501k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">7:32</span>
+    <span title="站点阅读时长">7:35</span>
 </div>
         
 <div class="busuanzi-count">
