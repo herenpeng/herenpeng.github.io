@@ -6,7 +6,7 @@
   <link href="https://herenpeng.github.io/atom.xml" rel="self"/>
   
   <link href="https://herenpeng.github.io/"/>
-  <updated>2023-05-10T07:51:13.000Z</updated>
+  <updated>2023-05-13T04:27:59.000Z</updated>
   <id>https://herenpeng.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript实现贪吃蛇小游戏（网页单机版）</title>
+    <link href="https://herenpeng.github.io/2023/05/13/javascript/JavaScript%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%90%83%E8%9B%87%E5%B0%8F%E6%B8%B8%E6%88%8F%EF%BC%88%E7%BD%91%E9%A1%B5%E5%8D%95%E6%9C%BA%E7%89%88%EF%BC%89/"/>
+    <id>https://herenpeng.github.io/2023/05/13/javascript/JavaScript%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%90%83%E8%9B%87%E5%B0%8F%E6%B8%B8%E6%88%8F%EF%BC%88%E7%BD%91%E9%A1%B5%E5%8D%95%E6%9C%BA%E7%89%88%EF%BC%89/</id>
+    <published>2023-05-13T04:27:59.000Z</published>
+    <updated>2023-05-13T04:27:59.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;今天使用 &lt;code&gt;JavaScript&lt;/code&gt; 实现了一个网页版的贪吃蛇小游戏。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="JavaScript" scheme="https://herenpeng.github.io/categories/JavaScript/"/>
+    
+    
+    <category term="JavaScript" scheme="https://herenpeng.github.io/tags/JavaScript/"/>
+    
+    <category term="贪吃蛇" scheme="https://herenpeng.github.io/tags/%E8%B4%AA%E5%90%83%E8%9B%87/"/>
+    
+    <category term="小游戏" scheme="https://herenpeng.github.io/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>七大排序算法的Python实现</title>
@@ -427,31 +450,6 @@
     
     
     <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode：最接近的三数之和</title>
-    <link href="https://herenpeng.github.io/2021/07/06/algorithm/LeetCode%EF%BC%9A%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
-    <id>https://herenpeng.github.io/2021/07/06/algorithm/LeetCode%EF%BC%9A%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/</id>
-    <published>2021-07-06T14:52:57.000Z</published>
-    <updated>2021-07-06T14:52:57.000Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target 最接近。返回这三个数的和。假定每组输入只存在唯一答案。 &lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://herenpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="LeetCode" scheme="https://herenpeng.github.io/tags/LeetCode/"/>
-    
-    <category term="链表" scheme="https://herenpeng.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
-    
-    <category term="面试" scheme="https://herenpeng.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
