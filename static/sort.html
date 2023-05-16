@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排序算法动画演示</title>
+    <style>
+        #main {
+            display: inline-block;
+        }
+
+        .col-wapper {
+            float: left;
+            font-size: xx-small;
+            color: red;
+            text-align: center;
+        }
+
+        .col {
+            border-radius: 10px 10px 0px 0px;
+        }
+    </style>
+    <script>
+        let array, animations;
+        window.onload = function () {
+            changeFunc()
+            createRandomArray()
+        }
+
+        // 生成数组数据并创建柱状图形
+        function createRandomArray() {
+            let size = +document.getElementById('size').value
+            let rangeL = +document.getElementById('rangeL').value
+            let rangeR = +document.getElementById('rangeR').value
+            array = generateRandomArray(size, rangeL, rangeR)
+            createColumnArray(array)
+        }
+
+        // 生成数组数据
+        function generateRandomArray(size, rangeL, rangeR) {
+            const array = []
+            for (let i = 0; i < size; i++) {
+                array[i] = Math.floor((Math.random() * (rangeR - rangeL + 1))) + rangeL
+            }
+            return array;
+        }
+
+
+        // 生成近似有序的数组数据
+        function createAlmostOrderlyArray() {
+            let size = +document.getElementById('size').value
+            let rangeL = +document.getElementById('rangeL').value
+            let rangeR = +document.getElementById('rangeR').value
+            let swapTimes = +document.getElementById('swapTimes').value
+            array = generateAlmostOrderlyArray(size, rangeL, rangeR, swapTimes)
+            createColumnArray(array)
+        }
+
+        function generateAlmostOrderlyArray(size, rangeL, rangeR, swapTimes) {
+            let range = rangeR - rangeL + 1;
+            const array = []
+            for (let i = 0; i < size; i++) {
+                array[i] = Math.floor(i * range / size);
+            }
+            for (let i = 0; i < swapTimes; i++) {
+                let index1 = Math.floor(Math.random() * size)
+                let index2 = Math.floor(Math.random() * size)
+                let temp = array[index1]
+                array[index1] = array[index2]
+                array[index2] = temp
+            }
+            return array
+        }
+
+
+        function createCustomArray() {
+            let customArray = document.getElementById('customArray').value
+            try {
+                array = JSON.parse(customArray)
+            } catch (e) {
+                alert('JSON格式错误，请重新输入JSON格式的自定义数组')
+                return
+            }
+            document.getElementById('rangeL').value = Math.min(...array)
+            document.getElementById('rangeR').value = Math.max(...array)
+            createColumnArray(array)
+        }
+
+        // 创建柱状图形
+        function createColumnArray(array, current, compare) {
+            let main = document.getElementById('main')
+            main.innerHTML = ''
+            let rangeR = +document.getElementById('rangeR').value
+            let multiple = 350 / rangeR
+            let showValue = +document.getElementById('showValue').value
+            let columnWidth = +document.getElementById('columnWidth').value
+            let columnGap = +document.getElementById('columnGap').value
+            let columnColor = document.getElementById('columnColor').value
+            array.forEach((value, index) => {
+                let colWapper = document.createElement('div');
+                colWapper.id = 'col-wapper-' + index
+                colWapper.className = 'col-wapper'
+                colWapper.style.paddingTop = ((rangeR - value) * multiple) + 'px'
+                colWapper.style.width = columnWidth + 'px'
+                colWapper.style.margin = '0px ' + columnGap + 'px 0px ' + columnGap + 'px'
+                main.appendChild(colWapper)
+                // 添加数值
+                let valueSpan = document.createElement('span')
+                valueSpan.innerText = value
+                if (showValue === 0) {
+                    valueSpan.style.visibility = 'hidden'
+                }
+                colWapper.appendChild(valueSpan)
+                // 添加柱体
+                let col = document.createElement('div');
+                col.id = 'col-' + index
+                col.className = "col";
+                col.style.height = (value * multiple) + 'px'
+                if (current === index || compare === index) {
+                    col.style.backgroundColor = 'green'
+                } else {
+                    col.style.backgroundColor = columnColor
+                }
+                colWapper.appendChild(col)
+            })
+        }
+
+        function changeColumn() {
+            createColumnArray(array)
+        }
+
+        function changeFunc() {
+            const funcSelect = document.getElementById('func')
+            let describe = funcSelect.options[funcSelect.selectedIndex].getAttribute('describe')
+            document.getElementById('sortDescribe').innerText = describe
+        }
+
+        function sortSuccess(array) {
+            createColumnArray(array)
+            let animationSpeed = +document.getElementById('animationSpeed').value
+            let index = 0
+            let intervalID = setInterval(function () {
+                if (index < array.length) {
+                    let colWapper = document.getElementById('col-' + index);
+                    colWapper.style.backgroundColor = 'green'
+                    index++
+                } else {
+                    clearInterval(intervalID)
+                }
+            }, animationSpeed)
+        }
+
+        // 排序交换元素
+        function swap(array, i, j) {
+            let temp = array[i]
+            array[i] = array[j]
+            array[j] = temp
+            // 记录一下临时数据
+            animations.push({ current: i, compare: j, data: [...array] })
+        }
+
+        function isOrderly(array) {
+            return isOrderAsc(array) || isOrderDesc(array)
+        }
+
+        function isOrderAsc(array) {
+            for (let i = 0; i < array.length - 1; i++) {
+                if (array[i] > array[i + 1]) {
+                    return false
+                }
+            }
+            return true
+        }
+
+        function isOrderDesc(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                if (array[i] > array[i - 1]) {
+                    return false
+                }
+            }
+            return true
+        }
+
+        // 具体的排序方法
+        function bubble(array) {
+            for (let i = 0; i < array.length - 1; i++) {
+                for (let j = 0; j < array.length - 1; j++) {
+                    if (array[j + 1] < array[j]) {
+                        swap(array, j, j + 1)
+                    }
+                }
+            }
+        }
+
+        function select(array) {
+            for (let i = 0; i < array.length - 1; i++) {
+                let min = i
+                for (let j = i + 1; j < array.length; j++) {
+                    if (array[j] < array[min]) {
+                        min = j
+                    }
+                }
+                swap(array, i, min)
+            }
+        }
+
+        function insert(array) {
+            for (let i = 1; i < array.length; i++) {
+                let insertValue = array[i]
+                let j = 0
+                for (j = i; j > 0 && array[j - 1] > insertValue; j--) {
+                    swap(array, j, j - 1)
+                }
+            }
+        }
+
+        function shell(array) {
+            let h = 1
+            while ((h * 3 + 1) < array.length) {
+                h = h * 3 + 1
+            }
+            while (h > 0) {
+                for (let i = h; i < array.length; i++) {
+                    let insertValue = array[i];
+                    let j = i
+                    for (j = i; j > h - 1 && array[j - h] > insertValue; j = j - h) {
+                        swap(array, j, j - h)
+                    }
+                }
+                h = (h - 1) / 3
+            }
+        }
+
+        function quick(array) {
+            quickSort(array, 0, array.length - 1)
+        }
+
+        function quickSort(array, startIndex, endIndex) {
+            if (startIndex >= endIndex) {
+                return
+            }
+            let pivotIndex = partition(array, startIndex, endIndex)
+            quickSort(array, startIndex, pivotIndex - 1)
+            quickSort(array, pivotIndex + 1, endIndex)
+        }
+
+        function partition(array, startIndex, endIndex) {
+            let pivot = array[startIndex]
+            let left = startIndex
+            let right = endIndex
+            while (left !== right) {
+                while (left < right && array[right] > pivot) {
+                    right--
+                }
+                while (left < right && array[left] <= pivot) {
+                    left++
+                }
+                if (left < right) {
+                    swap(array, left, right)
+                }
+            }
+            swap(array, startIndex, left)
+            return left
+        }
+
+        function sort() {
+            const funcSelect = document.getElementById('func')
+            let func
+            try {
+                func = eval(funcSelect.value);
+            } catch (e) {
+                let funcName = funcSelect.options[funcSelect.selectedIndex].text
+                alert('【' + funcName + '】未实现，请实现' + '【' + funcName + '】方法！')
+                return
+            }
+            animations = []
+            new func(array)
+            if (isOrderly(array)) {
+                let animationStep = 0
+                let animationSpeed = +document.getElementById('animationSpeed').value
+                let intervalID = setInterval(function () {
+                    if (animationStep < animations.length) {
+                        createColumnArray(animations[animationStep].data, animations[animationStep].current, animations[animationStep].compare)
+                        animationStep++
+                    } else {
+                        sortSuccess(array)
+                        clearInterval(intervalID)
+                    }
+                }, animationSpeed)
+            } else {
+                alert('排序失败')
+            }
+        }
+
+
+    </script>
+</head>
+
+<body>
+<div style="text-align: center">
+    <div id="func-name"></div>
+    <div id="main">
+    </div>
+    <div>
+        动画速度：<input type="text" value="50" id="animationSpeed" name="animationSpeed" style="width: 30px;" />
+        显示数值：
+        <select id="showValue" onchange="changeColumn()">
+            <option value="1">显示</option>
+            <option value="0">隐藏</option>
+        </select>
+        柱体宽度：<input type="text" value="15" id="columnWidth" name="columnWidth" style="width: 30px;"
+                    onchange="changeColumn()" />
+        柱体间隙：<input type="text" value="5" id="columnGap" name="columnGap" style="width: 30px;"
+                    onchange="changeColumn()" />
+        柱体颜色：<input type="color" value="#FFA500" id="columnColor" name="columnColor" style="width: 30px;"
+                    onchange="changeColumn()" />
+    </div>
+    <div>
+        <select id="func" onchange="changeFunc()">
+            <option value="bubble" describe="冒泡排序是一种基础的交换排序，其思想是，把相邻的元素两两比较。
+                当一个元素大于右侧相邻的元素时，交换它们的位置；当一个元素小于或等于右侧的元素时，位置不变。
+                冒泡排序是一种稳定排序，值相等的元素并不会打乱原有的顺序，由于该排序算法的每一轮都要遍历元素，总共遍历（元素数量 - 1）轮，所以平均时间复杂度是O(n^2)。">
+                冒泡排序</option>
+            <option value="select" describe="选择排序是一种简单直观的排序算法。
+                它的工作原理是：第一次从待排序的数据元素中选出最小（或最大）的一个元素，存放在序列的起始位置，
+                然后再从剩余的未排序元素中寻找到最小（大）元素，然后放到已排序的序列的末尾。
+                以此类推，直到全部待排序的数据元素的个数为零。选择排序是不稳定的排序方法。">
+                选择排序</option>
+            <option value="insert" describe="插入排序，一般也被称为直接插入排序。对于少量元素的排序，它是一个有效的算法。
+                插入排序是一种最简单的排序方法，它的基本思想是将一个记录插入到已经排好序的有序表中，从而一个新的、记录数增1的有序表。
+                在其实现过程使用双层循环，外层循环对除了第一个元素之外的所有元素，内层循环对当前元素前面有序表进行待插入位置查找，并进行移动。">
+                插入排序</option>
+            <option value="shell" describe="希尔排序是插入排序的一种又称“缩小增量排序”，是直接插入排序算法的一种更高效的改进版本。
+                希尔排序是非稳定排序算法。该方法因 D.L.Shell 于 1959 年提出而得名。
+                希尔排序是把记录按下标的一定增量分组，对每组使用直接插入排序算法排序；随着增量逐渐减少，每组包含的关键词越来越多，当增量减至 1 时，整个文件恰被分成一组，算法便终止。">
+                希尔排序</option>
+            <option value="quick" describe="快速排序是由东尼·霍尔所发展的一种排序算法。
+                在平均状况下，排序 n 个项目要 Ο(nlogn) 次比较。在最坏状况下则需要 Ο(n2) 次比较，但这种状况并不常见。
+                事实上，快速排序通常明显比其他 Ο(nlogn) 算法更快，因为它的内部循环（inner loop）可以在大部分的架构上很有效率地被实现出来。
+                快速排序使用分治法策略来把一个串行分为两个子串行。快速排序又是一种分而治之思想在排序算法上的典型应用。本质上来看，快速排序应该算是在冒泡排序基础上的递归分治法。">快速排序</option>
+        </select>
+        <input type="button" value="开始排序" onclick="sort()" />
+        <input type="button" value="重新生成随机数组" onclick="createRandomArray()" />
+    </div>
+    <div>
+        元素个数：<input type="text" value="50" id="size" name="size" style="width: 30px;" />
+        元素范围：<input type="text" value="0" id="rangeL" name="rangeL" style="width: 50px;" />
+        <input type="text" value="300" id="rangeR" name="rangeR" style="width: 50px;" />
+    </div>
+    <div>
+        <input type="button" value="重新生成近似有序数组" onclick="createAlmostOrderlyArray()" />
+        近似有序的无序程度：<input type="text" value="10" id="swapTimes" name="swapTimes" style="width: 30px;" />
+    </div>
+    <div>
+        <input type="button" value="重新生成自定义数组" onclick="createCustomArray()" />
+        自定义JSON格式数组：<input type="text" value="[]" id="customArray" name="customArray" style="width: 120px;" />
+    </div>
+    <div id="sortDescribe" style="word-break:break-all; margin-top: 10px; color: gray; font-style: italic;"></div>
+</div>
+</body>
+
+</html>

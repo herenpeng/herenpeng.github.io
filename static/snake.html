@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪吃蛇小游戏</title>
+    <style>
+        #main {
+            margin: auto auto;
+            border: 1px solid gray;
+            position: relative;
+        }
+
+        #word {
+            position: absolute;
+            top: 30%;
+            font: italic bold 42px Georgia, serif;
+            color: rgb(11, 182, 11);
+            text-align: center;
+            background: linear-gradient(to RIGHT, #03a9f4, #f441a5, #ffeb3b, #09a8f4);
+            background-size: 400%;
+            animation: streamer 8s infinite;
+        }
+
+        @keyframes streamer {
+            100% {
+                background-position: -400% 0;
+            }
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        tr td {
+            height: 10px;
+            width: 10px;
+            padding: 0;
+        }
+    </style>
+    <script>
+        const MAX_HIGH = 50,
+            MAX_WIDE = 50,
+            POINT_LENGTH = 10
+        const SNAKE_POINT = {value: 1, color: 'red'},
+            FOOD_POINT = {value: -1, color: 'blue'},
+            LABYRINTH_POINT = {value: 0, color: 'white'}
+        const UP = {i: -1, j: 0},
+            DOWN = {i: 1, j: 0},
+            LEFT = {i: 0, j: -1},
+            RIGHT = {i: 0, j: 1}
+        const SNAKE = [], LABYRINTH = [], CYCLE = true
+        let currentMove = RIGHT,
+            food = {},
+            start = false,
+            death = false
+
+        window.onload = function () {
+            initLabyrinth()
+            initSnake()
+            generateFood()
+        }
+
+        document.onkeydown = function (event) {
+            let e = event || window.Event || arguments.callee.caller.arguments[0];
+            if (e && e.keyCode === 13) {
+                entry()
+                return
+            }
+            if (start && !death) {
+                // 只有在游戏开启且没有死亡的时候方向才生效
+                if (currentMove === UP || currentMove === DOWN) {
+                    if (e && e.keyCode === 37) {
+                        currentMove = LEFT
+                    } else if (e && e.keyCode === 39) {
+                        currentMove = RIGHT
+                    }
+                } else {
+                    if (e && e.keyCode === 38) {
+                        currentMove = UP
+                    } else if (e && e.keyCode === 40) {
+                        currentMove = DOWN
+                    }
+                }
+            }
+        }
+
+        // 初始化迷宫
+        function initLabyrinth() {
+            let main = document.getElementById('main')
+            main.style.height = MAX_HIGH * POINT_LENGTH + 'px'
+            main.style.width = MAX_WIDE * POINT_LENGTH + 'px'
+            if (CYCLE) {
+                main.style.borderStyle = 'dashed'
+            }
+            let table = document.createElement('table')
+            main.appendChild(table)
+            for (let i = 0; i < MAX_HIGH; i++) {
+                let tr = document.createElement('tr')
+                LABYRINTH.push([])
+                table.appendChild(tr)
+                for (let j = 0; j < MAX_WIDE; j++) {
+                    let td = document.createElement('td')
+                    td.id = 'point-' + i + '-' + j
+                    tr.appendChild(td)
+                    changePoint(i, j, LABYRINTH_POINT)
+                }
+            }
+            document.getElementById('word').style.width = MAX_WIDE * POINT_LENGTH + 'px'
+        }
+
+        function initSnake() {
+            let i = Number(MAX_HIGH / 2)
+            SNAKE.push({i: i, j: 2})
+            SNAKE.push({i: i, j: 1})
+            SNAKE.push({i: i, j: 0})
+            SNAKE.forEach(point => {
+                changePoint(point.i, point.j, SNAKE_POINT)
+            })
+        }
+
+        function generateFood() {
+            let foodList = []
+            for (let i = 0; i < LABYRINTH.length; i++) {
+                for (let j = 0; j < LABYRINTH[i].length; j++) {
+                    if (LABYRINTH[i][j] === LABYRINTH_POINT.value) {
+                        foodList.push({i: i, j: j})
+                    }
+                }
+            }
+            food = foodList[Math.floor(Math.random() * foodList.length)]
+            changePoint(food.i, food.j, FOOD_POINT)
+        }
+
+        // 按下回车键
+        function entry() {
+            start = !start
+            if (start && !death) {
+                showMessage('', 'white')
+            }
+            startGame()
+        }
+
+        function startGame() {
+            let intervalId = setInterval(() => {
+                if (start) {
+                    if (death) {
+                        clearInterval(intervalId)
+                        showMessage('你已死亡', 'red')
+                    } else {
+                        move()
+                    }
+                } else {
+                    clearInterval(intervalId)
+                    showMessage('暂停游戏', 'red')
+                }
+            }, 100)
+        }
+
+        function eatFood() {
+            let head = SNAKE[0]
+            if (head.i === food.i && head.j === food.j) {
+                // 吃掉食物后，重新生成新的事物
+                generateFood()
+                return true
+            }
+            return false
+        }
+
+        // 判断是否为循环模式，穿越迷宫边界
+        function checkCycle(newHead) {
+            if (CYCLE) {
+                newHead.i = (newHead.i + MAX_HIGH) % MAX_HIGH
+                newHead.j = (newHead.j + MAX_WIDE) % MAX_WIDE
+            }
+        }
+
+        // 判断到达指定位置，蛇是否死亡
+        function checkDeath(newHead) {
+            if (newHead.i < 0 || newHead.i > MAX_HIGH - 1 || newHead.j < 0 || newHead.j > MAX_WIDE - 1
+                || LABYRINTH[newHead.i][newHead.j] === 1) {
+                // 撞墙
+                death = true
+            }
+        }
+
+        function forward() {
+            let head = SNAKE[0]
+            let newHead = {
+                i: head.i + currentMove.i,
+                j: head.j + currentMove.j
+            }
+            checkCycle(newHead)
+            return newHead
+        }
+
+        function move() {
+            // 蛇身向前移动
+            let newHead = forward()
+            checkDeath(newHead)
+            if (death) {
+                // 已死亡
+                return
+            }
+            SNAKE.unshift(newHead)
+            changePoint(newHead.i, newHead.j, SNAKE_POINT)
+            // 判断是否吃到了食物
+            if (eatFood()) {
+                return
+            }
+            // 移除最后一个节点的数据
+            let tail = SNAKE.pop()
+            changePoint(tail.i, tail.j, LABYRINTH_POINT)
+        }
+
+        function changePoint(i, j, point) {
+            LABYRINTH[i][j] = point.value
+            document.getElementById('point-' + i + '-' + j).style.backgroundColor = point.color
+        }
+
+        function showMessage(message, color) {
+            let word = document.getElementById('word')
+            word.innerText = message
+            word.style.color = color
+        }
+    </script>
+</head>
+
+<body>
+<div id="main">
+    <div id="word">开始游戏</div>
+</div>
+</body>
+
+</html>
