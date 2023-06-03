@@ -6,7 +6,7 @@
   <link href="https://herenpeng.github.io/atom.xml" rel="self"/>
   
   <link href="https://herenpeng.github.io/"/>
-  <updated>2023-05-13T04:27:59.000Z</updated>
+  <updated>2023-06-03T05:29:39.000Z</updated>
   <id>https://herenpeng.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基于Spring JDBCTemplate的数据库读写分离和主从复制</title>
+    <link href="https://herenpeng.github.io/2023/06/03/java/%E5%9F%BA%E4%BA%8ESpring%20JDBCTemplate%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB%E5%92%8C%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/"/>
+    <id>https://herenpeng.github.io/2023/06/03/java/%E5%9F%BA%E4%BA%8ESpring%20JDBCTemplate%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB%E5%92%8C%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/</id>
+    <published>2023-06-03T05:29:39.000Z</published>
+    <updated>2023-06-03T05:29:39.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;数据库读写分离是很多互联网系统中用于提升访问性能的一种手段，其主要实现方式，便是将互联网系统对数据库的读操作和写操作分离在不同的数据库中，从而减少了数据库系统对锁资源的竞争，提升了系统数据库的性能。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+    <category term="MySQL" scheme="https://herenpeng.github.io/tags/MySQL/"/>
+    
+    <category term="Spring" scheme="https://herenpeng.github.io/tags/Spring/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaScript实现贪吃蛇小游戏（网页单机版）</title>
@@ -429,27 +452,6 @@
     <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
     
     <category term="Netty" scheme="https://herenpeng.github.io/tags/Netty/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【小剧场】Java注解：斩颜良诛文丑，插标卖首尔</title>
-    <link href="https://herenpeng.github.io/2021/08/03/java/%E3%80%90%E5%B0%8F%E5%89%A7%E5%9C%BA%E3%80%91Java%E6%B3%A8%E8%A7%A3%EF%BC%9A%E6%96%A9%E9%A2%9C%E8%89%AF%E8%AF%9B%E6%96%87%E4%B8%91%EF%BC%8C%E6%8F%92%E6%A0%87%E5%8D%96%E9%A6%96%E5%B0%94/"/>
-    <id>https://herenpeng.github.io/2021/08/03/java/%E3%80%90%E5%B0%8F%E5%89%A7%E5%9C%BA%E3%80%91Java%E6%B3%A8%E8%A7%A3%EF%BC%9A%E6%96%A9%E9%A2%9C%E8%89%AF%E8%AF%9B%E6%96%87%E4%B8%91%EF%BC%8C%E6%8F%92%E6%A0%87%E5%8D%96%E9%A6%96%E5%B0%94/</id>
-    <published>2021-08-03T06:23:09.000Z</published>
-    <updated>2021-08-03T06:23:09.000Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;关公举目一望，谓操曰：”吾观颜良，如插标卖首耳！”&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
     
   </entry>
   
