@@ -6,7 +6,7 @@
   <link href="https://herenpeng.github.io/atom.xml" rel="self"/>
   
   <link href="https://herenpeng.github.io/"/>
-  <updated>2023-06-03T05:29:39.000Z</updated>
+  <updated>2023-06-05T14:43:12.000Z</updated>
   <id>https://herenpeng.github.io/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一篇博客教会你怎么使用Docker安装Redis</title>
+    <link href="https://herenpeng.github.io/2023/06/05/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85Redis/"/>
+    <id>https://herenpeng.github.io/2023/06/05/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85Redis/</id>
+    <published>2023-06-05T14:43:12.000Z</published>
+    <updated>2023-06-05T14:43:12.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;今天我们学习使用 &lt;code&gt;Docker&lt;/code&gt; 安装 &lt;code&gt;Redis&lt;/code&gt;。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://herenpeng.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://herenpeng.github.io/tags/Linux/"/>
+    
+    <category term="Docker" scheme="https://herenpeng.github.io/tags/Docker/"/>
+    
+    <category term="Redis" scheme="https://herenpeng.github.io/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux虚拟机挂起后重启，Navicat无法连接Docker MySQL容器</title>
+    <link href="https://herenpeng.github.io/2023/06/04/linux/Linux%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%8C%82%E8%B5%B7%E5%90%8E%E9%87%8D%E5%90%AF%EF%BC%8CNavicat%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5Docker%20MySQL%E5%AE%B9%E5%99%A8/"/>
+    <id>https://herenpeng.github.io/2023/06/04/linux/Linux%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%8C%82%E8%B5%B7%E5%90%8E%E9%87%8D%E5%90%AF%EF%BC%8CNavicat%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5Docker%20MySQL%E5%AE%B9%E5%99%A8/</id>
+    <published>2023-06-04T04:25:28.000Z</published>
+    <updated>2023-06-04T04:25:28.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h1&gt;&lt;p&gt;将虚拟机挂起后再次重启，但是 Navicat 工具却无法连接 Docker MySQL 容器。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://herenpeng.github.io/categories/Linux/"/>
+    
+    
+    <category term="MySQL" scheme="https://herenpeng.github.io/tags/MySQL/"/>
+    
+    <category term="Linux" scheme="https://herenpeng.github.io/tags/Linux/"/>
+    
+    <category term="Docker" scheme="https://herenpeng.github.io/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>基于Spring JDBCTemplate的数据库读写分离和主从复制</title>
@@ -406,52 +452,6 @@
     
     
     <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>低代码开发，手写一款代码生成工具</title>
-    <link href="https://herenpeng.github.io/2021/08/11/java/%E4%BD%8E%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/"/>
-    <id>https://herenpeng.github.io/2021/08/11/java/%E4%BD%8E%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/</id>
-    <published>2021-08-10T16:21:44.000Z</published>
-    <updated>2023-02-27T23:03:26.999Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;低代码平台的一个核心就是，使用可视化的操作，生成项目系统中的非核心代码，从而大大降低了重复代码的编写工作，使开发者们可以更加专注于核心代码和业务功能的设计和开发工作。&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
-    
-    <category term="SpringBoot" scheme="https://herenpeng.github.io/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>上班聊天，摸鱼神器，手写一款即时通讯工具（附源码！！！）</title>
-    <link href="https://herenpeng.github.io/2021/08/07/java/%E4%B8%8A%E7%8F%AD%E8%81%8A%E5%A4%A9%EF%BC%8C%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF%E5%B7%A5%E5%85%B7%EF%BC%88%E9%99%84%E6%BA%90%E7%A0%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%89/"/>
-    <id>https://herenpeng.github.io/2021/08/07/java/%E4%B8%8A%E7%8F%AD%E8%81%8A%E5%A4%A9%EF%BC%8C%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8%EF%BC%8C%E6%89%8B%E5%86%99%E4%B8%80%E6%AC%BE%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF%E5%B7%A5%E5%85%B7%EF%BC%88%E9%99%84%E6%BA%90%E7%A0%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%89/</id>
-    <published>2021-08-07T02:46:02.000Z</published>
-    <updated>2023-02-25T15:42:32.568Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;认真工作不叫做赚钱，那叫做用劳动换取报酬，上班摸鱼才是真的赚钱。&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
-    
-    <category term="Netty" scheme="https://herenpeng.github.io/tags/Netty/"/>
     
   </entry>
   
