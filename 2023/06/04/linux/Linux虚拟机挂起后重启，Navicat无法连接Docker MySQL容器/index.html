@@ -262,7 +262,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>278</span>
+              <span>711</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -285,8 +285,15 @@
 <span id="more"></span>
 
 <h1 id="情况"><a href="#情况" class="headerlink" title="情况"></a>情况</h1><p>1、Linux 虚拟机防火墙已关闭<br>2、使用 XShell 工具可以连接并登录 Linux 虚拟机<br>3、Docker 服务启动无问题，并且 Linux 本地可以使用 Docker 命令登录 MySQL 容器<br>4、Linux 虚拟机网络无问题，Linux 虚拟机可以访问外部网络，Windows 也可以 ping 通 Linux 虚拟机</p>
-<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>重启网络和 Docker 服务，重启 Docker MySQL 容器</p>
+<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><h2 id="临时解决方法"><a href="#临时解决方法" class="headerlink" title="临时解决方法"></a>临时解决方法</h2><p>重启网络和 Docker 服务，重启 Docker MySQL 容器，这种方法只对本次 Linux 运行期间有效，如果重新将 Linux 虚拟机挂起，那么依然会有这种问题，需要再次执行以下命令才能 Dokcer 容器的网络为。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart NetworkManager docker</span><br><span class="line">docker start mysql</span><br></pre></td></tr></table></figure>
+
+<h2 id="彻底解决方法"><a href="#彻底解决方法" class="headerlink" title="彻底解决方法"></a>彻底解决方法</h2><p>创建并编辑文件 <code>/etc/NetworkManager/conf.d/10-unmanage-docker-interfaces.conf</code> ，文件内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[keyfile]</span><br><span class="line">unmanaged-devices=interface-name:docker*;interface-name:veth*;interface-name:br-*;interface-name:vmnet*;interface-name:vboxnet*</span><br></pre></td></tr></table></figure>
+
+<p>然后重新启动 <code>NetworkManager</code> 服务 和 <code>Docker</code> 服务。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart NetworkManager docker</span><br><span class="line">docker start mysql</span><br></pre></td></tr></table></figure>
+<p>这种解决方法，即便以后再将 Linux 虚拟机挂起，依然不会出现无法连接 <code>Docker</code> 容器网络的问题。</p>
 
     </div>
 
@@ -422,7 +429,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%83%85%E5%86%B5"><span class="nav-text">情况</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-text">解决方法</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%83%85%E5%86%B5"><span class="nav-text">情况</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-text">解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%B4%E6%97%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-text">临时解决方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%BB%E5%BA%95%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-text">彻底解决方法</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -518,7 +525,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">514k</span>
+    <span title="站点总字数">515k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
