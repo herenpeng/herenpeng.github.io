@@ -25,7 +25,7 @@
   <meta name="description" content="今天我们学习使用 Docker 安装 Redis。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一篇博客教会你怎么使用Docker安装Redis">
-<meta property="og:url" content="https://herenpeng.github.io/2023/06/05/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85Redis/index.html">
+<meta property="og:url" content="https://herenpeng.github.io/2023/06/05/redis/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8Docker%E5%AE%89%E8%A3%85Redis/index.html">
 <meta property="og:site_name" content="青草蛋糕">
 <meta property="og:description" content="今天我们学习使用 Docker 安装 Redis。">
 <meta property="og:locale" content="zh_CN">
@@ -39,7 +39,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://herenpeng.github.io/images/2023/06/image-20230605222824456.png">
 
-<link rel="canonical" href="https://herenpeng.github.io/2023/06/05/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85Redis/">
+<link rel="canonical" href="https://herenpeng.github.io/2023/06/05/redis/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8Docker%E5%AE%89%E8%A3%85Redis/">
 
 
 <script id="page-configurations">
@@ -216,7 +216,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2023/06/05/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85Redis/">
+    <link itemprop="mainEntityOfPage" href="https://herenpeng.github.io/2023/06/05/redis/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8Docker%E5%AE%89%E8%A3%85Redis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/author.jpg">
@@ -247,7 +247,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                  <a href="/categories/Redis/" itemprop="url" rel="index"><span itemprop="name">Redis</span></a>
                 </span>
             </span>
 
@@ -264,7 +264,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>462</span>
+              <span>485</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -302,6 +302,11 @@
 <li>注释bind 127.0.0.1 -::1</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">bind</span> 127.0.0.1 -::1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>关闭保护模式</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protected-mode no</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>开启持久化</li>
@@ -347,7 +352,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://herenpeng.github.io/2023/06/05/linux/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85Redis/" title="一篇博客教会你怎么使用Docker安装Redis">https://herenpeng.github.io/2023/06/05/linux/一篇博客教会你怎么安装Redis/</a>
+    <a href="https://herenpeng.github.io/2023/06/05/redis/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8Docker%E5%AE%89%E8%A3%85Redis/" title="一篇博客教会你怎么使用Docker安装Redis">https://herenpeng.github.io/2023/06/05/redis/一篇博客教会你怎么使用Docker安装Redis/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
