@@ -29,6 +29,13 @@
 <meta property="og:site_name" content="青草蛋糕">
 <meta property="og:description" content="今天我们学习使用 Docker 部署 Redis 的主从复制，并部署 Redis 哨兵，实现 Redis 数据库的高可用。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://herenpeng.github.io/images/2023/06/H9TFB97USW0JQQMTNXXTNB.png">
+<meta property="og:image" content="https://herenpeng.github.io/images/2023/06/9Y4K0L5O64_CDJQH72.png">
+<meta property="og:image" content="https://herenpeng.github.io/images/2023/06/XI_XVW_3I0780HDMD9AU.png">
+<meta property="og:image" content="https://herenpeng.github.io/images/2023/06/V34I65KSQDCG76IGCCO_C.png">
+<meta property="og:image" content="https://herenpeng.github.io/images/2023/06/EONIQZUG_ULJIQIVJ3.png">
+<meta property="og:image" content="https://herenpeng.github.io/images/2023/06/TL60LGK95OUSZFUWO9CH.png">
+<meta property="og:image" content="https://herenpeng.github.io/images/2023/06/8F2HYQ8OLSIBY6YU5R31.png">
 <meta property="article:published_time" content="2023-06-26T12:36:05.000Z">
 <meta property="article:modified_time" content="2023-06-26T12:36:05.000Z">
 <meta property="article:author" content="次时代小羊">
@@ -36,6 +43,7 @@
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://herenpeng.github.io/images/2023/06/H9TFB97USW0JQQMTNXXTNB.png">
 
 <link rel="canonical" href="https://herenpeng.github.io/2023/06/26/redis/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2Redis%E5%93%A8%E5%85%B5/">
 
@@ -49,7 +57,7 @@
   };
 </script>
 
-  <title>一篇博客教会你使用Docker部署Redis哨兵 | 青草蛋糕</title><meta name="robots" content="noindex">
+  <title>一篇博客教会你使用Docker部署Redis哨兵 | 青草蛋糕</title>
   
 
 
@@ -137,7 +145,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">168</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">169</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -262,14 +270,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>116</span>
+              <span>7.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -284,8 +292,82 @@
         <p>今天我们学习使用 <code>Docker</code> 部署 <code>Redis</code> 的主从复制，并部署 <code>Redis</code> 哨兵，实现 <code>Redis</code> 数据库的高可用。</p>
 <span id="more"></span>
 
-<h1 id="启动主数据库"><a href="#启动主数据库" class="headerlink" title="启动主数据库"></a>启动主数据库</h1><p>如何使用 <code>Docker</code> 下载并启动一个 <code>Redis</code> 实例，我们在以前的博客 <a href="/2020/04/16/tool/一篇博客教会你怎么安装Docker/">一篇博客教会你怎么使用Docker安装Redis</a></p>
-<!-- flag of hidden posts -->
+<h1 id="主数据库"><a href="#主数据库" class="headerlink" title="主数据库"></a>主数据库</h1><p>如何使用 <code>Docker</code> 下载并启动一个 <code>Redis</code> 实例，我们在以前的博客 <a href="/2023/06/05/redis/一篇博客教会你怎么使用Docker安装Redis/">一篇博客教会你怎么使用Docker安装Redis</a> 学习过，在本篇博客中就不过多赘述，有兴趣的同学可以移步到之前的博客学习。</p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>我们先将准备好的配置文件复制一份。</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp redis.conf redis-master.conf</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动实例"><a href="#启动实例" class="headerlink" title="启动实例"></a>启动实例</h2><p>然后使用 <code>Docker</code> 命令，启动一个 <code>Redis</code> 数据库实例作为主数据库。</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 6380:6379 --name redis-master -v /etc/redis/redis-master.conf:/etc/redis/redis.conf -d redis redis-server /etc/redis/redis.conf</span><br></pre></td></tr></table></figure>
+
+<h2 id="容器虚拟IP"><a href="#容器虚拟IP" class="headerlink" title="容器虚拟IP"></a>容器虚拟IP</h2><p>使用 <code>Docker</code> 命令，获取 <code>Redis</code> 实例的虚拟 <code>ip</code> 地址</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect --format=&#123;&#123;.NetworkSettings.IPAddress&#125;&#125; redis-master</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="从数据库"><a href="#从数据库" class="headerlink" title="从数据库"></a>从数据库</h1><p>从数据相比较于主数据，需要配置从数据库对应的主数据的信息，即主数据的 <code>ip</code> 和端口，其中的 <code>ip</code> 即上述使用 <code>Docker</code> 命令获取的虚拟 <code>ip</code> 地址，而端口同样也是容器对应的虚拟端口，即为 <code>Docker</code> 容器内部对应的 <code>6379</code>，而不是容器外部的映射端口。</p>
+<h2 id="配置文件-1"><a href="#配置文件-1" class="headerlink" title="配置文件"></a>配置文件</h2><p>将配置文件复制一份，作为从数据库的配置文件。</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp redis.conf redis-slave.conf</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>redis-slave.conf</code> 配置文件的末尾添加主数据库的信息配置。</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REPLICAOF 172.17.0.2 6379</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动实例-1"><a href="#启动实例-1" class="headerlink" title="启动实例"></a>启动实例</h2><p>然后使用 <code>Docker</code> 命令，启动三个 <code>Redis</code> 数据库实例作为从数据库。</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 6381:6379 --name redis-slave1 -v /etc/redis/redis-slave.conf:/etc/redis/redis.conf -d redis redis-server /etc/redis/redis.conf</span><br><span class="line"></span><br><span class="line">docker run -p 6382:6379 --name redis-slave2 -v /etc/redis/redis-slave.conf:/etc/redis/redis.conf -d redis redis-server /etc/redis/redis.conf</span><br><span class="line"></span><br><span class="line">docker run -p 6383:6379 --name redis-slave3 -v /etc/redis/redis-slave.conf:/etc/redis/redis.conf -d redis redis-server /etc/redis/redis.conf</span><br></pre></td></tr></table></figure>
+
+<h1 id="主从数据库"><a href="#主从数据库" class="headerlink" title="主从数据库"></a>主从数据库</h1><p>我们可以使用 <code>Docker</code> 命令进入 <code>Redis</code> 的四个实例中，查看主从关系是否生效。</p>
+<h2 id="查看主数据库"><a href="#查看主数据库" class="headerlink" title="查看主数据库"></a>查看主数据库</h2><p>使用命令查看主数据库的情况，从图中我们可以确认，该 <code>Redis</code> 实例为主数据库，共有三个从数据库。</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it redis-master bash</span><br><span class="line"></span><br><span class="line">redis-cli</span><br><span class="line"></span><br><span class="line">info Replication</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2023/06/H9TFB97USW0JQQMTNXXTNB.png" alt="主数据库"></p>
+<h2 id="查看从数据库"><a href="#查看从数据库" class="headerlink" title="查看从数据库"></a>查看从数据库</h2><p>使用命令查看从数据库的情况，从图中我们可以确认，该 <code>Redis</code> 实例为从数据库及该从数据库对应的主数据库的具体信息。</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it redis-slave1 bash</span><br><span class="line"></span><br><span class="line">redis-cli</span><br><span class="line"></span><br><span class="line">info Replication</span><br></pre></td></tr></table></figure>
+<p><img src="/images/2023/06/9Y4K0L5O64_CDJQH72.png" alt="从数据库"></p>
+<h1 id="哨兵"><a href="#哨兵" class="headerlink" title="哨兵"></a>哨兵</h1><p>我们使用 <code>Docker</code> 启动 <code>Redis</code> 实例作为哨兵。</p>
+<h2 id="配置文件-2"><a href="#配置文件-2" class="headerlink" title="配置文件"></a>配置文件</h2><p>创建 <code>sentinel.conf</code> 文件，并在文件内编辑配置文件内容如下：</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">哨兵sentinel实例运行的端口 默认26379</span> </span><br><span class="line">port 26379 </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">哨兵sentinel的工作目录</span> </span><br><span class="line">dir /tmp </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">哨兵sentinel监控的redis主节点的 ip port</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">master-name 可以自己命名的主节点名字 只能由字母A-z、数字0-9 、这三个字符<span class="string">&quot;.-_&quot;</span>组 成。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">quorum 当这些quorum个数sentinel哨兵认为master主节点失联 那么这时 客观上认为主节点 失联了</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sentinel monitor &lt;master-name&gt; &lt;ip&gt; &lt;redis-port&gt; &lt;quorum&gt;</span> </span><br><span class="line">sentinel monitor redis-master 172.17.0.2 6379 2</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">当在Redis实例中开启了requirepass foobared 授权密码 这样所有连接Redis实例的客户端都 要提供密码</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置哨兵sentinel 连接主从的密码 注意必须为主从设置一样的验证密码</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sentinel auth-pass &lt;master-name&gt; &lt;password&gt;</span> </span><br><span class="line">sentinel auth-pass redis-master &quot;&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">指定多少毫秒之后 主节点没有应答哨兵sentinel 此时 哨兵主观上认为主节点下线 默认30秒</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sentinel down-after-milliseconds &lt;master-name&gt; &lt;milliseconds&gt;</span> </span><br><span class="line">sentinel down-after-milliseconds redis-master 30000 </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">这个配置项指定了在发生failover主备切换时最多可以有多少个slave同时对新的master进行同步</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">这个数字越小，完成failover所需的时间就越长，但是如果这个数字越大，就意味着越多的slave因为replication而不可用。</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">可以通过将这个值设为 1 来保证每次只有一个slave 处于不能处理命令请求的状态。</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sentinel parallel-syncs &lt;master-name&gt; &lt;numslaves&gt;</span></span><br><span class="line">sentinel parallel-syncs redis-master 1</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">故障转移的超时时间 failover-timeout 可以用在以下这些方面：</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">1. 同一个sentinel对同一个master两次failover之间的间隔时间。</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">2. 当一个slave从一个错误的master那里同步数据开始计算时间。直到slave被纠正为向正确的 master那里同步数据时。</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">3.当想要取消一个正在进行的failover所需要的时间。</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">4.当进行failover时，配置所有slaves指向新的master所需的最大时间。不过，即使过了这个超 时，slaves依然会被正确配置为指向master，但是就不按parallel-syncs所配置的规则来了</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">默认三分钟</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sentinel failover-timeout &lt;master-name&gt; &lt;milliseconds&gt;</span> </span><br><span class="line">sentinel failover-timeout redis-master 180000</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">SCRIPTS EXECUTION</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">配置当某一事件发生时所需要执行的脚本，可以通过脚本来通知管理员，例如当系统运行不正常时发邮 件通知相关人员。</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">对于脚本的运行结果有以下规则：</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">若脚本执行后返回1，那么该脚本稍后将会被再次执行，重复次数目前默认为10</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">若脚本执行后返回2，或者比2更高的一个返回值，脚本将不会重复执行。</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">如果脚本在执行过程中由于收到系统中断信号被终止了，则同返回值为1时的行为相同。</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">一个脚本的最大执行时间为60s，如果超过这个时间，脚本将会被一个SIGKILL信号终止，之后重新执 行。</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">通知型脚本:当sentinel有任何警告级别的事件发生时（比如说redis实例的主观失效和客观失效等 等），将会去调用这个脚本，</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">这时这个脚本应该通过邮件，SMS等方式去通知系统管理员关于系统不正 常运行的信息。调用该脚本时，将传给脚本两个参数，一个是事件的类型，一个是事件的描述。</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">如果sentinel.conf配置文件中配置了这个脚本路径，那么必须保证这个脚本存在于这个路径，并且 是可执行的，否则sentinel无法正常启动成功。</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">通知脚本</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sentinel notification-script &lt;master-name&gt; &lt;script-path&gt;</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sentinel notification-script mymaster /var/redis/notify.sh</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">客户端重新配置主节点参数脚本</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">当一个master由于failover而发生改变时，这个脚本将会被调用，通知相关的客户端关于master 地址已经发生改变的信息。</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">以下参数将会在调用脚本时传给脚本:</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">&lt;master-name&gt; &lt;role&gt; &lt;state&gt; &lt;from-ip&gt; &lt;from-port&gt; &lt;to-ip&gt; &lt;to-port&gt;</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">目前&lt;state&gt;总是“failover”,</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">&lt;role&gt;是“leader”或者“observer”中的一个。</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">参数 from-ip, from-port, to-ip, to-port是用来和旧的master和新的master(即旧的 slave)通信的</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">这个脚本应该是通用的，能被多次调用，不是针对性的。</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sentinel client-reconfig-script &lt;master-name&gt; &lt;script-path&gt;</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sentinel client-reconfig-script mymaster /var/redis/reconfig.sh</span></span><br></pre></td></tr></table></figure>
+
+<p>哨兵的配置文件内容较多，需要注意以下几点：</p>
+<ul>
+<li><p>sentinel monitor redis-master 172.17.0.2 6379 2<br>该配置为 <code>Redis</code> 主数据库的 <code>ip</code> 和端口，需要将其修改为自己启动的 <code>Redis</code> 主数据库的 <code>ip</code> 和端口。<br>最后一个参数为哨兵投票成功的个数，不要大于哨兵的总实例个数。</p>
+</li>
+<li><p>sentinel auth-pass redis-master “”<br>该配置为 <code>Redis</code> 主数据库的密码，如果没有，使用空串即可；如果有，需要配置密码，注意必须为主从数据库设置一样的验证密码</p>
+</li>
+<li><p>sentinel down-after-milliseconds redis-master 30000<br>该配置为哨兵认为主数据库下线的时间，即主数据库下线或宕机之后 30000 毫秒，哨兵会主观认为主数据库真正下线。</p>
+</li>
+</ul>
+<h2 id="启动哨兵"><a href="#启动哨兵" class="headerlink" title="启动哨兵"></a>启动哨兵</h2><p>然后使用 <code>Docker</code> 命令，启动三个 <code>Redis</code> 数据库实例作为哨兵。</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 26379:26379 --name redis-sentinel1 -v /etc/redis/sentinel.conf:/etc/redis/sentinel.conf -d redis redis-sentinel /etc/redis/sentinel.conf</span><br><span class="line"></span><br><span class="line">docker run -p 26380:26379 --name redis-sentinel2 -v /etc/redis/sentinel.conf:/etc/redis/sentinel.conf -d redis redis-sentinel /etc/redis/sentinel.conf</span><br><span class="line"></span><br><span class="line">docker run -p 26381:26379 --name redis-sentinel3 -v /etc/redis/sentinel.conf:/etc/redis/sentinel.conf -d redis redis-sentinel /etc/redis/sentinel.conf</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看哨兵"><a href="#查看哨兵" class="headerlink" title="查看哨兵"></a>查看哨兵</h2><p>使用命令查看哨兵的情况，从图中我们可以确认，该 <code>Redis</code> 哨兵已经启动成功，并获取了主数据库，从数据库，其他哨兵的信息。</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs -f redis-sentinel1</span><br></pre></td></tr></table></figure>
+<p><img src="/images/2023/06/XI_XVW_3I0780HDMD9AU.png" alt="哨兵"></p>
+<p>或者我们可以使用其他命令，进入哨兵实例的内部，查看实例信息，从图中我们可以看出，该 <code>Redis</code> 哨兵启动状态成功，其中有主数据库地址为 <code>172.17.0.2:6379</code>，从数据库3个，哨兵3个。</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it redis-sentinel1 bash</span><br><span class="line"></span><br><span class="line">redis-cli -p 26379</span><br><span class="line"></span><br><span class="line">info Sentinel</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2023/06/V34I65KSQDCG76IGCCO_C.png" alt="哨兵1"></p>
+<h1 id="哨兵机制"><a href="#哨兵机制" class="headerlink" title="哨兵机制"></a>哨兵机制</h1><h2 id="哨兵选举"><a href="#哨兵选举" class="headerlink" title="哨兵选举"></a>哨兵选举</h2><p>我们使用 <code>Docker</code> 将 <code>Redis</code> 主数据库实例停止运行，模拟出主数据库因为意外情况下线或者宕机的情况。</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop redis-master</span><br></pre></td></tr></table></figure>
+
+<p>等候大约 30000 毫秒左右的时间，我们重新查看哨兵的情况。</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it redis-sentinel1 bash</span><br><span class="line"></span><br><span class="line">redis-cli -p 26379</span><br><span class="line"></span><br><span class="line">info Sentinel</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2023/06/EONIQZUG_ULJIQIVJ3.png" alt="哨兵1"></p>
+<p>第一个 <code>info Sentinel</code> 是因为时间还没有达到 30000 毫秒之后，哨兵还没有主观判断主数据库下线，而等候 30000 毫秒之后，数据库下线，于是哨兵自动从 3 个从数据库中选举了一个作为新的主数据库。</p>
+<h2 id="选举日志"><a href="#选举日志" class="headerlink" title="选举日志"></a>选举日志</h2><p>我们可以使用命令查看日志，查看哨兵的选举过程。</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs -f redis-sentinel1</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2023/06/TL60LGK95OUSZFUWO9CH.png" alt="哨兵1"></p>
+<p>日志解读：</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">主数据库 172.17.0.2 6379 下线了</span></span><br><span class="line">1:X 26 Jun 2023 13:46:29.680 # +sdown master redis-master 172.17.0.2 6379</span><br><span class="line">1:X 26 Jun 2023 13:46:29.823 # Could not rename tmp config file (Device or resource busy)</span><br><span class="line">1:X 26 Jun 2023 13:46:29.823 # WARNING: Sentinel was not able to save the new configuration on disk!!!: Device or resource busy</span><br><span class="line">1:X 26 Jun 2023 13:46:29.823 # +new-epoch 1</span><br><span class="line">1:X 26 Jun 2023 13:46:29.825 # Could not rename tmp config file (Device or resource busy)</span><br><span class="line">1:X 26 Jun 2023 13:46:29.825 # WARNING: Sentinel was not able to save the new configuration on disk!!!: Device or resource busy</span><br><span class="line">1:X 26 Jun 2023 13:46:29.825 # +vote-for-leader 07a74f95d2f3284e2bcbd34bac98b29e527d5878 1</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">等待了 30000 毫秒之后（注意日志时间），3 个哨兵判断主数据库下线，超过了配置的 2 个哨兵，哨兵主观确定主数据库下线</span></span><br><span class="line">1:X 26 Jun 2023 13:46:30.842 # +odown master redis-master 172.17.0.2 6379 #quorum 3/2</span><br><span class="line">1:X 26 Jun 2023 13:46:30.842 # Next failover delay: I will not start a failover before Mon Jun 26 13:52:29 2023</span><br><span class="line">1:X 26 Jun 2023 13:46:31.039 # +config-update-from sentinel 07a74f95d2f3284e2bcbd34bac98b29e527d5878 172.17.0.8 26379 @ redis-master 172.17.0.2 6379</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">切换已下线的主数据库 172.17.0.2 6379，选举 172.17.0.5 6379 为新的主数据库</span></span><br><span class="line">1:X 26 Jun 2023 13:46:31.039 # +switch-master redis-master 172.17.0.2 6379 172.17.0.5 6379</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重新构建主从关系</span></span><br><span class="line">1:X 26 Jun 2023 13:46:31.040 * +slave slave 172.17.0.4:6379 172.17.0.4 6379 @ redis-master 172.17.0.5 6379</span><br><span class="line">1:X 26 Jun 2023 13:46:31.040 * +slave slave 172.17.0.3:6379 172.17.0.3 6379 @ redis-master 172.17.0.5 6379</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重新构建主从关系，原本的主数据库 172.17.0.2 6379 被降为从数据库</span></span><br><span class="line">1:X 26 Jun 2023 13:46:31.040 * +slave slave 172.17.0.2:6379 172.17.0.2 6379 @ redis-master 172.17.0.5 6379</span><br><span class="line">1:X 26 Jun 2023 13:46:31.044 # Could not rename tmp config file (Device or resource busy)</span><br><span class="line">1:X 26 Jun 2023 13:46:31.044 # WARNING: Sentinel was not able to save the new configuration on disk!!!: Device or resource busy</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">从库 172.17.0.2 6379 下线（但是不影响主库和其他从库和哨兵）</span></span><br><span class="line">1:X 26 Jun 2023 13:47:01.083 # +sdown slave 172.17.0.2:6379 172.17.0.2 6379 @ redis-master 172.17.0.5 6379</span><br></pre></td></tr></table></figure>
+
+<h2 id="重启主数据库"><a href="#重启主数据库" class="headerlink" title="重启主数据库"></a>重启主数据库</h2><p>重新启动原本的主数据库</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start redis-master</span><br></pre></td></tr></table></figure>
+
+<p>查看原本的主数据的信息：</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it redis-master bash</span><br><span class="line"></span><br><span class="line">redis-cli</span><br><span class="line"></span><br><span class="line">info Replication</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2023/06/8F2HYQ8OLSIBY6YU5R31.png" alt="主数据库重启"></p>
+<p>我们可以看到原本的主数据在宕机后重新启动，已经彻底变成了从数据库。</p>
+
     </div>
 
     
@@ -341,6 +423,13 @@
 
 
         
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/06/05/redis/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8Docker%E5%AE%89%E8%A3%85Redis/" rel="prev" title="一篇博客教会你怎么使用Docker安装Redis">
+      <i class="fa fa-chevron-left"></i> 一篇博客教会你怎么使用Docker安装Redis
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
     
   </article>
@@ -410,7 +499,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E4%B8%BB%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">启动主数据库</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">主数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E5%AE%9E%E4%BE%8B"><span class="nav-text">启动实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9FIP"><span class="nav-text">容器虚拟IP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">从数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-1"><span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E5%AE%9E%E4%BE%8B-1"><span class="nav-text">启动实例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">主从数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%B8%BB%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">查看主数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">查看从数据库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%93%A8%E5%85%B5"><span class="nav-text">哨兵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-2"><span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E5%93%A8%E5%85%B5"><span class="nav-text">启动哨兵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%93%A8%E5%85%B5"><span class="nav-text">查看哨兵</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%93%A8%E5%85%B5%E6%9C%BA%E5%88%B6"><span class="nav-text">哨兵机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%A8%E5%85%B5%E9%80%89%E4%B8%BE"><span class="nav-text">哨兵选举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E4%B8%BE%E6%97%A5%E5%BF%97"><span class="nav-text">选举日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%90%AF%E4%B8%BB%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">重启主数据库</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -431,7 +520,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">168</span>
+          <span class="site-state-item-count">169</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -506,13 +595,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">515k</span>
+    <span title="站点总字数">522k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">7:48</span>
+    <span title="站点阅读时长">7:55</span>
 </div>
         
 <div class="busuanzi-count">

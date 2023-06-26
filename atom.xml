@@ -6,7 +6,7 @@
   <link href="https://herenpeng.github.io/atom.xml" rel="self"/>
   
   <link href="https://herenpeng.github.io/"/>
-  <updated>2023-06-05T14:43:12.000Z</updated>
+  <updated>2023-06-26T12:36:05.000Z</updated>
   <id>https://herenpeng.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一篇博客教会你使用Docker部署Redis哨兵</title>
+    <link href="https://herenpeng.github.io/2023/06/26/redis/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2Redis%E5%93%A8%E5%85%B5/"/>
+    <id>https://herenpeng.github.io/2023/06/26/redis/%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%95%99%E4%BC%9A%E4%BD%A0%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2Redis%E5%93%A8%E5%85%B5/</id>
+    <published>2023-06-26T12:36:05.000Z</published>
+    <updated>2023-06-26T12:36:05.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;今天我们学习使用 &lt;code&gt;Docker&lt;/code&gt; 部署 &lt;code&gt;Redis&lt;/code&gt; 的主从复制，并部署 &lt;code&gt;Redis&lt;/code&gt; 哨兵，实现 &lt;code&gt;Redis&lt;/code&gt; 数据库的高可用。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Redis" scheme="https://herenpeng.github.io/categories/Redis/"/>
+    
+    
+    <category term="Linux" scheme="https://herenpeng.github.io/tags/Linux/"/>
+    
+    <category term="Docker" scheme="https://herenpeng.github.io/tags/Docker/"/>
+    
+    <category term="Redis" scheme="https://herenpeng.github.io/tags/Redis/"/>
+    
+  </entry>
   
   <entry>
     <title>一篇博客教会你怎么使用Docker安装Redis</title>
@@ -430,28 +453,6 @@
     <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
     
     <category term="Netty" scheme="https://herenpeng.github.io/tags/Netty/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java位运算，Int类型存储用户的登录足迹</title>
-    <link href="https://herenpeng.github.io/2021/08/23/java/Java%E4%BD%8D%E8%BF%90%E7%AE%97%EF%BC%8CInt%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%82%A8%E7%94%A8%E6%88%B7%E7%9A%84%E7%99%BB%E5%BD%95%E8%B6%B3%E8%BF%B9/"/>
-    <id>https://herenpeng.github.io/2021/08/23/java/Java%E4%BD%8D%E8%BF%90%E7%AE%97%EF%BC%8CInt%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%82%A8%E7%94%A8%E6%88%B7%E7%9A%84%E7%99%BB%E5%BD%95%E8%B6%B3%E8%BF%B9/</id>
-    <published>2021-08-23T15:08:20.000Z</published>
-    <updated>2023-02-25T15:42:32.078Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;今天接到一家公司的面试邀请，于是我来到了这家公司，前台的小姐姐面带微笑地把我请进会议室，等待了一会，一位面试官走了进来……&lt;/p&gt;
-&lt;p&gt;在进行了简单的自我介绍之后，面试官开始发问了……&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
     
   </entry>
   
