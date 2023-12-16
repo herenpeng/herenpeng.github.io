@@ -6,7 +6,7 @@
   <link href="https://herenpeng.github.io/atom.xml" rel="self"/>
   
   <link href="https://herenpeng.github.io/"/>
-  <updated>2023-06-29T16:00:09.000Z</updated>
+  <updated>2023-12-16T13:10:14.000Z</updated>
   <id>https://herenpeng.github.io/</id>
   
   <author>
@@ -15,6 +15,77 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringBoot 3.2.0 版本 mysql 依赖下载错误</title>
+    <link href="https://herenpeng.github.io/2023/12/16/java/SpringBoot%203.2.0%20%E7%89%88%E6%9C%AC%20mysql%20%E4%BE%9D%E8%B5%96%E4%B8%8B%E8%BD%BD%E9%94%99%E8%AF%AF/"/>
+    <id>https://herenpeng.github.io/2023/12/16/java/SpringBoot%203.2.0%20%E7%89%88%E6%9C%AC%20mysql%20%E4%BE%9D%E8%B5%96%E4%B8%8B%E8%BD%BD%E9%94%99%E8%AF%AF/</id>
+    <published>2023-12-16T13:10:14.000Z</published>
+    <updated>2023-12-16T13:10:14.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;最近想尝试一下最新的 &lt;code&gt;SpringBoot&lt;/code&gt; 项目，于是将自己的开源项目进行了一些升级。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;JDK 版本从 &lt;code&gt;JDK8&lt;/code&gt; 升级至 &lt;code&gt;JDK17&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;SpringBoot 版本从 &lt;code&gt;SpringBoot 2.7.3&lt;/code&gt; 升级到 &lt;code&gt;SpringBoot 3.2.0&lt;/code&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+    <category term="MySQL" scheme="https://herenpeng.github.io/tags/MySQL/"/>
+    
+    <category term="Spring" scheme="https://herenpeng.github.io/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Maven 编译速度慢？使用一个小技巧提升 Maven 编译速度！</title>
+    <link href="https://herenpeng.github.io/2023/12/16/tool/Maven%20%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6%E6%85%A2%EF%BC%9F%E4%BD%BF%E7%94%A8%E4%B8%80%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%E6%8F%90%E5%8D%87%20Maven%20%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6%EF%BC%81/"/>
+    <id>https://herenpeng.github.io/2023/12/16/tool/Maven%20%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6%E6%85%A2%EF%BC%9F%E4%BD%BF%E7%94%A8%E4%B8%80%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%E6%8F%90%E5%8D%87%20Maven%20%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6%EF%BC%81/</id>
+    <published>2023-12-16T13:06:24.000Z</published>
+    <updated>2023-12-16T13:06:24.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;最近在工作中使用 Maven 编译 Java 项目，但是使用 Maven 编译并安装，平均耗时 6 分钟以上。&lt;/p&gt;
+&lt;p&gt;为了提升工作效率，我们可以通过设置 Maven 编译参数来提升 Maven 的编译速度。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="开发工具" scheme="https://herenpeng.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="IDEA" scheme="https://herenpeng.github.io/tags/IDEA/"/>
+    
+    <category term="Maven" scheme="https://herenpeng.github.io/tags/Maven/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot Cache 整合 Redis 缓存框架</title>
+    <link href="https://herenpeng.github.io/2023/12/16/java/SpringBoot%20Cache%20%E6%95%B4%E5%90%88%20Redis%20%E7%BC%93%E5%AD%98%E6%A1%86%E6%9E%B6/"/>
+    <id>https://herenpeng.github.io/2023/12/16/java/SpringBoot%20Cache%20%E6%95%B4%E5%90%88%20Redis%20%E7%BC%93%E5%AD%98%E6%A1%86%E6%9E%B6/</id>
+    <published>2023-12-16T13:03:03.000Z</published>
+    <updated>2023-12-16T13:03:03.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;code&gt;SpringBoot&lt;/code&gt; 提供了 &lt;code&gt;SpringBootCache&lt;/code&gt; 框架作为 &lt;code&gt;SpringBoot&lt;/code&gt; 的缓存统一框架，使用 &lt;code&gt;SpringBootCache&lt;/code&gt; ，我们可以使用注解的方式使用缓存，从而避免了写一些重复代码的问题。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+    <category term="Spring" scheme="https://herenpeng.github.io/tags/Spring/"/>
+    
+    <category term="Redis" scheme="https://herenpeng.github.io/tags/Redis/"/>
+    
+  </entry>
   
   <entry>
     <title>一篇博客教会你怎么使用Docker安装RabbitMQ</title>
@@ -388,71 +459,6 @@
     <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
     
     <category term="ProtoBuf" scheme="https://herenpeng.github.io/tags/ProtoBuf/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python序列</title>
-    <link href="https://herenpeng.github.io/2021/11/29/python/Python%E5%BA%8F%E5%88%97/"/>
-    <id>https://herenpeng.github.io/2021/11/29/python/Python%E5%BA%8F%E5%88%97/</id>
-    <published>2021-11-28T22:00:00.000Z</published>
-    <updated>2023-02-25T15:42:32.505Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;序列是一块用于存放多个值的连续的内存空间，并按照一定的顺序排列，每一个值（称为元素）都分配一个数字（称为索引或者位置）。通过索引可以取出对应位置的值。&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="Python" scheme="https://herenpeng.github.io/categories/Python/"/>
-    
-    
-    <category term="Python" scheme="https://herenpeng.github.io/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python基本数据类型</title>
-    <link href="https://herenpeng.github.io/2021/11/21/python/Python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
-    <id>https://herenpeng.github.io/2021/11/21/python/Python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</id>
-    <published>2021-11-21T07:51:43.000Z</published>
-    <updated>2023-02-25T15:42:32.047Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Python 有多种基本数据类型，用来存储内存中的数据。Python 一共提供了三种基本数据类型，其中分为是：数值型、字符型、布尔型。&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="Python" scheme="https://herenpeng.github.io/categories/Python/"/>
-    
-    
-    <category term="Python" scheme="https://herenpeng.github.io/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WebStrom 开发 Vue 项目，安装 ESLint 代码风格检查工具</title>
-    <link href="https://herenpeng.github.io/2021/08/30/javascript/WebStrom%20%E5%BC%80%E5%8F%91%20Vue%20%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%AE%89%E8%A3%85%20ESLint%20%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E6%A3%80%E6%9F%A5%E5%B7%A5%E5%85%B7/"/>
-    <id>https://herenpeng.github.io/2021/08/30/javascript/WebStrom%20%E5%BC%80%E5%8F%91%20Vue%20%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%AE%89%E8%A3%85%20ESLint%20%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E6%A3%80%E6%9F%A5%E5%B7%A5%E5%85%B7/</id>
-    <published>2021-08-30T01:02:20.000Z</published>
-    <updated>2023-02-25T15:42:32.152Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;WebStrom 开发 Vue 项目，安装 ESLint 代码风格检查工具&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="JavaScript" scheme="https://herenpeng.github.io/categories/JavaScript/"/>
-    
-    
-    <category term="JavaScript" scheme="https://herenpeng.github.io/tags/JavaScript/"/>
-    
-    <category term="Vue" scheme="https://herenpeng.github.io/tags/Vue/"/>
-    
-    <category term="WebStrom" scheme="https://herenpeng.github.io/tags/WebStrom/"/>
     
   </entry>
   
