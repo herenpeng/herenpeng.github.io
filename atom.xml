@@ -6,7 +6,7 @@
   <link href="https://herenpeng.github.io/atom.xml" rel="self"/>
   
   <link href="https://herenpeng.github.io/"/>
-  <updated>2023-12-16T13:10:14.000Z</updated>
+  <updated>2023-12-16T14:28:12.000Z</updated>
   <id>https://herenpeng.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringBoot 3.0 升级之 Swagger 升级</title>
+    <link href="https://herenpeng.github.io/2023/12/16/java/SpringBoot%203.0%20%E5%8D%87%E7%BA%A7%E4%B9%8B%20Swagger%20%E5%8D%87%E7%BA%A7/"/>
+    <id>https://herenpeng.github.io/2023/12/16/java/SpringBoot%203.0%20%E5%8D%87%E7%BA%A7%E4%B9%8B%20Swagger%20%E5%8D%87%E7%BA%A7/</id>
+    <published>2023-12-16T14:28:12.000Z</published>
+    <updated>2023-12-16T14:28:12.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;最近想尝试一下最新的 &lt;code&gt;SpringBoot&lt;/code&gt; 项目，于是将自己的开源项目进行了一些升级。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;JDK 版本从 &lt;code&gt;JDK8&lt;/code&gt; 升级至 &lt;code&gt;JDK17&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;SpringBoot 版本从 &lt;code&gt;SpringBoot 2.7.3&lt;/code&gt; 升级到 &lt;code&gt;SpringBoot 3.2.0&lt;/code&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
+    
+    <category term="Spring" scheme="https://herenpeng.github.io/tags/Spring/"/>
+    
+    <category term="Swagger" scheme="https://herenpeng.github.io/tags/Swagger/"/>
+    
+  </entry>
   
   <entry>
     <title>SpringBoot 3.2.0 版本 mysql 依赖下载错误</title>
@@ -436,29 +462,6 @@
     <category term="Python" scheme="https://herenpeng.github.io/tags/Python/"/>
     
     <category term="MySQL" scheme="https://herenpeng.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ProtoBuf入门</title>
-    <link href="https://herenpeng.github.io/2022/02/14/java/ProtoBuf%E5%85%A5%E9%97%A8/"/>
-    <id>https://herenpeng.github.io/2022/02/14/java/ProtoBuf%E5%85%A5%E9%97%A8/</id>
-    <published>2022-02-14T07:17:11.000Z</published>
-    <updated>2023-02-25T15:42:32.496Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;什么是-ProtoBuf&quot;&gt;&lt;a href=&quot;#什么是-ProtoBuf&quot; class=&quot;headerlink&quot; title=&quot;什么是 ProtoBuf&quot;&gt;&lt;/a&gt;什么是 ProtoBuf&lt;/h2&gt;&lt;p&gt;&lt;code&gt;protocol buffers&lt;/code&gt; 是一种语言无关、平台无关、可扩展的序列化结构数据的方法，它可用于（数据）通信协议、数据存储等。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Protocol Buffers&lt;/code&gt; 是一种灵活，高效，自动化机制的结构数据序列化方法－可类比 &lt;code&gt;XML&lt;/code&gt;，但是比 &lt;code&gt;XML&lt;/code&gt;更小（3 ~ 10倍）、更快（20 ~ 100倍）、更为简单。&lt;/p&gt;
-&lt;p&gt;你可以定义数据的结构，然后使用特殊生成的源代码轻松的在各种数据流中使用各种语言进行编写和读取结构数据。你甚至可以更新数据结构，而不破坏由旧数据结构编译的已部署程序。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://herenpeng.github.io/tags/Java/"/>
-    
-    <category term="ProtoBuf" scheme="https://herenpeng.github.io/tags/ProtoBuf/"/>
     
   </entry>
   
